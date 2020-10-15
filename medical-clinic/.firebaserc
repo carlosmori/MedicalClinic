@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "medical-clinic-c44ab": {
+      "hosting": {
+        "medical-clinic": [
+          "medical-clinic-c44ab"
+        ]
+      }
+    }
+  }
+}
