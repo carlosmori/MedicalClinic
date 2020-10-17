@@ -1,6 +1,21 @@
 <div class="main-container">
-  <span class="p-float-label">
-    <input id="float-input" type="text" pInputText />
-    <label for="float-input">Username</label>
-  </span>
+  <!-- <div class="black-overlay"></div> -->
+  <h1>Medical Clinic</h1>
+  <div class="login-container">
+    <h2>Welcome</h2>
+    <div class="form-container">
+      <span class="p-float-label">
+        <input id="username-input" type="text" pInputText [(ngModel)]="username" />
+        <label for="username-input">Username</label>
+      </span>
+      <span class="p-float-label">
+        <input id="password-input" type="password" pPassword [(ngModel)]="password" />
+        <label for="password-input">Password</label>
+      </span>
+      <div class="button-container">
+        <button pButton type="button" label="Sign Up" class="p-button-outlined"></button>
+        <button pButton type="button" label="Sign In" class="p-button-raised"></button>
+      </div>
+    </div>
+  </div>
 </div>

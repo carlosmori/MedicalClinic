@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -16,7 +17,8 @@ import { LoginComponent } from './components/login/login.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    InputTextModule,
+    FormsModule,
+    PrimeNgModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

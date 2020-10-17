@@ -1,3 +1,63 @@
+@import '/src/styles.scss';
 :host {
   display: block;
+}
+.main-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/assets/images/login-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: grid;
+  color: $primaryColor;
+  h1 {
+    position: absolute;
+    top: 5%;
+    text-align: center;
+    width: 100%;
+  }
+  @include media(xs) {
+    background-position-x: 70%;
+  }
+  .black-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #0000004d;
+  }
+  .login-container {
+    z-index: 1;
+    justify-self: center;
+    align-self: center;
+    display: grid;
+    height: 50%;
+    width: 30%;
+    @include media(xs) {
+      width: 80%;
+    }
+    background-color: #ffffff54;
+    border: 2px solid $primaryColor;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: 25% 1fr;
+    h2 {
+      width: 80%;
+      text-align: center;
+    }
+    .form-container {
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      height: 100%;
+      .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        button {
+          width: 45%;
+        }
+      }
+    }
+  }
 }
