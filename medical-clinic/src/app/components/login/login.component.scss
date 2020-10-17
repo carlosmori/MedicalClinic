@@ -54,7 +54,12 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        button {
+
+        .sign-up-btn {
+          text-decoration: none;
+        }
+        .sign-in-btn,
+        .sign-up-btn {
           width: 45%;
         }
       }
