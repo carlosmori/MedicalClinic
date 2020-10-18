@@ -17,15 +17,10 @@
     width: 100%;
   }
   @include media(xs) {
-    background-position-x: 70%;
+    background-position-x: 65%;
   }
-  .black-overlay {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background-color: #0000004d;
-  }
-  .login-container {
+  .login-container,
+  .register-container {
     z-index: 1;
     justify-self: center;
     align-self: center;
@@ -45,7 +40,21 @@
       width: 80%;
       text-align: center;
     }
-    .form-container {
+    .registration-message {
+      width: 80%;
+      text-align: center;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .sign-in-btn {
+        width: 45%;
+
+        margin: 20px 0px;
+      }
+    }
+    .login-form-container,
+    .register-form-container {
       display: grid;
       justify-items: center;
       align-items: center;
@@ -64,5 +73,9 @@
         }
       }
     }
+  }
+  .register-container {
+    height: 70%;
+    grid-template-rows: 20% 1fr;
   }
 }

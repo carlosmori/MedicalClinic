@@ -1,23 +1,82 @@
 <div class="main-container">
-  <!-- <div class="black-overlay"></div> -->
   <h1>Medical Clinic</h1>
-  <div class="login-container">
-    <h2>Welcome</h2>
-    <div class="form-container">
-      <span class="p-float-label">
-        <input id="username-input" type="text" pInputText [(ngModel)]="username" />
-        <label for="username-input">Username</label>
-      </span>
-      <span class="p-float-label">
-        <input id="password-input" type="password" pPassword [(ngModel)]="password" />
-        <label for="password-input">Password</label>
-      </span>
-      <div class="button-container">
-        <a routerLink="/register" class="sign-up-btn">
-          <button pButton type="button" label="Sign Up" class="p-button-outlined"></button>
-        </a>
-        <button pButton type="button" label="Sign In" class="sign-in-btn p-button-raised"></button>
+  <div *ngIf="displayRegisterForm; else loginContainer" class="register-container">
+    <h2>Registration</h2>
+    <div *ngIf="displayMessage; else registrationForm" class="registration-message">
+      {{ registrationMessage }}
+      <button
+        pButton
+        type="button"
+        label="Sign In"
+        class="sign-in-btn p-button-outlined"
+        (click)="switchForms()"
+      ></button>
+    </div>
+    <ng-template #registrationForm>
+      <div class="register-form-container">
+        <span class="p-float-label">
+          <input id="username-input" type="text" pInputText [(ngModel)]="name" />
+          <label for="username-input">Name</label>
+        </span>
+        <span class="p-float-label">
+          <input id="username-input" type="text" pInputText [(ngModel)]="userEmail" />
+          <label for="username-input">E-mail</label>
+        </span>
+        <span class="p-float-label">
+          <input id="username-input" type="text" pInputText [(ngModel)]="repeatUserEmail" />
+          <label for="username-input">Repeat E-mail</label>
+        </span>
+        <span class="p-float-label">
+          <input id="password-input" type="password" pPassword [(ngModel)]="userPassword" />
+          <label for="password-input">Password</label>
+        </span>
+        <span class="p-float-label">
+          <input id="password-input" type="password" pPassword [(ngModel)]="repeatUserPassword" />
+          <label for="password-input">Repeat Password</label>
+        </span>
+        <div class="button-container">
+          <button
+            pButton
+            type="button"
+            label="Sign In"
+            class="sign-up-btn p-button-outlined"
+            (click)="switchForms()"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label="Register"
+            class="sign-in-btn p-button-raised"
+            (click)="register()"
+          ></button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <ng-template #loginContainer>
+    <div class="login-container">
+      <h2>Welcome</h2>
+      <div class="login-form-container">
+        <span class="p-float-label">
+          <input id="username-input" type="text" pInputText [(ngModel)]="username" />
+          <label for="username-input">Username</label>
+        </span>
+        <span class="p-float-label">
+          <input id="password-input" type="password" pPassword [(ngModel)]="password" />
+          <label for="password-input">Password</label>
+        </span>
+        <div class="button-container">
+          <button
+            pButton
+            type="button"
+            label="Sign Up"
+            class="sign-up-btn p-button-outlined"
+            (click)="switchForms()"
+          ></button>
+          <button pButton type="button" label="Sign In" class="sign-in-btn p-button-raised"></button>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>
