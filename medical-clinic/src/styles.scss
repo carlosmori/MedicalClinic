@@ -31,3 +31,9 @@ $breakpoint-lg: 1360px;
     }
   }
 }
+
+@include media(xs) {
+  :host ::ng-deep .p-toast {
+    width: 80%;
+  }
+}

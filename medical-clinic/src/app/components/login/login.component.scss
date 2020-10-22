@@ -40,19 +40,6 @@
       width: 80%;
       text-align: center;
     }
-    .registration-message {
-      width: 80%;
-      text-align: center;
-      font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .sign-in-btn {
-        width: 45%;
-
-        margin: 20px 0px;
-      }
-    }
     .login-form-container,
     .register-form-container {
       display: grid;
