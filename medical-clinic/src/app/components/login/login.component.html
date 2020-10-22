@@ -3,14 +3,16 @@
   <div *ngIf="displayRegisterForm; else loginContainer" class="register-container">
     <h2>Registration</h2>
     <div class="register-form-container">
-      <!-- <span class="p-float-label">
+      <span class="p-float-label">
         <input id="username-input" type="text" pInputText [(ngModel)]="name" />
         <label for="username-input">Name</label>
-      </span> -->
+      </span>
       <span class="p-float-label">
         <input id="username-input" type="text" pInputText [(ngModel)]="userEmail" />
         <label for="username-input">E-mail</label>
       </span>
+      <p-dropdown [options]="profiles" [(ngModel)]="selectedProfile"></p-dropdown>
+
       <!-- <span class="p-float-label">
           <input id="username-input" type="text" pInputText [(ngModel)]="repeatUserEmail" />
           <label for="username-input">Repeat E-mail</label>
