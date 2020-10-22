@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +25,8 @@ export class LoginComponent implements OnInit {
   selectedProfile: string;
   displayRegisterForm: boolean;
   newUser: User;
-  constructor(private authService: AuthService, private messageService: MessageService) {
-    this.displayRegisterForm = true;
+  constructor(private authService: AuthService, private messageService: MessageService, private router: Router) {
+    this.displayRegisterForm = false;
     this.profiles = [
       {
         label: 'Professional',
@@ -56,7 +57,14 @@ export class LoginComponent implements OnInit {
       email: this.userEmail,
       password: this.userPassword,
       profile: this.selectedProfile,
+      // Flag to set images on first log in
+      firstTimeLogIn: true,
     };
+
+    // Professionals need to be validated by an administrator first
+    if (this.selectedProfile === 'Professional') {
+      this.newUser = { ...this.newUser, isProfessionalEnabled: false };
+    }
     this.authService.SignUp(this.newUser).then(({ success, message }) => {
       if (success) {
         this.messageService.add({
@@ -65,7 +73,7 @@ export class LoginComponent implements OnInit {
           summary: 'Info',
           detail: 'Please check your email',
         });
-        // this.switchForms();
+        this.switchForms();
       } else {
         this.messageService.add({
           key: 'bc',
@@ -78,14 +86,18 @@ export class LoginComponent implements OnInit {
     console.log(this.newUser);
   }
   signIn() {
-    this.authService.SignIn(this.email, this.password).then(({ success, message }) => {
+    this.authService.SignIn(this.email, this.password).then(({ success, message, callback }) => {
       if (success) {
         this.messageService.add({
           key: 'bc',
           severity: 'success',
           summary: 'Welcome',
         });
-        // todo redirect
+        callback.subscribe((user) => {
+          localStorage.setItem('user', JSON.stringify(user[0]));
+          this.router.navigate(['/dashboard']);
+        });
+        // console.log(callback);
       } else {
         this.messageService.add({
           key: 'bc',

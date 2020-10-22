@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   async SignIn(email, password) {
-    const response = { success: false, message: null };
+    const response = { success: false, message: null, callback: null };
     try {
       const {
         user: { uid, emailVerified, displayName, photoURL, email: userEmail },
@@ -27,7 +27,15 @@ export class AuthService {
         this.SendVerificationMail();
         return { ...response, message: 'Please verify the provided email' };
       } else {
-        return { ...response, success: true };
+        const cb = this.afs
+          .collection<any>('users', (ref) => ref.where('uid', '==', uid))
+          .valueChanges();
+        // .subscribe((user: User) => {
+        //   localStorage.setItem('user', JSON.stringify(user));
+
+        // });
+        return { ...response, success: true, callback: cb };
+        // return { ...response, success: true };
       }
     } catch ({ message }) {
       return { ...response, message };
@@ -57,6 +65,6 @@ export class AuthService {
 
   SignOut() {
     localStorage.removeItem('user');
-    // this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 }
