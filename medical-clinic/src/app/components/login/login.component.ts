@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = 'carlosmori34@gmail.com';
-    this.password = 'shinra94';
+    this.password = '123456';
     this.name = 'Carlos Mori';
-    this.userPassword = 'shinra94';
+    this.userPassword = '123456';
     this.userEmail = 'carlosmori34@gmail.com';
   }
 
@@ -97,7 +97,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(user[0]));
           this.router.navigate(['/dashboard']);
         });
-        // console.log(callback);
       } else {
         this.messageService.add({
           key: 'bc',

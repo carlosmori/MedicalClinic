@@ -30,12 +30,7 @@ export class AuthService {
         const cb = this.afs
           .collection<any>('users', (ref) => ref.where('uid', '==', uid))
           .valueChanges();
-        // .subscribe((user: User) => {
-        //   localStorage.setItem('user', JSON.stringify(user));
-
-        // });
         return { ...response, success: true, callback: cb };
-        // return { ...response, success: true };
       }
     } catch ({ message }) {
       return { ...response, message };
