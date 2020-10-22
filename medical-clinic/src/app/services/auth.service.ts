@@ -37,7 +37,7 @@ export class AuthService {
     }
   }
 
-  async SignUp({ email, password, name, profile }: User) {
+  async SignUp({ email, password, name, profile, firstTimeLogIn, isProfessionalEnabled }: User) {
     const response = { success: false, message: null };
     try {
       const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
@@ -47,6 +47,8 @@ export class AuthService {
         name,
         profile,
         email,
+        firstTimeLogIn,
+        isProfessionalEnabled,
       });
 
       return { ...response, success: true };
