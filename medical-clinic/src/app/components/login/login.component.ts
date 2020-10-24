@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
         });
         callback.subscribe((user) => {
           localStorage.setItem('user', JSON.stringify(user[0]));
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/home']);
         });
       } else {
         this.messageService.add({

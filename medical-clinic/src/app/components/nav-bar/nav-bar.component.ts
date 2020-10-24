@@ -14,9 +14,9 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = [
-      { label: 'New', icon: 'pi pi-fw pi-plus' },
-      { label: 'Open', icon: 'pi pi-fw pi-download' },
-      { label: 'Undo', icon: 'pi pi-fw pi-refresh' },
+      { label: 'New Appointment', icon: 'pi pi-calendar-plus', routerLink: ['/home', 'new-appointment'] },
+      { label: 'My Appointments', icon: 'pi pi-calendar' },
+      { label: 'My Account (WIP)', icon: 'pi pi-user' },
     ];
   }
   signOut() {
