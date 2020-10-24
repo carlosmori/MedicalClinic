@@ -11,8 +11,9 @@ import { LoginComponent } from './components/login/login.component';
 import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [AppComponent, LoginComponent, DashboardComponent, NavBarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
