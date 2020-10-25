@@ -7,6 +7,8 @@ import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
+import { StepsModule } from 'primeng/steps';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [],
@@ -19,7 +21,19 @@ import { MenuModule } from 'primeng/menu';
     RippleModule,
     DropdownModule,
     MenuModule,
+    StepsModule,
+    CardModule,
   ],
-  exports: [InputTextModule, PasswordModule, ToastModule, ButtonModule, RippleModule, DropdownModule, MenuModule],
+  exports: [
+    InputTextModule,
+    PasswordModule,
+    ToastModule,
+    ButtonModule,
+    RippleModule,
+    DropdownModule,
+    MenuModule,
+    StepsModule,
+    CardModule,
+  ],
 })
 export class PrimeNgModule {}

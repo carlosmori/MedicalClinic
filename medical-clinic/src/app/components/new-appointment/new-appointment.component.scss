@@ -1,3 +1,41 @@
 :host {
   display: block;
 }
+:host ::ng-deep p-steps {
+  width: 80%;
+}
+:host ::ng-deep .p-steps .p-steps-item .p-menuitem-link {
+  flex-direction: column;
+}
+:host ::ng-deep .p-steps-item {
+  &:before {
+    top: 30%;
+  }
+}
+:host ::ng-deep .p-steps-title {
+  margin-top: 1rem !important;
+}
+.new-appointment-container {
+  height: 95vh;
+  width: 100%;
+  .stepper {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    .specialty-content,
+    .professional-content,
+    .dateTime-content,
+    .summary-content {
+      width: 50%;
+    }
+    .summary-content {
+      text-align: center;
+    }
+    .field-summary {
+      font-weight: bold;
+      margin: 10px;
+    }
+  }
+}

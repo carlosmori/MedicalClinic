@@ -16,6 +16,9 @@ export class NavBarComponent implements OnInit {
     this.items = [
       { label: 'New Appointment', icon: 'pi pi-calendar-plus', routerLink: ['/home', 'new-appointment'] },
       { label: 'My Appointments', icon: 'pi pi-calendar' },
+      // Professional icons
+      // { label: 'Schedule', icon: 'pi pi-calendar' },
+      // { label: 'Avaliability', icon: 'pi pi-user-edit' },
       { label: 'My Account (WIP)', icon: 'pi pi-user' },
     ];
   }
