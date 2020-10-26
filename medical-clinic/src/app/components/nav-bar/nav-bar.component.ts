@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       { label: 'New Appointment', icon: 'pi pi-calendar-plus', routerLink: ['/home', 'new-appointment'] },
-      { label: 'My Appointments', icon: 'pi pi-calendar' },
+      { label: 'My Appointments', icon: 'pi pi-calendar', routerLink: ['/home', 'my-appointments'] },
       // Professional icons
       // { label: 'Schedule', icon: 'pi pi-calendar' },
       // { label: 'Avaliability', icon: 'pi pi-user-edit' },
