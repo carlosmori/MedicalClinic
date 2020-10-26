@@ -17,14 +17,14 @@ export class AuthService {
     this.usersCollection = this.afs.collection<any>('users');
   }
 
-  async SignIn(email, password) {
+  async signIn(email, password) {
     const response = { success: false, message: null, callback: null };
     try {
       const {
         user: { uid, emailVerified, displayName, photoURL, email: userEmail },
       } = await this.afAuth.signInWithEmailAndPassword(email, password);
       if (!emailVerified) {
-        this.SendVerificationMail();
+        this.sendVerificationMail();
         return { ...response, message: 'Please verify the provided email' };
       } else {
         const cb = this.afs
@@ -37,11 +37,11 @@ export class AuthService {
     }
   }
 
-  async SignUp({ email, password, name, profile, firstTimeLogIn, isProfessionalEnabled }: User) {
+  async signUp({ email, password, name, profile, firstTimeLogIn, isProfessionalEnabled = null }: User) {
     const response = { success: false, message: null };
     try {
       const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      await this.SendVerificationMail();
+      await this.sendVerificationMail();
       await this.usersCollection.add({
         uid: user.uid,
         name,
@@ -56,12 +56,16 @@ export class AuthService {
       return { ...response, message };
     }
   }
-  async SendVerificationMail() {
+  async sendVerificationMail() {
     (await this.afAuth.currentUser).sendEmailVerification();
   }
 
-  SignOut() {
+  signOut() {
     localStorage.removeItem('user');
     this.router.navigate(['/']);
+  }
+
+  currentUser() {
+    return JSON.parse(localStorage.getItem('user'));
   }
 }

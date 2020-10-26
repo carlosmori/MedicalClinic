@@ -9,20 +9,34 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavBarComponent implements OnInit {
   items: MenuItem[];
-
+  currentUser;
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.items = [
-      { label: 'New Appointment', icon: 'pi pi-calendar-plus', routerLink: ['/home', 'new-appointment'] },
-      { label: 'My Appointments', icon: 'pi pi-calendar', routerLink: ['/home', 'my-appointments'] },
-      // Professional icons
-      // { label: 'Schedule', icon: 'pi pi-calendar' },
-      // { label: 'Avaliability', icon: 'pi pi-user-edit' },
-      { label: 'My Account (WIP)', icon: 'pi pi-user' },
-    ];
+    this.currentUser = this.authService.currentUser();
+    this.items = [{ label: 'My Account (WIP)', icon: 'pi pi-user' }];
+    console.log('Variable: this.currentUser equals');
+    console.log(this.currentUser);
+    if (this.currentUser.profile === 'Patient') {
+      this.items = [
+        ...this.items,
+        { label: 'New Appointment', icon: 'pi pi-calendar-plus', routerLink: ['/home', 'new-appointment'] },
+        { label: 'My Appointments', icon: 'pi pi-calendar', routerLink: ['/home', 'my-appointments'] },
+        // todo undo this
+        { label: 'Schedule', icon: 'pi pi-calendar', routerLink: ['/home', 'schedule'] },
+        { label: 'Avaliability', icon: 'pi pi-user-edit', routerLink: ['/home', 'avaliability'] },
+      ];
+    }
+    if (this.currentUser.profile === 'Professional') {
+      this.items = [
+        ...this.items,
+        { label: 'Schedule', icon: 'pi pi-calendar', routerLink: ['/home', 'schedule'] },
+        { label: 'Avaliability', icon: 'pi pi-user-edit', routerLink: ['/home', 'avaliability'] },
+      ];
+    }
+    // Professional icons
   }
   signOut() {
-    this.authService.SignOut();
+    this.authService.signOut();
   }
 }

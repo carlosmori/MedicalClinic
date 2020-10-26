@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .future-appointments-table,
+  .my-schedule-table {
+    width: 80%;
+  }
+  .my-schedule-table {
+    margin-bottom: 100px;
+  }
+}

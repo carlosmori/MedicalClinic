@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     if (this.selectedProfile === 'Professional') {
       this.newUser = { ...this.newUser, isProfessionalEnabled: false };
     }
-    this.authService.SignUp(this.newUser).then(({ success, message }) => {
+    this.authService.signUp(this.newUser).then(({ success, message }) => {
       if (success) {
         this.messageService.add({
           key: 'bc',
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
     console.log(this.newUser);
   }
   signIn() {
-    this.authService.SignIn(this.email, this.password).then(({ success, message, callback }) => {
+    this.authService.signIn(this.email, this.password).then(({ success, message, callback }) => {
       if (success) {
         this.messageService.add({
           key: 'bc',

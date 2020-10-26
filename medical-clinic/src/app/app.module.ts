@@ -16,6 +16,8 @@ import { NewAppointmentComponent } from './components/new-appointment/new-appoin
 import { MyAppointmentsComponent } from './components/my-appointments/my-appointments.component';
 import { AccountComponent } from './components/account/account.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
+import { AvaliabilityComponent } from './components/avaliability/avaliability.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,8 @@ import { ErrorComponent } from './components/error/error.component';
     MyAppointmentsComponent,
     AccountComponent,
     ErrorComponent,
+    ScheduleComponent,
+    AvaliabilityComponent,
   ],
   imports: [
     BrowserModule,
