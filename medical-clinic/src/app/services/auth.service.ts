@@ -3,11 +3,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
+import { formatISO } from 'date-fns/fp';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   usersCollection: any;
+  appointmentCollection: any;
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -15,6 +18,14 @@ export class AuthService {
     public ngZone: NgZone
   ) {
     this.usersCollection = this.afs.collection<any>('users');
+    this.appointmentCollection = this.afs.collection<any>('appointments');
+  }
+
+  getAppointmentByDate({ date }) {
+    const appointmentRef = this.afs.collection<any>('appointments', (ref) =>
+      ref.where('day', '>', formatISO(new Date()))
+    );
+    return appointmentRef.valueChanges({ idField: 'appointmentId' });
   }
 
   async signIn(email, password) {

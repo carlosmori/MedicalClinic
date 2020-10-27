@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
     this.name = 'Carlos Mori';
     this.userPassword = '123456';
     this.userEmail = 'carlosmori34@gmail.com';
+    this.authService.getAppointmentByDate({ date: null }).subscribe((e) => {
+      console.log('Variable: e equals');
+      console.log(e);
+    });
   }
 
   switchForms() {

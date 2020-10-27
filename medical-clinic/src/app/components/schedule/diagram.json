@@ -1,0 +1,114 @@
+{
+    "id": "1",
+    "name": "Dr Suares",
+    "specialty": ["Cardiology", "Traumato"],
+    "availability": [
+        {"tuesday":[
+            "08:00 AM",
+            "09:00 AM",
+            "10:00 AM",
+            "11:00 AM",
+            "12:00 AM",
+            "01:00 PM",
+            "02:00 PM",
+            "03:00 PM",
+            "04:00 PM"
+            ]
+        },
+        {"wednesday":[
+            "08:00 AM",
+            "09:00 AM",
+            "10:00 AM",
+            "11:00 AM",
+            "12:00 AM",
+            "01:00 PM",
+            "02:00 PM",
+            "03:00 PM",
+            "04:00 PM"
+            ]
+        },
+        {"thursday":[
+            "08:00 AM",
+            "09:00 AM",
+            "10:00 AM",
+            "11:00 AM",
+            "12:00 AM",
+            "01:00 PM",
+            "02:00 PM",
+            "03:00 PM",
+            "04:00 PM"
+            ]
+        }
+    ]
+}
+// Apointments
+{
+    "id": "1",
+    "status": "Active",
+    "professional": {
+        "id":"1",
+        "name": "Dr Suares",
+        "specialty": "Traumato",
+    },
+    "patient": {
+        "id": "1",
+        "name": "Carlos Mori"
+    },
+    "day": "10/30/2020",
+    "hour": "08:00 AM",
+    "patientReview": "He is a good patient",
+    "doctorReview": "He is a good doctor"
+}
+/*
+ Tengo que seleccionar Dia y Hora del paciente, en base a la 
+ disponibilidad del Doctor.
+ como lleno los dias?
+ 1- Saco la fecha de hoy, agrego a un array los dias. Sumando el indice 
+ del for al dia. Day + 1, Day + 2. hasta llegar a 14.
+ el array tiene que tener esta forma.
+ [
+    {
+        dayOfTheWeek : "tuesday",
+        date: "30/10/2020"
+    },
+    {
+        dayOfTheWeek : "wednesday",
+        date: "31/10/2020"
+    },
+    {
+        dayOfTheWeek : "friday",
+        date: "31/10/2020"
+    },
+ ].
+
+ 2- Filtro los dias que el doctor no atiende.
+ 3- voy a buscar todos los appointments de el dia seleccionado
+ 4- [
+        {
+            "id": "1",
+            "professionalId": "1",
+            "name": "Dr Suares",
+            "specialty": "Traumato",
+            "day": "10/30/2020",
+            "hour": "08:00 AM"
+        },
+        {
+        "id": "2",
+        "professionalId": "1",
+        "name": "Dr Suares",
+        "specialty": "Traumato",
+        "day": "10/30/2020",
+        "hour": "09:00 AM"
+        },
+        {
+        "id": "3",
+        "professionalId": "1",
+        "name": "Dr Suares",
+        "specialty": "Traumato",
+        "day": "10/30/2020",
+        "hour": "10:00 AM"
+        }
+    ]
+ 5- Lleno el select de la hora con aquellas horas en el avaliability
+ y deshabilito aquellos que  esten en algun appointment del dia. 
+*/
