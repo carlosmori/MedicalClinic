@@ -13,7 +13,11 @@
             <div class="p-field">
               <label>Specialty</label>
               <!-- <input #firstname="ngModel" id="firstname" type="text" required pInputText [(ngModel)]="personalInformation.firstname" [ngClass]="{'p-invalid': (firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)}">  -->
-              <p-dropdown [options]="specialties" [(ngModel)]="appointment.specialty"></p-dropdown>
+              <p-dropdown
+                [options]="specialties"
+                [(ngModel)]="appointment.specialty"
+                (onChange)="filterProfessionals()"
+              ></p-dropdown>
               <!-- <small *ngIf="(appointment.specialty.invalid && submitted) || (firstname.dirty && firstname.invalid)" class="p-error">Firstname is required.</small> -->
             </div>
             <!-- <div class="p-field">
@@ -42,7 +46,11 @@
           <div class="p-fluid">
             <div class="p-field">
               <label>Professionals</label>
-              <p-dropdown [options]="professionals" [(ngModel)]="appointment.professional"></p-dropdown>
+              <p-dropdown
+                [options]="professionals"
+                [(ngModel)]="appointment.professionalId"
+                (onChange)="setProfessional()"
+              ></p-dropdown>
             </div>
           </div>
         </ng-template>
@@ -61,13 +69,13 @@
           <div class="p-fluid">
             <div class="p-field">
               <label>Date</label>
-              <p-dropdown [options]="avaliableDays" [(ngModel)]="appointmentDay"></p-dropdown>
+              <p-dropdown [options]="avaliableDays" [(ngModel)]="appointment.day" (onChange)="setHours()"></p-dropdown>
             </div>
           </div>
-          <div class="p-fluid">
+          <div class="p-fluid" *ngIf="appointment.day">
             <div class="p-field">
               <label>Time</label>
-              <p-dropdown [options]="avaliableHours" [(ngModel)]="appointmentHour"></p-dropdown>
+              <p-dropdown [options]="avaliableHours" [(ngModel)]="appointment.hour"></p-dropdown>
             </div>
           </div>
         </ng-template>
@@ -92,19 +100,19 @@
           <div class="p-fluid">
             <div class="p-field">
               <label>Professional</label>
-              <div class="field-summary">{{ appointment.professional }}</div>
+              <div class="field-summary">Dr. {{ selectedDoctor.name }}</div>
             </div>
           </div>
           <div class="p-fluid">
             <div class="p-field">
               <label>Date</label>
-              <div class="field-summary">{{ appointmentDay }}</div>
+              <div class="field-summary">{{ selectedDateParsed }}</div>
             </div>
           </div>
           <div class="p-fluid">
             <div class="p-field">
               <label>Hour</label>
-              <div class="field-summary">{{ appointmentHour }}</div>
+              <div class="field-summary">{{ appointment.hour }}</div>
             </div>
           </div>
         </ng-template>

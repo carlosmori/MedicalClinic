@@ -22,9 +22,6 @@ export class NavBarComponent implements OnInit {
         ...this.items,
         { label: 'New Appointment', icon: 'pi pi-calendar-plus', routerLink: ['/home', 'new-appointment'] },
         { label: 'My Appointments', icon: 'pi pi-calendar', routerLink: ['/home', 'my-appointments'] },
-        // todo undo this
-        { label: 'Schedule', icon: 'pi pi-calendar', routerLink: ['/home', 'schedule'] },
-        { label: 'Avaliability', icon: 'pi pi-user-edit', routerLink: ['/home', 'avaliability'] },
       ];
     }
     if (this.currentUser.profile === 'Professional') {
