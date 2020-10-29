@@ -22,7 +22,18 @@
         <label for="password-input">Password</label>
       </span>
       <p-captcha [siteKey]="siteKey" (onResponse)="showResponse($event)" initCallback="loadCaptcha"></p-captcha>
-
+      <span>Custom Captcha</span>
+      {{ randomInt1 }} + {{ randomInt2 }}
+      <span class="p-float-label">
+        <input
+          id="username-input"
+          type="number"
+          pInputText
+          [(ngModel)]="customCaptchaAnswer"
+          (ngModelChange)="checkAnswer()"
+        />
+        <label for="username-input">Answer</label>
+      </span>
       <!-- <span class="p-float-label">
           <input id="password-input" type="password" pPassword [(ngModel)]="repeatUserPassword" />
           <label for="password-input">Repeat Password</label>
@@ -39,7 +50,7 @@
           pButton
           type="button"
           label="Register"
-          [disabled]="!captchaIsValid"
+          [disabled]="!captchaIsValid || !customCaptchaIsValid"
           class="sign-in-btn p-button-raised"
           (click)="signUp()"
         ></button>

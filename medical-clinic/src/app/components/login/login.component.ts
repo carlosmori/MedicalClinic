@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-
+import { randomInt } from '../../utils/randomIntGenerator.js';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
   selectedProfile: string;
   displayRegisterForm: boolean;
   newUser: User;
+  customCaptchaAnswer: string;
   public captchaIsValid = false;
+  public customCaptchaIsValid = false;
+  randomInt1: any;
+  randomInt2: any;
   constructor(private authService: AuthService, private messageService: MessageService, private router: Router) {
     this.displayRegisterForm = false;
     this.profiles = [
@@ -44,17 +48,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Variable: this.siteKey equals');
-    console.log(this.siteKey);
-    console.log('Variable: enviroment equals');
-    console.log(environment);
     this.name = 'Carlos Mori';
     this.userPassword = '123456';
     this.userEmail = 'carlosmori34@gmail.com';
-    this.authService.getAppointmentByDate({ date: null }).subscribe((e) => {
-      console.log('Variable: e equals');
-      console.log(e);
-    });
+    this.randomInt1 = randomInt(0, 10);
+    this.randomInt2 = randomInt(0, 10);
   }
 
   switchForms() {
@@ -130,5 +128,10 @@ export class LoginComponent implements OnInit {
     if (event.response !== null) {
       this.captchaIsValid = true;
     }
+  }
+  checkAnswer() {
+    this.customCaptchaIsValid = this.customCaptchaAnswer === this.randomInt1 + this.randomInt2;
+    console.log(this.customCaptchaIsValid);
+    // console.log(this.customCaptchaAnswer);
   }
 }
