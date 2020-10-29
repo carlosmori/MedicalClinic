@@ -1,5 +1,23 @@
 # MedicalClinic
 
+This projects simulates a Clinic with Professionals, Patients and Administrators.
+
+## Professionals
+
+As a Professional you will be able to attend Patients, set your own schedule times and review your patients at the end of the appointment.
+
+## Patients
+
+As a Patient you will be able to make new appointments with a Doctor of your choise. You can select among different specialties like Cardiology, Trauma, Clinic and then book the appointment based on the Doctors Schedule.
+
+Also you will be able to see a table with your appointments and be able to cancel them.
+
+## Administrators
+
+Administrators can assign new specialties to the doctors and enable them to work across the platform.
+
+# How to run the Project
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
 ## Development server
