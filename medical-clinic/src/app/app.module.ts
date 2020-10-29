@@ -20,6 +20,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { AvaliabilityComponent } from './components/avaliability/avaliability.component';
 import { DayOfWeekPipe } from './pipes/day-of-week.pipe';
 import { DayPipe } from './pipes/day.pipe';
+import { AdminComponent } from './components/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { DayPipe } from './pipes/day.pipe';
     AvaliabilityComponent,
     DayOfWeekPipe,
     DayPipe,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

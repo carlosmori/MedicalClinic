@@ -122,6 +122,10 @@ export class LoginComponent implements OnInit {
     this.email = 'cmori.94@gmail.com';
     this.password = '123456';
   }
+  fillAdministrator() {
+    this.email = 'ortopediasolidariadelsur@gmail.com';
+    this.password = '123456';
+  }
   showResponse(event) {
     console.log('event');
     console.log(event);

@@ -27,7 +27,21 @@ let usersCollection = seed.collection('users', [
     isProfessionalEnabled: true,
     name: 'Enrique Diaz',
     profile: 'Professional',
+    specialty: ['Cardiology', 'Traumato'],
+    availability: [
+      {
+        Monday: ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'],
+      },
+    ],
     uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+  }),
+  seed.doc('3', {
+    email: 'ortopediasolidariadelsur@gmail.com',
+    firstTimeLogin: false,
+    isProfessionalEnabled: null,
+    name: 'Admin',
+    profile: 'administrator',
+    uid: 'iWktH4qV32cooh0vuZV6ORC7Ab82',
   }),
 ]);
 usersCollection

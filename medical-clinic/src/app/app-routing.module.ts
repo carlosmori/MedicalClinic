@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from './components/admin/admin.component';
 import { AvaliabilityComponent } from './components/avaliability/avaliability.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'my-appointments', component: MyAppointmentsComponent },
       { path: 'schedule', component: ScheduleComponent },
       { path: 'avaliability', component: AvaliabilityComponent },
+      { path: 'admin', component: AdminComponent },
     ],
   },
   { path: '**', component: ErrorComponent },

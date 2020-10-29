@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .table {
+    width: 80%;
+  }
+}
+.doctor-summary-container {
+  display: flex;
+  flex-direction: column;
+}

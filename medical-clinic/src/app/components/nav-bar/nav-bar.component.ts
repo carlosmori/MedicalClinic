@@ -31,7 +31,9 @@ export class NavBarComponent implements OnInit {
         { label: 'Avaliability', icon: 'pi pi-user-edit', routerLink: ['/home', 'avaliability'] },
       ];
     }
-    // Professional icons
+    if (this.currentUser.profile === 'administrator') {
+      this.items = [{ label: 'Admin', icon: 'pi pi-user-edit', routerLink: ['/home', 'admin'] }];
+    }
   }
   signOut() {
     this.authService.signOut();
