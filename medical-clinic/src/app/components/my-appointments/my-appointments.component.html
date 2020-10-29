@@ -15,7 +15,7 @@
       <ng-template pTemplate="body" let-appointment>
         <tr>
           <td>{{ appointment.status }}</td>
-          <td>{{ appointment.day }}</td>
+          <td>{{ appointment.day | day }}</td>
           <td>{{ appointment.hour }}</td>
           <td>{{ appointment.professional.specialty }}</td>
           <td>Dr. {{ appointment.professional.name }}</td>

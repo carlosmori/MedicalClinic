@@ -14,7 +14,7 @@
       <ng-template pTemplate="body" let-appointment>
         <tr>
           <td>{{ appointment.status }}</td>
-          <td>{{ appointment.day }}</td>
+          <td>{{ appointment.day | day }}</td>
           <td>{{ appointment.hour }}</td>
           <td>{{ appointment.patient.name }}</td>
           <td>
@@ -65,7 +65,7 @@
       <ng-template pTemplate="body" let-futureAppointment>
         <tr>
           <td>{{ futureAppointment.status }}</td>
-          <td>{{ futureAppointment.day }}</td>
+          <td>{{ futureAppointment.day | day }}</td>
           <td>{{ futureAppointment.hour }}</td>
           <td>{{ futureAppointment.patient.name }}</td>
           <td>
