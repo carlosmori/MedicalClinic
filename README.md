@@ -1,5 +1,7 @@
 # MedicalClinic
 
+![Architecture](medical-clinic/src/assets/images/login-bg.jpg)
+
 This projects simulates a Clinic with Professionals, Patients and Administrators.
 
 ## Professionals

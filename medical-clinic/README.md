@@ -1,5 +1,7 @@
 # MedicalClinic
 
+![alt text]('https://firebasestorage.googleapis.com/v0/b/medical-clinic-c44ab.appspot.com/o/login-background.png?alt=media&token=f8df7448-50ce-48e8-bd9d-66b545571c8e')
+
 This projects simulates a Clinic with Professionals, Patients and Administrators.
 
 ## Professionals
