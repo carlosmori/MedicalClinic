@@ -28,17 +28,37 @@
               *ngIf="appointment.status === 'Active'"
               (click)="cancelAppointment(appointment)"
             ></button>
-            <button
-              pButton
-              type="button"
-              label="Review Dr"
-              class="p-button-help"
-              *ngIf="appointment.status === 'Pending Review'"
-            ></button>
-            <button pButton type="button" label="Dr Summary" *ngIf="appointment.status === 'Closed'"></button>
+            <div *ngIf="appointment.status === 'Closed'">
+              <button
+                *ngIf="appointment.patientSurvey === null"
+                pButton
+                type="button"
+                (click)="showPatientSurveyDialog(appointment)"
+                label="Review Dr"
+                class="p-button-help"
+              ></button>
+              <button
+                pButton
+                type="button"
+                (click)="showSummaryDialog(appointment.doctorSummary)"
+                label="Dr Summary"
+              ></button>
+            </div>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
+<p-dialog [(visible)]="display" (onHide)="hideDialog()">
+  <div *ngIf="content">
+    {{ content }}
+  </div>
+  <div *ngIf="!content" class="doctor-summary-container">
+    <p-header> Insert your comments based on your experience </p-header>
+    <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="patientSurvey"></textarea>
+    <p-footer>
+      <button pButton type="button" (click)="confirmReview()" label="Confirm"></button>
+    </p-footer>
+  </div>
+</p-dialog>

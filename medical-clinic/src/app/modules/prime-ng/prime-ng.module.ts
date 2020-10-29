@@ -10,6 +10,8 @@ import { MenuModule } from 'primeng/menu';
 import { StepsModule } from 'primeng/steps';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [],
@@ -25,6 +27,8 @@ import { TableModule } from 'primeng/table';
     StepsModule,
     CardModule,
     TableModule,
+    DialogModule,
+    InputTextareaModule,
   ],
   exports: [
     InputTextModule,
@@ -37,6 +41,8 @@ import { TableModule } from 'primeng/table';
     StepsModule,
     CardModule,
     TableModule,
+    DialogModule,
+    InputTextareaModule,
   ],
 })
 export class PrimeNgModule {}

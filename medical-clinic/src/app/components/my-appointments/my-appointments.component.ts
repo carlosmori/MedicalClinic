@@ -10,6 +10,11 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 export class MyAppointmentsComponent implements OnInit {
   // appointments: Appointment[];
   appointments: any[];
+  display = false;
+  content: any;
+  doctorSummary: any;
+  currentAppointment: any;
+  patientSurvey: any;
 
   constructor(private appointmentService: AppointmentService) {
     this.appointmentService.getAppointmentById({ patientId: null }).subscribe((appointments) => {
@@ -31,5 +36,28 @@ export class MyAppointmentsComponent implements OnInit {
         console.log('Variable: err equals');
         console.log(err);
       });
+  }
+  showSummaryDialog(doctorSummary) {
+    this.display = true;
+    this.content = doctorSummary;
+  }
+  showPatientSurveyDialog(appointment) {
+    this.display = true;
+    this.currentAppointment = appointment;
+  }
+  hideDialog() {
+    this.currentAppointment = null;
+    this.content = null;
+  }
+  confirmReview() {
+    this.display = false;
+    this.appointmentService.updateAppointment({
+      appointmentId: this.currentAppointment.appointmentId,
+      appointment: { patientSurvey: this.patientSurvey },
+    });
+    console.log('Variable: this.doctorSummary equals');
+    console.log(this.patientSurvey);
+    console.log('Variable: this.currentAppointment equals');
+    console.log(this.currentAppointment);
   }
 }

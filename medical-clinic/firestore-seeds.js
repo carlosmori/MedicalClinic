@@ -226,10 +226,10 @@ let appointmentsCollection = seed.collection('appointments', [
     // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '08:00 AM',
     patientSurvey: null,
-    doctorReview: null,
+    doctorSummary: null,
   }),
   seed.doc('2', {
-    status: 'Pending Dr Review',
+    status: 'Pending Dr Summary',
     professional: {
       id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
@@ -244,7 +244,7 @@ let appointmentsCollection = seed.collection('appointments', [
     // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '08:00 AM',
     patientSurvey: null,
-    doctorReview: 'He is a good patient',
+    doctorSummary: 'He is a good and nice doctor!',
   }),
   seed.doc('3', {
     status: 'Cancelled',
@@ -262,7 +262,7 @@ let appointmentsCollection = seed.collection('appointments', [
     // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '09:00 AM',
     patientSurvey: null,
-    doctorReview: null,
+    doctorSummary: null,
   }),
   seed.doc('4', {
     status: 'Closed',
@@ -279,8 +279,8 @@ let appointmentsCollection = seed.collection('appointments', [
     day: formatISO(new Date()),
     // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '10:00 AM',
-    patientSurvey: 'He is a good patient',
-    doctorReview: 'He is a good doctor',
+    patientSurvey: 'He is a nice doctor!',
+    doctorSummary: 'He is a good patient!',
   }),
   seed.doc('5', {
     status: 'Active',
@@ -298,7 +298,7 @@ let appointmentsCollection = seed.collection('appointments', [
     // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '10:00 AM',
     patientSurvey: null,
-    doctorReview: null,
+    doctorSummary: null,
   }),
   seed.doc('6', {
     status: 'Active',
@@ -316,7 +316,7 @@ let appointmentsCollection = seed.collection('appointments', [
     // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '11:00 AM',
     patientSurvey: null,
-    doctorReview: null,
+    doctorSummary: null,
   }),
   seed.doc('7', {
     status: 'Active',
@@ -334,7 +334,7 @@ let appointmentsCollection = seed.collection('appointments', [
     // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '09:00 AM',
     patientSurvey: null,
-    doctorReview: null,
+    doctorSummary: null,
   }),
 ]);
 
