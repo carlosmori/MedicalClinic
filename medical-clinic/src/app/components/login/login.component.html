@@ -21,6 +21,8 @@
         <input id="password-input" type="password" pPassword [(ngModel)]="userPassword" />
         <label for="password-input">Password</label>
       </span>
+      <p-captcha [siteKey]="siteKey" (onResponse)="showResponse($event)" initCallback="loadCaptcha"></p-captcha>
+
       <!-- <span class="p-float-label">
           <input id="password-input" type="password" pPassword [(ngModel)]="repeatUserPassword" />
           <label for="password-input">Repeat Password</label>
@@ -33,7 +35,14 @@
           class="sign-up-btn p-button-outlined"
           (click)="switchForms()"
         ></button>
-        <button pButton type="button" label="Register" class="sign-in-btn p-button-raised" (click)="signUp()"></button>
+        <button
+          pButton
+          type="button"
+          label="Register"
+          [disabled]="!captchaIsValid"
+          class="sign-in-btn p-button-raised"
+          (click)="signUp()"
+        ></button>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CaptchaModule } from 'primeng/captcha';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     TableModule,
     DialogModule,
     InputTextareaModule,
+    CaptchaModule,
   ],
   exports: [
     InputTextModule,
@@ -43,6 +45,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     TableModule,
     DialogModule,
     InputTextareaModule,
+    CaptchaModule,
   ],
 })
 export class PrimeNgModule {}

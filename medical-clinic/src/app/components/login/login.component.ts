@@ -4,6 +4,7 @@ import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
   providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
+  public siteKey = environment.siteKey;
   // Login Models
   email;
   password;
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
   selectedProfile: string;
   displayRegisterForm: boolean;
   newUser: User;
+  public captchaIsValid = false;
   constructor(private authService: AuthService, private messageService: MessageService, private router: Router) {
     this.displayRegisterForm = false;
     this.profiles = [
@@ -41,6 +44,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('Variable: this.siteKey equals');
+    console.log(this.siteKey);
+    console.log('Variable: enviroment equals');
+    console.log(environment);
     this.name = 'Carlos Mori';
     this.userPassword = '123456';
     this.userEmail = 'carlosmori34@gmail.com';
@@ -116,5 +123,12 @@ export class LoginComponent implements OnInit {
   fillProfessional() {
     this.email = 'cmori.94@gmail.com';
     this.password = '123456';
+  }
+  showResponse(event) {
+    console.log('event');
+    console.log(event);
+    if (event.response !== null) {
+      this.captchaIsValid = true;
+    }
   }
 }
