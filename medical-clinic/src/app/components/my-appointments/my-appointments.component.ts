@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/classes/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-my-appointments',
@@ -14,9 +15,11 @@ export class MyAppointmentsComponent implements OnInit {
   doctorSummary: any;
   currentAppointment: any;
   patientSurvey: any;
+  currentUser: any;
 
-  constructor(private appointmentService: AppointmentService) {
-    this.appointmentService.getAppointmentById({ patientId: null }).subscribe((appointments) => {
+  constructor(private appointmentService: AppointmentService, private authService: AuthService) {
+    this.currentUser = this.authService.currentUser();
+    this.appointmentService.getPatientAppointments({ patientId: this.currentUser.uid }).subscribe((appointments) => {
       this.appointments = appointments;
     });
   }

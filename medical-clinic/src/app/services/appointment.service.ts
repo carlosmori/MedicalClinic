@@ -10,9 +10,13 @@ export class AppointmentService {
   createAppointment(appointment) {
     return this.afs.collection('appointments').add({ ...appointment });
   }
-  getAppointmentById({ patientId }) {
+  getPatientAppointments({ patientId }) {
+    const gameRef = this.afs.collection<any>('appointments', (ref) => ref.where('patient.id', '==', patientId));
+    return gameRef.valueChanges({ idField: 'appointmentId' });
+  }
+  getDoctorAppointments({ professionalId }) {
     const gameRef = this.afs.collection<any>('appointments', (ref) =>
-      ref.where('patient.id', '==', 'czqnyBHqRAgXWlQ4eifmx8jQK3J2')
+      ref.where('professional.id', '==', professionalId)
     );
     return gameRef.valueChanges({ idField: 'appointmentId' });
   }

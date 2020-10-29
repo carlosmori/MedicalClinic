@@ -5,7 +5,8 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Status</th>
-          <th>Date</th>
+          <th>Day</th>
+          <th>Hour</th>
           <th>Patient</th>
           <th>Actions</th>
         </tr>
@@ -13,8 +14,9 @@
       <ng-template pTemplate="body" let-appointment>
         <tr>
           <td>{{ appointment.status }}</td>
-          <td>{{ appointment.date }}</td>
-          <td>{{ appointment.patient }}</td>
+          <td>{{ appointment.day }}</td>
+          <td>{{ appointment.hour }}</td>
+          <td>{{ appointment.patient.name }}</td>
           <td>
             <button
               pButton
@@ -42,7 +44,8 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Status</th>
-          <th>Date</th>
+          <th>Day</th>
+          <th>Hour</th>
           <th>Patient</th>
           <th>Actions</th>
         </tr>
@@ -50,8 +53,9 @@
       <ng-template pTemplate="body" let-futureAppointment>
         <tr>
           <td>{{ futureAppointment.status }}</td>
-          <td>{{ futureAppointment.date }}</td>
-          <td>{{ futureAppointment.patient }}</td>
+          <td>{{ futureAppointment.day }}</td>
+          <td>{{ futureAppointment.hour }}</td>
+          <td>{{ futureAppointment.patient.name }}</td>
           <td>
             <button
               pButton

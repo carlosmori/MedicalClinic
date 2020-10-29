@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppointmentService } from 'src/app/services/appointment.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { formatISO } from 'date-fns/fp';
 
 @Component({
   selector: 'app-schedule',
@@ -8,54 +11,23 @@ import { Component, OnInit } from '@angular/core';
 export class ScheduleComponent implements OnInit {
   todayAppointments: any[];
   futureAppointments: any[];
+  currentUser: any;
+  appointments: any[];
 
-  constructor() {
-    // todo mock api call
-    this.todayAppointments = [
-      {
-        status: 'Active',
-        date: '10/30/2020 08:00AM',
-        patient: 'Carlos Mori',
-      },
-      {
-        status: 'Cancelled',
-        date: '10/25/2020 08:00AM',
-        patient: 'Richard Suarez',
-      },
-      {
-        status: 'Closed',
-        date: '10/20/2020 08:00AM',
-        patient: 'Fabricio Peretti',
-      },
-      {
-        status: 'Pending Review',
-        date: '09/12/2020 08:00AM',
-        patient: 'Mauro Diaz',
-      },
-    ];
-    this.futureAppointments = [
-      {
-        status: 'Active',
-        date: '10/30/2020 08:00AM',
-        patient: 'Carlos Mori',
-      },
-      {
-        status: 'Cancelled',
-        date: '10/25/2020 08:00AM',
-        patient: 'Richard Suarez',
-      },
-      {
-        status: 'Closed',
-        date: '10/20/2020 08:00AM',
-        patient: 'Fabricio Peretti',
-      },
-      {
-        status: 'Pending Review',
-        date: '09/12/2020 08:00AM',
-        patient: 'Mauro Diaz',
-      },
-    ];
+  constructor(private appointmentService: AppointmentService, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.currentUser = this.authService.currentUser();
+    this.appointmentService
+      .getDoctorAppointments({ professionalId: this.currentUser.uid })
+      .subscribe((appointments) => {
+        const dateIso = formatISO(new Date());
+        this.todayAppointments = appointments.filter((appointment) => appointment.day < dateIso);
+        this.futureAppointments = appointments.filter((appointment) => appointment.day > dateIso);
+
+        this.appointments = appointments;
+        console.log('Variable: this.appointments Stringify');
+        console.log(JSON.stringify(this.appointments));
+      });
   }
-
-  ngOnInit(): void {}
 }
