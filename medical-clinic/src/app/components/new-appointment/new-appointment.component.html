@@ -15,7 +15,7 @@
               <!-- <input #firstname="ngModel" id="firstname" type="text" required pInputText [(ngModel)]="personalInformation.firstname" [ngClass]="{'p-invalid': (firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)}">  -->
               <p-dropdown
                 [options]="specialties"
-                [(ngModel)]="appointment.specialty"
+                [(ngModel)]="appointment.professional.specialty"
                 (onChange)="filterProfessionals()"
               ></p-dropdown>
               <!-- <small *ngIf="(appointment.specialty.invalid && submitted) || (firstname.dirty && firstname.invalid)" class="p-error">Firstname is required.</small> -->
@@ -48,7 +48,7 @@
               <label>Professionals</label>
               <p-dropdown
                 [options]="professionals"
-                [(ngModel)]="appointment.professionalId"
+                [(ngModel)]="appointment.professional.id"
                 (onChange)="setProfessional()"
               ></p-dropdown>
             </div>
@@ -94,7 +94,7 @@
           <div class="p-fluid">
             <div class="p-field">
               <label>Specialty</label>
-              <div class="field-summary">{{ appointment.specialty }}</div>
+              <div class="field-summary">{{ appointment.professional.specialty }}</div>
             </div>
           </div>
           <div class="p-fluid">
@@ -131,3 +131,4 @@
     </div>
   </div>
 </div>
+<p-toast position="bottom-center" key="bc"></p-toast>

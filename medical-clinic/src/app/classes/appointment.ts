@@ -1,17 +1,28 @@
-import { Patient } from './patient';
-import { Professional } from './professional';
-
 export class Appointment {
-  specialty: string;
-  professionalId: string;
-  professional: Professional;
+  status: string;
+  professional;
+  patient;
   day: string;
   hour: string;
-  patient: Patient;
-  status: string;
   patientSurvey: string;
   doctorReview: string;
-  construtor(specialty?: string, professionalId?: string, dateTime?: string, patient?: Patient) {}
+  constructor(
+    status = 'Active',
+    professional = { id: '', name: '', specialty: '' },
+    patient = { id: '', name: '', email: '' },
+    day = '',
+    hour = '',
+    patientSurvey = null,
+    doctorReview = null
+  ) {
+    this.status = status;
+    this.professional = professional;
+    this.patient = patient;
+    this.day = day;
+    this.hour = hour;
+    this.patientSurvey = patientSurvey;
+    this.doctorReview = doctorReview;
+  }
 
   updateAppointment(status) {
     this.status = status;

@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { Appointment } from 'src/app/classes/appointment';
 import { SelectItem } from 'primeng/api';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { addDays, format, formatISO } from 'date-fns/fp';
 import { DayOfWeekPipe } from 'src/app/pipes/day-of-week.pipe';
 import { getDay } from 'date-fns';
+import { AuthService } from 'src/app/services/auth.service';
+import { AppointmentService } from 'src/app/services/appointment.service';
 
 @Component({
   selector: 'app-new-appointment',
   templateUrl: './new-appointment.component.html',
   styleUrls: ['./new-appointment.component.scss'],
-  providers: [DayOfWeekPipe],
+  providers: [DayOfWeekPipe, MessageService],
 })
 export class NewAppointmentComponent implements OnInit {
   items: MenuItem[];
@@ -28,15 +30,19 @@ export class NewAppointmentComponent implements OnInit {
   selectedDoctor: any;
   professionalName: any;
   selectedDateParsed: string;
+  patient: any;
 
-  constructor(private router: Router, private doctorService: DoctorService, private dayOfWeekPipe: DayOfWeekPipe) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private appointmentService: AppointmentService,
+    private doctorService: DoctorService,
+    private dayOfWeekPipe: DayOfWeekPipe,
+    private messageService: MessageService
+  ) {
     this.appointment = new Appointment();
-    // todo Mock Inputs so its easier to debug, undo this before prod
-    // this.appointment.specialty = 'cardiology';
-    // this.appointment.professional.name = '1';
   }
   ngOnInit(): void {
-    console.log(this.appointment);
     this.items = [
       {
         label: 'Specialty',
@@ -57,12 +63,13 @@ export class NewAppointmentComponent implements OnInit {
       this.specialties = doctors.reduce(specialtiesReducer, []).map((e) => ({ label: e, value: e }));
       this.mockStepThree();
     });
+    this.patient = this.authService.currentUser();
   }
 
   filterProfessionals() {
     this.professionals = this.doctors
-      .filter(({ specialty }) => specialty.includes(this.appointment.specialty))
-      .map((e) => ({ label: e.name, value: e.id }));
+      .filter(({ specialty }) => specialty.includes(this.appointment.professional.specialty))
+      .map((doctor) => ({ label: doctor.name, value: doctor.id }));
   }
   setHours() {
     // todo refactor this code by changing the database structure
@@ -79,7 +86,7 @@ export class NewAppointmentComponent implements OnInit {
     }
   }
   setProfessional() {
-    this.selectedDoctor = this.doctors.filter(({ id }) => id == this.appointment.professionalId)[0];
+    this.selectedDoctor = this.doctors.filter(({ id }) => id == this.appointment.professional.id)[0];
     for (let index = 0; index < 15; index++) {
       const date = addDays(index)(new Date());
       const parsedDay = this.dayOfWeekPipe.transform(getDay(date));
@@ -92,13 +99,14 @@ export class NewAppointmentComponent implements OnInit {
     }
   }
   mockStepThree() {
-    this.appointment.specialty = 'Cardiology';
-    this.appointment.professionalId = '9t65uPRjsqdTboKzHNTJPcdM8W93';
+    this.appointment.professional.specialty = 'Cardiology';
+    this.appointment.professional.name = 'Enrique Diaz';
+    this.appointment.professional.id = '9t65uPRjsqdTboKzHNTJPcdM8W93';
     this.activeIndex = 2;
     for (let index = 0; index < 15; index++) {
       const date = addDays(index)(new Date());
       const parsedDay = this.dayOfWeekPipe.transform(getDay(date));
-      this.selectedDoctor = this.doctors.filter((doctor) => this.appointment.professionalId === doctor.id)[0];
+      this.selectedDoctor = this.doctors.filter((doctor) => this.appointment.professional.id === doctor.id)[0];
       const doctorIsInTheClinic =
         this.selectedDoctor.availability.filter((element) => Object.keys(element)[0] === parsedDay).length > 0;
 
@@ -109,19 +117,30 @@ export class NewAppointmentComponent implements OnInit {
   }
   nextPage() {
     this.activeIndex += 1;
-    console.log(this.appointment);
-    if (this.activeIndex === 3) {
-      // this.appointment.day = this.appointment.day;
-      // this.appointment.day = this.appointment.day;
-    }
     this.submitted = true;
   }
   confirmAppointment() {
-    this.appointment.status = 'Active';
-    this.appointment.patientSurvey = null;
-    this.appointment.doctorReview = null;
-
-    console.log('Variable: this.appointment equals');
-    console.log(this.appointment);
+    this.appointment.professional.name = this.selectedDoctor.name;
+    this.appointment.patient.id = this.patient.uid;
+    this.appointment.patient.name = this.patient.name;
+    this.appointment.patient.email = this.patient.email;
+    this.appointmentService
+      .createAppointment(this.appointment)
+      .then((response) => {
+        this.messageService.add({
+          key: 'bc',
+          severity: 'success',
+          summary: 'Appointment created succesfully',
+        });
+        this.router.navigate(['home/my-appointments']);
+      })
+      .catch((error) => {
+        this.messageService.add({
+          key: 'bc',
+          severity: 'error',
+          summary: 'Error',
+          detail: error.message,
+        });
+      });
   }
 }
