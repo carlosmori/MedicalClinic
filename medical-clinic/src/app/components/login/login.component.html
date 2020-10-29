@@ -60,6 +60,22 @@
           ></button>
           <button pButton type="button" label="Sign In" class="sign-in-btn p-button-raised" (click)="signIn()"></button>
         </div>
+        <div class="button-container">
+          <button
+            pButton
+            type="button"
+            label="Professional"
+            (click)="fillProfessional()"
+            class="sign-up-btn p-button-secondary p-button-outlined"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label="Patient"
+            (click)="fillPatient()"
+            class="sign-up-btn p-button-secondary p-button-outlined"
+          ></button>
+        </div>
       </div>
     </div>
   </ng-template>

@@ -41,8 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.email = 'carlosmori34@gmail.com';
-    this.password = '123456';
     this.name = 'Carlos Mori';
     this.userPassword = '123456';
     this.userEmail = 'carlosmori34@gmail.com';
@@ -110,5 +108,13 @@ export class LoginComponent implements OnInit {
         });
       }
     });
+  }
+  fillPatient() {
+    this.email = 'carlosmori34@gmail.com';
+    this.password = '123456';
+  }
+  fillProfessional() {
+    this.email = 'cmori.94@gmail.com';
+    this.password = '123456';
   }
 }

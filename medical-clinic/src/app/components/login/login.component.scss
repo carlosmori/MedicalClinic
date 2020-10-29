@@ -49,6 +49,13 @@
       justify-items: center;
       align-items: center;
       height: 100%;
+      width: 80%;
+      .p-float-label {
+        width: 100%;
+        input {
+          width: 100%;
+        }
+      }
       .button-container {
         width: 100%;
         display: flex;
