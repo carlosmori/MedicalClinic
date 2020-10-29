@@ -18,21 +18,33 @@
           <td>{{ appointment.hour }}</td>
           <td>{{ appointment.patient.name }}</td>
           <td>
-            <button
-              pButton
-              type="button"
-              label="Cancel"
-              class="p-button-danger"
-              *ngIf="appointment.status === 'Active'"
-            ></button>
-            <button
-              pButton
-              type="button"
-              label="Review"
-              class="p-button-help"
-              *ngIf="appointment.status === 'Pending Review'"
-            ></button>
-            <button pButton type="button" label="Patient Review" *ngIf="appointment.status === 'Closed'"></button>
+            <div *ngIf="appointment.status === 'Active'">
+              <button pButton type="button" label="Attend" (click)="attendPatient(appointment)"></button>
+              <button
+                pButton
+                type="button"
+                label="Cancel"
+                class="p-button-danger"
+                (click)="cancelAppointment(appointment)"
+              ></button>
+            </div>
+            <div *ngIf="appointment.status === 'Closed'">
+              <button
+                pButton
+                type="button"
+                label="Patient Summary"
+                *ngIf="appointment.doctorSummary === null"
+                (click)="showDoctorSurveyDialog(appointment)"
+              ></button>
+              <button
+                pButton
+                type="button"
+                label="Patient Survey"
+                class="p-button-help"
+                (click)="showPatientSurveyDialog(appointment)"
+                *ngIf="appointment.patientSurvey !== null"
+              ></button>
+            </div>
           </td>
         </tr>
       </ng-template>
@@ -78,3 +90,15 @@
     </p-table>
   </div>
 </div>
+<p-dialog [(visible)]="display" (onHide)="hideDialog()">
+  <div *ngIf="patientSurvey">
+    {{ patientSurvey }}
+  </div>
+  <div *ngIf="!patientSurvey" class="patient-summary-container">
+    <p-header> Insert your comments based on your experience </p-header>
+    <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="doctorSummary"></textarea>
+    <p-footer>
+      <button pButton type="button" (click)="confirmReview()" label="Confirm"></button>
+    </p-footer>
+  </div>
+</p-dialog>

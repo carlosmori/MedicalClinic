@@ -13,6 +13,10 @@ export class ScheduleComponent implements OnInit {
   futureAppointments: any[];
   currentUser: any;
   appointments: any[];
+  display: boolean;
+  patientSurvey: any;
+  currentAppointment: any;
+  doctorSummary: any;
 
   constructor(private appointmentService: AppointmentService, private authService: AuthService) {}
 
@@ -29,5 +33,48 @@ export class ScheduleComponent implements OnInit {
         console.log('Variable: this.appointments Stringify');
         console.log(JSON.stringify(this.appointments));
       });
+  }
+  cancelAppointment(appointment) {
+    this.appointmentService
+      .updateAppointment({
+        appointmentId: appointment.appointmentId,
+        appointment: { status: 'Cancelled' },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log('Variable: err equals');
+        console.log(err);
+      });
+  }
+  attendPatient(appointment) {
+    this.appointmentService
+      .updateAppointment({
+        appointmentId: appointment.appointmentId,
+        appointment: { status: 'Closed' },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log('Variable: err equals');
+        console.log(err);
+      });
+  }
+  showPatientSurveyDialog(appointment) {
+    this.display = true;
+    this.patientSurvey = appointment.patientSurvey;
+  }
+  showDoctorSurveyDialog(appointment) {
+    this.display = true;
+    this.currentAppointment = appointment;
+  }
+  hideDialog() {
+    this.patientSurvey = null;
+    // this.content = null;
+  }
+  confirmReview() {
+    this.display = false;
+    this.appointmentService.updateAppointment({
+      appointmentId: this.currentAppointment.appointmentId,
+      appointment: { doctorSummary: this.doctorSummary },
+    });
   }
 }

@@ -26,8 +26,6 @@ export class MyAppointmentsComponent implements OnInit {
 
   ngOnInit(): void {}
   cancelAppointment(appointment) {
-    console.log('Variable: appointment equals');
-    console.log(appointment);
     this.appointmentService
       .updateAppointment({
         appointmentId: appointment.appointmentId,

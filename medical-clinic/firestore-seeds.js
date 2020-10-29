@@ -229,7 +229,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: null,
   }),
   seed.doc('2', {
-    status: 'Pending Dr Summary',
+    status: 'Closed',
     professional: {
       id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
@@ -335,6 +335,42 @@ let appointmentsCollection = seed.collection('appointments', [
     hour: '09:00 AM',
     patientSurvey: null,
     doctorSummary: null,
+  }),
+  seed.doc('8', {
+    status: 'Active',
+    professional: {
+      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
+    hour: '10:00 AM',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('9', {
+    status: 'Closed',
+    professional: {
+      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
+    hour: '08:00 AM',
+    patientSurvey: 'I had a really good time',
+    doctorSummary: 'A good patient!',
   }),
 ]);
 
