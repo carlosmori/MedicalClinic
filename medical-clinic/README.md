@@ -1,7 +1,5 @@
 # MedicalClinic
 
-![alt text]('/assets/images/login-bg.jpg')
-
 This projects simulates a Clinic with Professionals, Patients and Administrators.
 
 ## Professionals
