@@ -61,7 +61,7 @@ export class NewAppointmentComponent implements OnInit {
       this.doctors = doctors;
       const specialtiesReducer = (prev, curr) => [...new Set([...prev, ...curr.specialty])];
       this.specialties = doctors.reduce(specialtiesReducer, []).map((e) => ({ label: e, value: e }));
-      this.mockStepThree();
+      // this.mockStepThree();
     });
     this.patient = this.authService.currentUser();
   }
