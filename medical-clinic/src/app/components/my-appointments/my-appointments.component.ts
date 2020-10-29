@@ -8,7 +8,6 @@ import { AppointmentService } from 'src/app/services/appointment.service';
   styleUrls: ['./my-appointments.component.scss'],
 })
 export class MyAppointmentsComponent implements OnInit {
-  // appointments: Appointment[];
   appointments: any[];
   display = false;
   content: any;
@@ -55,9 +54,5 @@ export class MyAppointmentsComponent implements OnInit {
       appointmentId: this.currentAppointment.appointmentId,
       appointment: { patientSurvey: this.patientSurvey },
     });
-    console.log('Variable: this.doctorSummary equals');
-    console.log(this.patientSurvey);
-    console.log('Variable: this.currentAppointment equals');
-    console.log(this.currentAppointment);
   }
 }
