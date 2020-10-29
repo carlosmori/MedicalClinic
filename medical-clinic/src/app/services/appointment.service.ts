@@ -10,4 +10,16 @@ export class AppointmentService {
   createAppointment(appointment) {
     return this.afs.collection('appointments').add({ ...appointment });
   }
+  getAppointmentById({ patientId }) {
+    const gameRef = this.afs.collection<any>('appointments', (ref) =>
+      ref.where('patient.id', '==', 'czqnyBHqRAgXWlQ4eifmx8jQK3J2')
+    );
+    return gameRef.valueChanges({ idField: 'appointmentId' });
+  }
+  updateAppointment({ appointmentId, appointment }) {
+    return this.afs
+      .collection('appointments')
+      .doc(appointmentId)
+      .set({ ...appointment }, { merge: true });
+  }
 }

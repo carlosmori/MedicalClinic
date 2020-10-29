@@ -5,7 +5,8 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Status</th>
-          <th>Date</th>
+          <th>Day</th>
+          <th>Hour</th>
           <th>Specialty</th>
           <th>Professional</th>
           <th>Actions</th>
@@ -14,9 +15,10 @@
       <ng-template pTemplate="body" let-appointment>
         <tr>
           <td>{{ appointment.status }}</td>
-          <td>{{ appointment.date }}</td>
-          <td>{{ appointment.specialty }}</td>
-          <td>{{ appointment.professional }}</td>
+          <td>{{ appointment.day }}</td>
+          <td>{{ appointment.hour }}</td>
+          <td>{{ appointment.professional.specialty }}</td>
+          <td>Dr. {{ appointment.professional.name }}</td>
           <td>
             <button
               pButton
@@ -24,6 +26,7 @@
               label="Cancel"
               class="p-button-danger"
               *ngIf="appointment.status === 'Active'"
+              (click)="cancelAppointment(appointment)"
             ></button>
             <button
               pButton

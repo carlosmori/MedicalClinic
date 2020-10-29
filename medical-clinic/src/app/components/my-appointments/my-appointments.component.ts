@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/classes/appointment';
+import { AppointmentService } from 'src/app/services/appointment.service';
 
 @Component({
   selector: 'app-my-appointments',
@@ -10,35 +11,25 @@ export class MyAppointmentsComponent implements OnInit {
   // appointments: Appointment[];
   appointments: any[];
 
-  constructor() {
-    // todo mock api call
-    this.appointments = [
-      {
-        status: 'Active',
-        date: '10/30/2020 08:00AM',
-        specialty: 'Cardiology',
-        professional: 'Dr Suarez',
-      },
-      {
-        status: 'Cancelled',
-        date: '10/25/2020 08:00AM',
-        specialty: 'Pediathry',
-        professional: 'Dr Mori',
-      },
-      {
-        status: 'Pending Review',
-        date: '10/20/2020 08:00AM',
-        specialty: 'Trauma',
-        professional: 'Dr Mori',
-      },
-      {
-        status: 'Closed',
-        date: '09/12/2020 08:00AM',
-        specialty: 'Clinic',
-        professional: 'Dr Diaz',
-      },
-    ];
+  constructor(private appointmentService: AppointmentService) {
+    this.appointmentService.getAppointmentById({ patientId: null }).subscribe((appointments) => {
+      this.appointments = appointments;
+    });
   }
 
   ngOnInit(): void {}
+  cancelAppointment(appointment) {
+    console.log('Variable: appointment equals');
+    console.log(appointment);
+    this.appointmentService
+      .updateAppointment({
+        appointmentId: appointment.appointmentId,
+        appointment: { status: 'Cancelled' },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log('Variable: err equals');
+        console.log(err);
+      });
+  }
 }
