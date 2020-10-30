@@ -14,9 +14,8 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser();
-    this.items = [{ label: 'My Account (WIP)', icon: 'pi pi-user' }];
-    console.log('Variable: this.currentUser equals');
-    console.log(this.currentUser);
+    // this.items = [{ label: 'My Account (WIP)', icon: 'pi pi-user' }];
+    this.items = [];
     if (this.currentUser.profile === 'Patient') {
       this.items = [
         ...this.items,
