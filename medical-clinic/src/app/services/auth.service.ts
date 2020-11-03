@@ -87,4 +87,10 @@ export class AuthService {
       .doc(userId)
       .set({ ...user }, { merge: true });
   }
+  getUsersByType({ profile }) {
+    const gameRef = this.afs.collection<any>('users', (ref) =>
+      ref.where('profile', '==', profile).orderBy('name', 'desc')
+    );
+    return gameRef.valueChanges();
+  }
 }

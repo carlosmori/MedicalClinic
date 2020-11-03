@@ -14,6 +14,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CaptchaModule } from 'primeng/captcha';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [],
@@ -33,6 +34,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     InputTextareaModule,
     CaptchaModule,
     FileUploadModule,
+    ConfirmDialogModule,
   ],
   exports: [
     InputTextModule,
@@ -49,6 +51,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     InputTextareaModule,
     CaptchaModule,
     FileUploadModule,
+    ConfirmDialogModule,
   ],
 })
 export class PrimeNgModule {}
