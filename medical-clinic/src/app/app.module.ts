@@ -21,6 +21,9 @@ import { AvaliabilityComponent } from './components/avaliability/avaliability.co
 import { DayOfWeekPipe } from './pipes/day-of-week.pipe';
 import { DayPipe } from './pipes/day.pipe';
 import { AdminComponent } from './components/admin/admin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +46,10 @@ import { AdminComponent } from './components/admin/admin.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireStorageModule,
     FormsModule,
     PrimeNgModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,1 +1,14 @@
-<app-nav-bar></app-nav-bar> <router-outlet></router-outlet>
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>
+<p-dialog [(visible)]="displayImageDialog" styleClass="mydialog">
+  <p-header> Please upload a profile picture </p-header>
+  <p-fileUpload
+    accept="image/*"
+    maxFileSize="1000000"
+    name="myfile[]"
+    customUpload="true"
+    (uploadHandler)="myUploader($event)"
+    multiple="multiple"
+  ></p-fileUpload>
+</p-dialog>
+<p-toast position="bottom-center" key="bc"></p-toast>

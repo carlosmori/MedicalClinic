@@ -52,8 +52,9 @@ export class AuthService {
     const response = { success: false, message: null };
     try {
       const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
+
       await this.sendVerificationMail();
-      await this.usersCollection.add({
+      await this.usersCollection.doc(user.uid).set({
         uid: user.uid,
         name,
         profile,
@@ -78,5 +79,12 @@ export class AuthService {
 
   currentUser() {
     return JSON.parse(localStorage.getItem('user'));
+  }
+
+  updateUser({ userId, user }) {
+    return this.afs
+      .collection('users')
+      .doc(userId)
+      .set({ ...user }, { merge: true });
   }
 }

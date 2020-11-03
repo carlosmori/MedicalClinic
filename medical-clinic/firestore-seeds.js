@@ -13,7 +13,7 @@ admin.initializeApp({
 
 // Import seeds.
 let usersCollection = seed.collection('users', [
-  seed.doc('1', {
+  seed.doc('czqnyBHqRAgXWlQ4eifmx8jQK3J2', {
     email: 'carlosmori34@gmail.com',
     firstTimeLogin: false,
     isProfessionalEnabled: null,
@@ -21,7 +21,7 @@ let usersCollection = seed.collection('users', [
     profile: 'Patient',
     uid: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
   }),
-  seed.doc('2', {
+  seed.doc('9t65uPRjsqdTboKzHNTJPcdM8W93', {
     email: 'cmori.94@gmail.com',
     firstTimeLogin: false,
     isProfessionalEnabled: true,
@@ -35,7 +35,7 @@ let usersCollection = seed.collection('users', [
     ],
     uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
   }),
-  seed.doc('3', {
+  seed.doc('iWktH4qV32cooh0vuZV6ORC7Ab82', {
     email: 'ortopediasolidariadelsur@gmail.com',
     firstTimeLogin: false,
     isProfessionalEnabled: null,

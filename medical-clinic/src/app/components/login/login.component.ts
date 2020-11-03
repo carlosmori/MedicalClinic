@@ -6,6 +6,8 @@ import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { randomInt } from '../../utils/randomIntGenerator.js';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
