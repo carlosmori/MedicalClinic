@@ -15,7 +15,7 @@ export class UserService {
   }
 
   getSpecialties() {
-    const gameRef = this.afs.collection<any>('users', (ref) => ref.orderBy('specialty', 'desc'));
+    const gameRef = this.afs.collection<any>('specialties', (ref) => ref.orderBy('specialty', 'desc'));
     return gameRef.valueChanges();
   }
 }

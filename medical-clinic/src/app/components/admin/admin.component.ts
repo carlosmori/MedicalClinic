@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
-import { DoctorService } from 'src/app/services/doctor.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -22,7 +21,6 @@ export class AdminComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private confirmationService: ConfirmationService,
-    private doctorService: DoctorService,
     private messageService: MessageService
   ) {}
 
@@ -30,7 +28,7 @@ export class AdminComponent implements OnInit {
     this.userService.getUsersByType({ profile: 'professional' }).subscribe((professionals) => {
       this.professionals = professionals;
     });
-    this.doctorService.getSpecialties().subscribe((specialties) => {
+    this.userService.getSpecialties().subscribe((specialties) => {
       this.specialties = specialties.map(({ specialty }) => ({ label: specialty, value: specialty }));
     });
   }
