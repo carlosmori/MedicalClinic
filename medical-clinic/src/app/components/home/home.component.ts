@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { MessageService } from 'primeng/api';
+import { Profiles } from 'src/app/enums/profiles.enum';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
     this.isProfessionalEnabled = this.currentUser.isProfessionalEnabled;
     // todo check this hack
     setTimeout(() => {
-      if (!this.isProfessionalEnabled) {
+      if (this.currentUser.profile === Profiles.PROFESSIONAL && !this.isProfessionalEnabled) {
         this.messageService.add({
           key: 'bc',
           severity: 'error',

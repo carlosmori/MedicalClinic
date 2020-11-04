@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Profiles } from 'src/app/enums/profiles.enum';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,14 +17,14 @@ export class NavBarComponent implements OnInit {
     this.currentUser = this.authService.currentUser();
     // this.items = [{ label: 'My Account (WIP)', icon: 'pi pi-user' }];
     this.items = [];
-    if (this.currentUser.profile === 'Patient') {
+    if (this.currentUser.profile === Profiles.PATIENT) {
       this.items = [
         ...this.items,
         { label: 'New Appointment', icon: 'pi pi-calendar-plus', routerLink: ['/home', 'new-appointment'] },
         { label: 'My Appointments', icon: 'pi pi-calendar', routerLink: ['/home', 'my-appointments'] },
       ];
     }
-    if (this.currentUser.profile === 'Professional') {
+    if (this.currentUser.profile === Profiles.PROFESSIONAL) {
       this.items = [
         ...this.items,
         {
@@ -40,7 +41,7 @@ export class NavBarComponent implements OnInit {
         },
       ];
     }
-    if (this.currentUser.profile === 'administrator') {
+    if (this.currentUser.profile === Profiles.ADMINISTRATOR) {
       this.items = [{ label: 'Admin', icon: 'pi pi-user-edit', routerLink: ['/home', 'admin'] }];
     }
   }

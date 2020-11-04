@@ -6,8 +6,7 @@ import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { randomInt } from '../../utils/randomIntGenerator.js';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { Profiles } from 'src/app/enums/profiles.enum';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,11 +38,11 @@ export class LoginComponent implements OnInit {
     this.profiles = [
       {
         label: 'Professional',
-        value: 'Professional',
+        value: Profiles.PROFESSIONAL,
       },
       {
         label: 'Patient',
-        value: 'Patient',
+        value: Profiles.PATIENT,
       },
     ];
     this.selectedProfile = 'Patient';
@@ -66,12 +65,11 @@ export class LoginComponent implements OnInit {
       email: this.userEmail,
       password: this.userPassword,
       profile: this.selectedProfile,
-      // Flag to set images on first log in
+      // *Flag to set images on first log in
       firstTimeLogIn: true,
     };
 
-    // Professionals need to be validated by an administrator first
-    if (this.selectedProfile === 'Professional') {
+    if (this.selectedProfile === Profiles.PROFESSIONAL) {
       this.newUser = { ...this.newUser, isProfessionalEnabled: false };
     }
     this.authService.signUp(this.newUser).then(({ success, message }) => {
@@ -92,7 +90,6 @@ export class LoginComponent implements OnInit {
         });
       }
     });
-    console.log(this.newUser);
   }
   signIn() {
     this.authService.signIn(this.email, this.password).then(({ success, message, callback }) => {
@@ -137,7 +134,5 @@ export class LoginComponent implements OnInit {
   }
   checkAnswer() {
     this.customCaptchaIsValid = this.customCaptchaAnswer === this.randomInt1 + this.randomInt2;
-    console.log(this.customCaptchaIsValid);
-    // console.log(this.customCaptchaAnswer);
   }
 }

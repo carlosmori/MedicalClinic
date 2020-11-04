@@ -1,6 +1,6 @@
 <div class="nav-bar-container">
   <p-menu [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #menu [popup]="true" [model]="items"></p-menu>
   <button type="button" pButton icon="pi pi-list" label="Menu" (click)="menu.toggle($event)"></button>
-  <span> Welcome Patient </span>
+  <span> Welcome {{ currentUser.name }} - ({{ currentUser.profile }}) </span>
   <button pButton type="button" label="Sign Out" (click)="signOut()"></button>
 </div>

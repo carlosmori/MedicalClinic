@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -19,14 +20,14 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private userService: UserService,
     private confirmationService: ConfirmationService,
     private doctorService: DoctorService,
     private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    // todo remove doctorsService, replace it by UserService and leave auth for authentication only
-    this.authService.getUsersByType({ profile: 'Professional' }).subscribe((professionals) => {
+    this.userService.getUsersByType({ profile: 'professional' }).subscribe((professionals) => {
       this.professionals = professionals;
     });
     this.doctorService.getSpecialties().subscribe((specialties) => {

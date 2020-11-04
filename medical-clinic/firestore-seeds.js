@@ -18,30 +18,30 @@ let usersCollection = seed.collection('users', [
     firstTimeLogin: false,
     isProfessionalEnabled: null,
     name: 'Carlos Mori',
-    profile: 'Patient',
+    profile: 'patient',
     uid: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
   }),
-  seed.doc('9t65uPRjsqdTboKzHNTJPcdM8W93', {
+  seed.doc('dSO9jkAplOT4U3dLdPSSiyVENwT2', {
     email: 'cmori.94@gmail.com',
     firstTimeLogin: false,
     isProfessionalEnabled: true,
     name: 'Enrique Diaz',
-    profile: 'Professional',
+    profile: 'professional',
     specialty: ['Cardiology', 'Traumato'],
     availability: [
       {
         Monday: ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'],
       },
     ],
-    uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+    uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
   }),
-  seed.doc('iWktH4qV32cooh0vuZV6ORC7Ab82', {
+  seed.doc('03Sf8Gd5nGTKpDSh0mbqYIdJlpY2', {
     email: 'ortopediasolidariadelsur@gmail.com',
     firstTimeLogin: false,
     isProfessionalEnabled: null,
     name: 'Admin',
     profile: 'administrator',
-    uid: 'iWktH4qV32cooh0vuZV6ORC7Ab82',
+    uid: '03Sf8Gd5nGTKpDSh0mbqYIdJlpY2',
   }),
 ]);
 usersCollection
@@ -68,176 +68,6 @@ specialtiesCollection
     console.log('Failed to import documents: ' + e);
   });
 
-let doctorsCollection = seed.collection('doctors', [
-  seed.doc('1', {
-    id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
-    name: 'Enrique Diaz',
-    specialty: ['Cardiology', 'Traumato'],
-    availability: [
-      {
-        Monday: ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'],
-      },
-      //   {
-      //     Tuesday: [
-      //       '08:00 AM',
-      //       '09:00 AM',
-      //       '10:00 AM',
-      //       '11:00 AM',
-      //       '12:00 AM',
-      //       '01:00 PM',
-      //       '02:00 PM',
-      //       '03:00 PM',
-      //       '04:00 PM',
-      //     ],
-      //   },
-      //   {
-      //     Wednesday: [
-      //       '08:00 AM',
-      //       '09:00 AM',
-      //       '10:00 AM',
-      //       '11:00 AM',
-      //       '12:00 AM',
-      //       '01:00 PM',
-      //       '02:00 PM',
-      //       '03:00 PM',
-      //       '04:00 PM',
-      //     ],
-      //   },
-      //   {
-      //     Thursday: [
-      //       '08:00 AM',
-      //       '09:00 AM',
-      //       '10:00 AM',
-      //       '11:00 AM',
-      //       '12:00 AM',
-      //       '01:00 PM',
-      //       '02:00 PM',
-      //       '03:00 PM',
-      //       '04:00 PM',
-      //     ],
-      //   },
-      //   {
-      //     Friday: [
-      //       '08:00 AM',
-      //       '09:00 AM',
-      //       '10:00 AM',
-      //       '11:00 AM',
-      //       '12:00 AM',
-      //       '01:00 PM',
-      //       '02:00 PM',
-      //       '03:00 PM',
-      //       '04:00 PM',
-      //     ],
-      //   },
-      //   {
-      //     Saturday: [
-      //       '08:00 AM',
-      //       '09:00 AM',
-      //       '10:00 AM',
-      //       '11:00 AM',
-      //       '12:00 AM',
-      //       '01:00 PM',
-      //       '02:00 PM',
-      //       '03:00 PM',
-      //       '04:00 PM',
-      //     ],
-      //   },
-      //   {
-      //     Sunday: [
-      //       '08:00 AM',
-      //       '09:00 AM',
-      //       '10:00 AM',
-      //       '11:00 AM',
-      //       '12:00 AM',
-      //       '01:00 PM',
-      //       '02:00 PM',
-      //       '03:00 PM',
-      //       '04:00 PM',
-      //     ],
-      //   },
-    ],
-  }),
-  seed.doc('2', {
-    id: '2',
-    name: 'Megan Fox',
-    specialty: ['Clinic'],
-    availability: [
-      {
-        Monday: [
-          '08:00 AM',
-          '09:00 AM',
-          '10:00 AM',
-          '11:00 AM',
-          '12:00 AM',
-          '01:00 PM',
-          '02:00 PM',
-          '03:00 PM',
-          '04:00 PM',
-          '05:00 PM',
-          '06:00 PM',
-        ],
-      },
-      {
-        Tuesday: [
-          '08:00 AM',
-          '09:00 AM',
-          '10:00 AM',
-          '11:00 AM',
-          '12:00 AM',
-          '01:00 PM',
-          '02:00 PM',
-          '03:00 PM',
-          '04:00 PM',
-        ],
-      },
-    ],
-  }),
-  seed.doc('3', {
-    id: '3',
-    name: 'Leonardo Di Caprio',
-    specialty: ['Pediatry', 'Cardiology'],
-    availability: [
-      {
-        Thursday: [
-          '08:00 AM',
-          '09:00 AM',
-          '10:00 AM',
-          '11:00 AM',
-          '12:00 AM',
-          '01:00 PM',
-          '02:00 PM',
-          '03:00 PM',
-          '04:00 PM',
-          '05:00 PM',
-          '06:00 PM',
-        ],
-      },
-      {
-        Friday: [
-          '08:00 AM',
-          '09:00 AM',
-          '10:00 AM',
-          '11:00 AM',
-          '12:00 AM',
-          '01:00 PM',
-          '02:00 PM',
-          '03:00 PM',
-          '04:00 PM',
-        ],
-      },
-    ],
-  }),
-]);
-
-doctorsCollection
-  .importDocuments(admin)
-  .then(() => {
-    console.log('Successfully imported documents.');
-  })
-  .catch((e) => {
-    console.log('Failed to import documents: ' + e);
-  });
-
 let appointmentsCollection = seed.collection('appointments', [
   seed.doc('1', {
     status: 'Active',
@@ -252,7 +82,6 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(addDays(1)(new Date())),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '08:00 AM',
     patientSurvey: null,
     doctorSummary: null,
@@ -270,17 +99,16 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(new Date()),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
-    hour: '08:00 AM',
+    hour: '09:00 AM',
     patientSurvey: null,
     doctorSummary: 'He is a good and nice doctor!',
   }),
   seed.doc('3', {
     status: 'Cancelled',
     professional: {
-      id: '2',
-      name: 'Megan Fox',
-      specialty: 'Clinic',
+      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
     },
     patient: {
       id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
@@ -288,7 +116,6 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(addDays(2)(new Date())),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '09:00 AM',
     patientSurvey: null,
     doctorSummary: null,
@@ -296,9 +123,9 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('4', {
     status: 'Closed',
     professional: {
-      id: '3',
-      name: 'Leonardo Di Caprio',
-      specialty: 'Pediatry',
+      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
     },
     patient: {
       id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
@@ -306,7 +133,6 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(new Date()),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '10:00 AM',
     patientSurvey: 'He is a nice doctor!',
     doctorSummary: 'He is a good patient!',
@@ -324,7 +150,6 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(addDays(1)(new Date())),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '10:00 AM',
     patientSurvey: null,
     doctorSummary: null,
@@ -342,7 +167,6 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(addDays(1)(new Date())),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '11:00 AM',
     patientSurvey: null,
     doctorSummary: null,
@@ -360,7 +184,6 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(addDays(2)(new Date())),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '09:00 AM',
     patientSurvey: null,
     doctorSummary: null,
@@ -396,7 +219,6 @@ let appointmentsCollection = seed.collection('appointments', [
       email: 'carlosmori3@gmail.com',
     },
     day: formatISO(new Date()),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
     hour: '08:00 AM',
     patientSurvey: 'I had a really good time',
     doctorSummary: 'A good patient!',

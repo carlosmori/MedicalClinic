@@ -48,7 +48,7 @@ export class NewAppointmentComponent implements OnInit {
         label: 'Specialty',
       },
       {
-        label: 'Doctor',
+        label: 'Professional',
       },
       {
         label: 'Date & Time',
