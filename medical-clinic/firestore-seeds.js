@@ -52,6 +52,21 @@ usersCollection
   .catch((e) => {
     console.log('Failed to import documents: ' + e);
   });
+let specialtiesCollection = seed.collection('specialties', [
+  seed.doc('1', { specialty: 'Cardiology' }),
+  seed.doc('2', { specialty: 'Pediathry' }),
+  seed.doc('3', { specialty: 'Clinic' }),
+  seed.doc('4', { specialty: 'Dermatologist' }),
+  seed.doc('5', { specialty: 'Trauma' }),
+]);
+specialtiesCollection
+  .importDocuments(admin)
+  .then(() => {
+    console.log('Successfully imported documents.');
+  })
+  .catch((e) => {
+    console.log('Failed to import documents: ' + e);
+  });
 
 let doctorsCollection = seed.collection('doctors', [
   seed.doc('1', {

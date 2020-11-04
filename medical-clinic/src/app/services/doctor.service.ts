@@ -11,4 +11,8 @@ export class DoctorService {
     const gameRef = this.afs.collection<any>('doctors', (ref) => ref.orderBy('name', 'desc'));
     return gameRef.valueChanges();
   }
+  getSpecialties() {
+    const gameRef = this.afs.collection<any>('specialties', (ref) => ref.orderBy('specialty', 'desc'));
+    return gameRef.valueChanges();
+  }
 }

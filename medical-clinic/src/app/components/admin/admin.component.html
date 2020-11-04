@@ -13,7 +13,7 @@
       <ng-template pTemplate="body" let-professional>
         <tr>
           <td>{{ professional.name }}</td>
-          <td>Specialties</td>
+          <td>{{ professional.specialty?.join() }}</td>
           <td>{{ professional.isProfessionalEnabled }}</td>
           <td>
             <button
@@ -24,22 +24,32 @@
               label="{{ professional.isProfessionalEnabled ? 'Enable' : 'Disable' }}"
               class="p-button-danger"
             ></button>
-            <button pButton type="button" (click)="addSpecialty(professional)" label="Add Specialty"></button>
+            <button pButton type="button" (click)="openNewSpecialtyDialog(professional)" label="Add Specialty"></button>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
-<!-- <p-dialog [(visible)]="display" (onHide)="hideDialog()">
-  <div *ngIf="content">
-    {{ content }}
+<p-dialog
+  header="Select the new specialty you want to add"
+  [(visible)]="displaySpecialtyDialog"
+  (onHide)="hideDialog()"
+  styleClass="mydialog"
+>
+  <div class="specialty-container">
+    <p-listbox [options]="specialties" [(ngModel)]="selectedSpecialty"></p-listbox>
   </div>
-  <div *ngIf="!content" class="doctor-summary-container">
-    <p-header> Insert your comments based on your experience </p-header>
-    <p-footer>
-      <button pButton type="button" (click)="confirmReview()" label="Confirm"></button>
-    </p-footer>
-  </div>
-</p-dialog> -->
+  <p-footer>
+    <button
+      pButton
+      type="button"
+      (click)="confirmNewSpecialty()"
+      label="Confirm"
+      class="confirm-new-specialty-btn"
+      [disabled]="selectedSpecialty === null"
+    ></button>
+  </p-footer>
+</p-dialog>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toast position="bottom-center" key="bc"></p-toast>
