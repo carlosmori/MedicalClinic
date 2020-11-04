@@ -1,0 +1,12 @@
+<p-card>
+  <ng-template pTemplate="title"> Pick a Medical Specialty </ng-template>
+  <ng-template pTemplate="content">
+    <div class="p-fluid">
+      <div class="p-field">
+        <div class="specialty-container">
+          <p-listbox [options]="specialties" [(ngModel)]="specialty" (onClick)="pickSpecialty()"></p-listbox>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

@@ -13,13 +13,13 @@ admin.initializeApp({
 
 // Import seeds.
 let usersCollection = seed.collection('users', [
-  seed.doc('czqnyBHqRAgXWlQ4eifmx8jQK3J2', {
+  seed.doc('ub8Ln1Xlf4PnBreBXpVjJE42R4I3', {
     email: 'carlosmori34@gmail.com',
     firstTimeLogin: false,
     isProfessionalEnabled: null,
     name: 'Carlos Mori',
     profile: 'patient',
-    uid: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
   }),
   seed.doc('dSO9jkAplOT4U3dLdPSSiyVENwT2', {
     email: 'cmori.94@gmail.com',
@@ -27,7 +27,7 @@ let usersCollection = seed.collection('users', [
     isProfessionalEnabled: true,
     name: 'Enrique Diaz',
     profile: 'professional',
-    specialty: ['Cardiology', 'Traumato'],
+    specialties: ['Cardiology', 'Traumato'],
     availability: [
       {
         Monday: ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'],
@@ -72,12 +72,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('1', {
     status: 'Active',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -89,12 +89,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('2', {
     status: 'Closed',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -106,12 +106,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('3', {
     status: 'Cancelled',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -123,12 +123,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('4', {
     status: 'Closed',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -140,12 +140,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('5', {
     status: 'Active',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -157,12 +157,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('6', {
     status: 'Active',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -174,12 +174,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('7', {
     status: 'Active',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -191,12 +191,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('8', {
     status: 'Active',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },
@@ -209,12 +209,12 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('9', {
     status: 'Closed',
     professional: {
-      id: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
     patient: {
-      id: 'czqnyBHqRAgXWlQ4eifmx8jQK3J2',
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
       name: 'Carlos Mori',
       email: 'carlosmori3@gmail.com',
     },

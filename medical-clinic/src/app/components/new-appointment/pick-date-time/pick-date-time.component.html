@@ -1,0 +1,15 @@
+<p-card>
+  <ng-template pTemplate="title"> Pick Day and Time </ng-template>
+  <ng-template pTemplate="content">
+    <div class="p-fluid">
+      <div class="p-field">
+        <p-listbox [options]="avaliableDays" [(ngModel)]="day" (onClick)="pickDay()"></p-listbox>
+      </div>
+    </div>
+    <div class="p-fluid" *ngIf="avaliableHours">
+      <div class="p-field">
+        <p-listbox [options]="avaliableHours" [(ngModel)]="hour" (onClick)="pickHour()"></p-listbox>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

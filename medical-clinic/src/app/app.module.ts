@@ -23,6 +23,10 @@ import { DayPipe } from './pipes/day.pipe';
 import { AdminComponent } from './components/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
+import { PickSpecialtyComponent } from './components/new-appointment/pick-specialty/pick-specialty.component';
+import { PickProfessionalComponent } from './components/new-appointment/pick-professional/pick-professional.component';
+import { PickDateTimeComponent } from './components/new-appointment/pick-date-time/pick-date-time.component';
+import { AppointmentSummaryComponent } from './components/new-appointment/appointment-summary/appointment-summary.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
     DayOfWeekPipe,
     DayPipe,
     AdminComponent,
+    PickSpecialtyComponent,
+    PickProfessionalComponent,
+    PickDateTimeComponent,
+    AppointmentSummaryComponent,
   ],
   imports: [
     BrowserModule,

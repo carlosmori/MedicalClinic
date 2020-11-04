@@ -1,0 +1,35 @@
+<p-card>
+  <ng-template pTemplate="title"> Summary </ng-template>
+  <ng-template pTemplate="content">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Specialty</label>
+        <div class="field-summary">{{ appointmentSpecialty }}</div>
+      </div>
+    </div>
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Professional</label>
+        <div class="field-summary">Dr. {{ appointmentProfessional.name }}</div>
+      </div>
+    </div>
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Date</label>
+        <div class="field-summary">{{ appointmentDay }}</div>
+      </div>
+    </div>
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Hour</label>
+        <div class="field-summary">{{ appointmentHour }}</div>
+      </div>
+    </div>
+  </ng-template>
+  <!-- todo Move this outside the card to avoid repetition -->
+  <ng-template pTemplate="footer">
+    <div class="p-grid p-nogutter p-justify-end">
+      <p-button label="Confirm" (onClick)="confirmAppointment()" icon="pi pi-angle-right" iconPos="right"></p-button>
+    </div>
+  </ng-template>
+</p-card>

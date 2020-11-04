@@ -8,8 +8,8 @@ export class Appointment {
   doctorReview: string;
   constructor(
     status = 'Active',
-    professional = { id: '', name: '', specialty: '' },
-    patient = { id: '', name: '', email: '' },
+    professional = { uid: '', name: '', specialty: '' },
+    patient = { uid: '', name: '', email: '' },
     day = '',
     hour = '',
     patientSurvey = null,

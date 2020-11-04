@@ -1,0 +1,12 @@
+<p-card>
+  <ng-template pTemplate="title"> Pick a Professional </ng-template>
+  <ng-template pTemplate="content">
+    <div class="p-fluid">
+      <div class="p-field">
+        <div class="professionals-container">
+          <p-listbox [options]="professionals" [(ngModel)]="professional" (onClick)="pickProfessional()"></p-listbox>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

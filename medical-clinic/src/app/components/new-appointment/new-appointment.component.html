@@ -1,133 +1,31 @@
 <div class="new-appointment-container">
   <div class="stepper">
     <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
-    <!-- *Specialty Content -->
     <div class="specialty-content" *ngIf="activeIndex === 0">
-      <p-card>
-        <ng-template pTemplate="title"> Please pick a Medical Specialty </ng-template>
-        <!-- <ng-template pTemplate="subtitle">
-                    Enter your personal information
-                </ng-template> -->
-        <ng-template pTemplate="content">
-          <div class="p-fluid">
-            <div class="p-field">
-              <label>Specialty</label>
-              <!-- <input #firstname="ngModel" id="firstname" type="text" required pInputText [(ngModel)]="personalInformation.firstname" [ngClass]="{'p-invalid': (firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)}">  -->
-              <p-dropdown
-                [options]="specialties"
-                [(ngModel)]="appointment.professional.specialty"
-                (onChange)="filterProfessionals()"
-              ></p-dropdown>
-              <!-- <small *ngIf="(appointment.specialty.invalid && submitted) || (firstname.dirty && firstname.invalid)" class="p-error">Firstname is required.</small> -->
-            </div>
-            <!-- <div class="p-field">
-                            <label for="lastname">Lastname</label>
-                            <input #lastname="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="personalInformation.lastname" [ngClass]="{'p-invalid': (lastname.invalid && submitted) || (lastname.dirty && lastname.invalid)}"> 
-                            <small class="p-error" *ngIf="(lastname.invalid && submitted )|| (lastname.dirty && lastname.invalid)">Lastname is required.</small>
-                        </div>
-                        <div class="p-field">
-                            <label for="age">Age</label>
-                            <input #age="ngModel" id="age" type="number" required pInputText [(ngModel)]="personalInformation.age" [ngClass]="{'p-invalid': (age.invalid && submitted) || (age.dirty && age.invalid)}"> 
-                            <small class="p-error" *ngIf="(age.invalid && submitted) || (age.dirty && age.invalid)">Age is required.</small>
-                        </div> -->
-          </div>
-        </ng-template>
-        <ng-template pTemplate="footer">
-          <div class="p-grid p-nogutter p-justify-end">
-            <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
-          </div>
-        </ng-template>
-      </p-card>
+      <app-pick-specialty [specialties]="specialties" (selectedSpecialty)="pickSpecialty($event)"></app-pick-specialty>
     </div>
     <div class="professional-content" *ngIf="activeIndex === 1">
-      <p-card>
-        <ng-template pTemplate="title"> Now select your Professional </ng-template>
-        <ng-template pTemplate="content">
-          <div class="p-fluid">
-            <div class="p-field">
-              <label>Professionals</label>
-              <p-dropdown
-                [options]="professionals"
-                [(ngModel)]="appointment.professional.id"
-                (onChange)="setProfessional()"
-              ></p-dropdown>
-            </div>
-          </div>
-        </ng-template>
-        <!-- todo Move this outside the card to avoid repetition -->
-        <ng-template pTemplate="footer">
-          <div class="p-grid p-nogutter p-justify-end">
-            <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
-          </div>
-        </ng-template>
-      </p-card>
+      <app-pick-professional
+        [professionals]="professionalsBasedOnSpecialty"
+        (selectedProfessional)="pickProfessional($event)"
+      ></app-pick-professional>
     </div>
     <div class="dateTime-content" *ngIf="activeIndex === 2">
-      <p-card>
-        <ng-template pTemplate="title"> Pick a Date </ng-template>
-        <ng-template pTemplate="content">
-          <div class="p-fluid">
-            <div class="p-field">
-              <label>Date</label>
-              <p-dropdown [options]="avaliableDays" [(ngModel)]="appointment.day" (onChange)="setHours()"></p-dropdown>
-            </div>
-          </div>
-          <div class="p-fluid" *ngIf="appointment.day">
-            <div class="p-field">
-              <label>Time</label>
-              <p-dropdown [options]="avaliableHours" [(ngModel)]="appointment.hour"></p-dropdown>
-            </div>
-          </div>
-        </ng-template>
-        <!-- todo Move this outside the card to avoid repetition -->
-        <ng-template pTemplate="footer">
-          <div class="p-grid p-nogutter p-justify-end">
-            <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
-          </div>
-        </ng-template>
-      </p-card>
+      <app-pick-date-time
+        [avaliableDays]="avaliableDays"
+        [avaliableHours]="avaliableHours"
+        (selectedDay)="pickDay($event)"
+        (selectedHour)="pickHour($event)"
+      ></app-pick-date-time>
     </div>
     <div class="summary-content" *ngIf="activeIndex === 3">
-      <p-card>
-        <ng-template pTemplate="title"> Summary </ng-template>
-        <ng-template pTemplate="content">
-          <div class="p-fluid">
-            <div class="p-field">
-              <label>Specialty</label>
-              <div class="field-summary">{{ appointment.professional.specialty }}</div>
-            </div>
-          </div>
-          <div class="p-fluid">
-            <div class="p-field">
-              <label>Professional</label>
-              <div class="field-summary">Dr. {{ selectedDoctor.name }}</div>
-            </div>
-          </div>
-          <div class="p-fluid">
-            <div class="p-field">
-              <label>Date</label>
-              <div class="field-summary">{{ selectedDateParsed }}</div>
-            </div>
-          </div>
-          <div class="p-fluid">
-            <div class="p-field">
-              <label>Hour</label>
-              <div class="field-summary">{{ appointment.hour }}</div>
-            </div>
-          </div>
-        </ng-template>
-        <!-- todo Move this outside the card to avoid repetition -->
-        <ng-template pTemplate="footer">
-          <div class="p-grid p-nogutter p-justify-end">
-            <p-button
-              label="Confirm"
-              (onClick)="confirmAppointment()"
-              icon="pi pi-angle-right"
-              iconPos="right"
-            ></p-button>
-          </div>
-        </ng-template>
-      </p-card>
+      <app-appointment-summary
+        [appointmentSpecialty]="appointmentSpecialty"
+        [appointmentProfessional]="appointmentProfessional"
+        [appointmentDay]="appointmentDay"
+        [appointmentHour]="appointmentHour"
+        (saveAppointment)="saveAppointment($event)"
+      ></app-appointment-summary>
     </div>
   </div>
 </div>
