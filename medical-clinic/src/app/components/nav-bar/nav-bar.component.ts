@@ -26,8 +26,18 @@ export class NavBarComponent implements OnInit {
     if (this.currentUser.profile === 'Professional') {
       this.items = [
         ...this.items,
-        { label: 'Schedule', icon: 'pi pi-calendar', routerLink: ['/home', 'schedule'] },
-        { label: 'Avaliability', icon: 'pi pi-user-edit', routerLink: ['/home', 'avaliability'] },
+        {
+          label: 'Schedule',
+          icon: 'pi pi-calendar',
+          routerLink: ['/home', 'schedule'],
+          disabled: !this.currentUser.isProfessionalEnabled,
+        },
+        {
+          label: 'Avaliability',
+          icon: 'pi pi-user-edit',
+          routerLink: ['/home', 'avaliability'],
+          disabled: !this.currentUser.isProfessionalEnabled,
+        },
       ];
     }
     if (this.currentUser.profile === 'administrator') {

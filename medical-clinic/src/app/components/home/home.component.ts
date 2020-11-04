@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent implements OnInit {
   currentUser: any;
   displayImageDialog: any;
+  isProfessionalEnabled: any;
 
   constructor(
     private authService: AuthService,
@@ -22,6 +23,18 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser();
     this.displayImageDialog = this.currentUser.firstTimeLogin;
+    this.isProfessionalEnabled = this.currentUser.isProfessionalEnabled;
+    // todo check this hack
+    setTimeout(() => {
+      if (!this.isProfessionalEnabled) {
+        this.messageService.add({
+          key: 'bc',
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Please wait until the Administrator enables you to operate',
+        });
+      }
+    }, 1000);
   }
   myUploader(event) {
     const promises = [];
