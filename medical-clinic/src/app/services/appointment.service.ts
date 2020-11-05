@@ -16,7 +16,7 @@ export class AppointmentService {
   }
   getDoctorAppointments({ professionalId }) {
     const gameRef = this.afs.collection<any>('appointments', (ref) =>
-      ref.where('professional.id', '==', professionalId)
+      ref.where('professional.uid', '==', professionalId)
     );
     return gameRef.valueChanges({ idField: 'appointmentId' });
   }
