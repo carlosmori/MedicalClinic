@@ -1,4 +1,4 @@
-<div class="my-appointments-container">
+<div class="my-appointments-container" [@simpleFadeAnimation]="'in'">
   <h3>My Appointments</h3>
   <div class="table">
     <p-table [value]="appointments">
@@ -19,12 +19,12 @@
           <td>{{ appointment.hour }}</td>
           <td>{{ appointment.professional.specialty }}</td>
           <td>Dr. {{ appointment.professional.name }}</td>
-          <td>
+          <td class="action-container">
             <button
               pButton
               type="button"
               label="Cancel"
-              class="p-button-danger"
+              class="p-button-danger p-button-sm"
               *ngIf="appointment.status === 'Active'"
               (click)="cancelAppointment(appointment)"
             ></button>
@@ -35,10 +35,11 @@
                 type="button"
                 (click)="showPatientSurveyDialog(appointment)"
                 label="Review Dr"
-                class="p-button-help"
+                class="p-button-help p-button-sm"
               ></button>
               <button
                 pButton
+                class="p-button-sm"
                 type="button"
                 (click)="showSummaryDialog(appointment.doctorSummary)"
                 label="Dr Summary"

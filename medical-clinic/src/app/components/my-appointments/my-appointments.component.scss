@@ -7,6 +7,11 @@
   align-items: center;
   .table {
     width: 80%;
+    .action-container {
+      button {
+        margin: 5% 0%;
+      }
+    }
   }
 }
 .doctor-summary-container {

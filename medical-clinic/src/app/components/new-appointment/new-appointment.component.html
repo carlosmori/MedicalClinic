@@ -2,12 +2,17 @@
   <div class="stepper">
     <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
     <div class="specialty-content" *ngIf="activeIndex === 0">
-      <app-pick-specialty [specialties]="specialties" (selectedSpecialty)="pickSpecialty($event)"></app-pick-specialty>
+      <app-pick-specialty
+        [specialties]="specialties"
+        (selectedSpecialty)="pickSpecialty($event)"
+        [@simpleFadeAnimation]="'in'"
+      ></app-pick-specialty>
     </div>
     <div class="professional-content" *ngIf="activeIndex === 1">
       <app-pick-professional
         [professionals]="professionalsBasedOnSpecialty"
         (selectedProfessional)="pickProfessional($event)"
+        [@simpleFadeAnimation]="'in'"
       ></app-pick-professional>
     </div>
     <div class="dateTime-content" *ngIf="activeIndex === 2">
@@ -16,6 +21,7 @@
         [avaliableHours]="avaliableHours"
         (selectedDay)="pickDay($event)"
         (selectedHour)="pickHour($event)"
+        [@simpleFadeAnimation]="'in'"
       ></app-pick-date-time>
     </div>
     <div class="summary-content" *ngIf="activeIndex === 3">
@@ -25,6 +31,7 @@
         [appointmentDay]="appointmentDay"
         [appointmentHour]="appointmentHour"
         (saveAppointment)="saveAppointment($event)"
+        [@simpleFadeAnimation]="'in'"
       ></app-appointment-summary>
     </div>
   </div>

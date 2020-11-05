@@ -1,6 +1,6 @@
 <div class="schedule-container">
   <h3>My Schedule</h3>
-  <div class="my-schedule-table">
+  <div class="my-schedule-table" [@simpleFadeAnimation]="'in'">
     <p-table [value]="todayAppointments">
       <ng-template pTemplate="header">
         <tr>
@@ -17,20 +17,27 @@
           <td>{{ appointment.day | day }}</td>
           <td>{{ appointment.hour }}</td>
           <td>{{ appointment.patient.name }}</td>
-          <td>
+          <td class="action-container">
             <div *ngIf="appointment.status === 'Active'">
-              <button pButton type="button" label="Attend" (click)="attendPatient(appointment)"></button>
+              <button
+                class="p-button-sm"
+                pButton
+                type="button"
+                label="Attend"
+                (click)="attendPatient(appointment)"
+              ></button>
               <button
                 pButton
                 type="button"
                 label="Cancel"
-                class="p-button-danger"
+                class="p-button-danger p-button-sm"
                 (click)="cancelAppointment(appointment)"
               ></button>
             </div>
             <div *ngIf="appointment.status === 'Closed'">
               <button
                 pButton
+                class="p-button-sm"
                 type="button"
                 label="Patient Summary"
                 *ngIf="appointment.doctorSummary === null"
@@ -40,7 +47,7 @@
                 pButton
                 type="button"
                 label="Patient Survey"
-                class="p-button-help"
+                class="p-button-help p-button-sm"
                 (click)="showPatientSurveyDialog(appointment)"
                 *ngIf="appointment.patientSurvey !== null"
               ></button>

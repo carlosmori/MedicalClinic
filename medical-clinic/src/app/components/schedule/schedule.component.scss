@@ -11,6 +11,11 @@
   }
   .my-schedule-table {
     margin-bottom: 100px;
+    .action-container {
+      button {
+        margin: 5% 0%;
+      }
+    }
   }
 }
 .patient-summary-container {
