@@ -27,6 +27,7 @@
     "firebase": "^7.24.0",
     "firebase-admin": "^9.3.0",
     "firestore-seed": "0.0.11",
+    "jspdf": "^2.1.1",
     "nodemon": "^2.0.6",
     "primeicons": "^4.0.0",
     "primeng": "10.0.0",

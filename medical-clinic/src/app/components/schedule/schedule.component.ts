@@ -38,7 +38,13 @@ export class ScheduleComponent implements OnInit {
       });
   }
   generateExcelFile(data) {
-    this.documentExportService.exportAsExcelFile(data, `appointments-schedule-${new Date().getTime}`);
+    // todo format array before creating excel file
+    const fileName = `appointments-schedule-${new Date().getTime}`;
+    this.documentExportService.exportAsExcelFile(data, fileName);
+  }
+  generatePdfFile(data) {
+    const fileName = `appointments-schedule-${new Date().getTime}`;
+    this.documentExportService.savePdfFile(data, fileName);
   }
   cancelAppointment(appointment) {
     this.appointmentService
