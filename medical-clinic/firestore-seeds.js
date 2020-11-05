@@ -72,7 +72,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('1', {
     status: 'Active',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -89,7 +89,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('2', {
     status: 'Closed',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -106,7 +106,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('3', {
     status: 'Cancelled',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -123,7 +123,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('4', {
     status: 'Closed',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -140,7 +140,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('5', {
     status: 'Active',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -157,7 +157,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('6', {
     status: 'Active',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -174,7 +174,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('7', {
     status: 'Active',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -191,7 +191,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('8', {
     status: 'Active',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -209,7 +209,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('9', {
     status: 'Closed',
     professional: {
-      uid: '9t65uPRjsqdTboKzHNTJPcdM8W93',
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
