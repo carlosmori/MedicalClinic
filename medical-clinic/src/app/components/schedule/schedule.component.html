@@ -107,13 +107,28 @@
     <i class="pi pi-file-pdf export-icon" style="font-size: 2em; float: right"></i>
   </div>
 </div>
-<p-dialog [(visible)]="display" (onHide)="hideDialog()">
+<p-dialog [(visible)]="display" (onHide)="hideDialog()" header="Patient Summary">
   <div *ngIf="patientSurvey">
     {{ patientSurvey }}
   </div>
   <div *ngIf="!patientSurvey" class="patient-summary-container">
-    <p-header> Insert your comments based on your experience </p-header>
-    <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="doctorSummary"></textarea>
+    <!-- <p-header> Insert your comments based on your experience </p-header> -->
+    <span class="p-float-label form-control-container">
+      <input id="age-input" type="text" pInputText [(ngModel)]="age" />
+      <label for="age-input">Age</label>
+    </span>
+    <span class="p-float-label form-control-container">
+      <input id="temperature-input" type="text" pInputText [(ngModel)]="temperature" />
+      <label for="temperature-input">Temperature</label>
+    </span>
+    <span class="p-float-label form-control-container">
+      <input id="blood-pressure-input" type="text" pInputText [(ngModel)]="bloodPresure" />
+      <label for="blood-pressure-input">Blood Presure</label>
+    </span>
+    <span class="p-float-label form-control-container">
+      <textarea id="text-input" [rows]="5" [cols]="30" pInputTextarea [(ngModel)]="extraNotes"></textarea>
+      <label for="text-input">Extra notes</label>
+    </span>
     <p-footer>
       <button pButton type="button" (click)="confirmReview()" label="Confirm"></button>
     </p-footer>
