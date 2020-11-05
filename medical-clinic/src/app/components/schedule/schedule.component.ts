@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { formatISO } from 'date-fns/fp';
+import { DocumentsExportService } from 'src/app/services/documents-export.service';
 
 @Component({
   selector: 'app-schedule',
@@ -18,7 +19,11 @@ export class ScheduleComponent implements OnInit {
   currentAppointment: any;
   doctorSummary: any;
 
-  constructor(private appointmentService: AppointmentService, private authService: AuthService) {}
+  constructor(
+    private appointmentService: AppointmentService,
+    private authService: AuthService,
+    private documentExportService: DocumentsExportService
+  ) {}
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser();
@@ -30,9 +35,16 @@ export class ScheduleComponent implements OnInit {
         this.futureAppointments = appointments.filter((appointment) => appointment.day > dateIso);
 
         this.appointments = appointments;
-        console.log('Variable: this.appointments Stringify');
-        console.log(JSON.stringify(this.appointments));
       });
+  }
+  generateExcelFile(data) {
+    // todo format array before creating excel file
+    const fileName = `appointments-schedule-${new Date().getTime}`;
+    this.documentExportService.exportAsExcelFile(data, fileName);
+  }
+  generatePdfFile(data) {
+    const fileName = `appointments-schedule-${new Date().getTime}`;
+    this.documentExportService.savePdfFile(data, fileName);
   }
   cancelAppointment(appointment) {
     this.appointmentService

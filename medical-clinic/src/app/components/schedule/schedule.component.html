@@ -49,6 +49,17 @@
         </tr>
       </ng-template>
     </p-table>
+    <i
+      class="pi pi-file-excel export-icon"
+      style="font-size: 2em; float: right"
+      (click)="generateExcelFile(todayAppointments)"
+    ></i>
+    <i
+      class="pi pi-file-pdf export-icon"
+      style="font-size: 2em; float: right"
+      (click)="generatePdfFile(todayAppointments)"
+    ></i>
+    <!-- pdf for the future -->
   </div>
   <h3>Future Appointments</h3>
   <div class="future-appointments-table">
@@ -88,6 +99,12 @@
         </tr>
       </ng-template>
     </p-table>
+    <i
+      class="pi pi-file-excel export-icon"
+      style="font-size: 2em; float: right"
+      (click)="generateExcelFile(futureAppointments)"
+    ></i>
+    <i class="pi pi-file-pdf export-icon" style="font-size: 2em; float: right"></i>
   </div>
 </div>
 <p-dialog [(visible)]="display" (onHide)="hideDialog()">
