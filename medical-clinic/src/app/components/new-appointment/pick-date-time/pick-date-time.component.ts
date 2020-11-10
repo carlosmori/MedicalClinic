@@ -7,7 +7,7 @@ import { format } from 'date-fns/fp';
   styleUrls: ['./pick-date-time.component.scss'],
 })
 export class PickDateTimeComponent implements OnInit {
-  @Input() avaliableDays;
+  @Input() availableDays;
   @Input() avaliableHours;
   @Output() selectedDay = new EventEmitter<any>();
   @Output() selectedHour = new EventEmitter<any>();
