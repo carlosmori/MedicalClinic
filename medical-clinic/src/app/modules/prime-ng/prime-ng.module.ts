@@ -16,6 +16,7 @@ import { CaptchaModule } from 'primeng/captcha';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ListboxModule } from 'primeng/listbox';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [],
@@ -37,6 +38,7 @@ import { ListboxModule } from 'primeng/listbox';
     FileUploadModule,
     ConfirmDialogModule,
     ListboxModule,
+    TabViewModule,
   ],
   exports: [
     InputTextModule,
@@ -55,6 +57,7 @@ import { ListboxModule } from 'primeng/listbox';
     FileUploadModule,
     ConfirmDialogModule,
     ListboxModule,
+    TabViewModule,
   ],
 })
 export class PrimeNgModule {}

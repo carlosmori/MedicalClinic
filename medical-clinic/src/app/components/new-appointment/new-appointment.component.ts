@@ -49,7 +49,6 @@ export class NewAppointmentComponent implements OnInit {
   appointmentHour: any;
   appointmentDay: any;
   appointmentSpecialty: string;
-  specialtiesReducer = (prev, curr) => [...new Set([...prev, ...curr.specialties])];
 
   constructor(
     private router: Router,
@@ -76,8 +75,13 @@ export class NewAppointmentComponent implements OnInit {
     ];
 
     this.userService.getUsersByType({ profile: Profiles.PROFESSIONAL }).subscribe((professionals) => {
-      this.professionals = professionals;
-      this.specialties = professionals.reduce(this.specialtiesReducer, []).map((e) => ({ label: e, value: e }));
+      // this.professionals = professionals;
+      this.appointmentService.getSpecialties().subscribe((res) => {
+        this.specialties = res.map(({ specialty }) => ({
+          label: specialty,
+          value: specialty,
+        }));
+      });
     });
   }
   pickSpecialty(specialty: string) {

@@ -20,6 +20,10 @@ export class AppointmentService {
     );
     return gameRef.valueChanges({ idField: 'appointmentId' });
   }
+  getSpecialties() {
+    const gameRef = this.afs.collection<any>('specialties', (ref) => ref.orderBy('specialty', 'desc'));
+    return gameRef.valueChanges({ idField: 'appointmentId' });
+  }
   updateAppointment({ appointmentId, appointment }) {
     return this.afs
       .collection('appointments')

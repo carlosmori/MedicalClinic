@@ -29,9 +29,15 @@ let usersCollection = seed.collection('users', [
     profile: 'professional',
     specialties: ['Cardiology', 'Traumato'],
     availability: [
+      { Sunday: [] },
       {
         Monday: ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'],
       },
+      { Tuesday: [] },
+      { Wednesday: [] },
+      { Thursday: [] },
+      { Friday: [] },
+      { Saturday: [] },
     ],
     uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
   }),
