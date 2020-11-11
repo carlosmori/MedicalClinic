@@ -32,7 +32,10 @@ export class ScheduleComponent implements OnInit {
   patientSurvey: any;
   currentAppointment: any;
   doctorSummary: any;
-
+  age: number;
+  temperature: string;
+  bloodPresure: string;
+  extraNotes: string;
   constructor(
     private appointmentService: AppointmentService,
     private authService: AuthService,
@@ -96,10 +99,20 @@ export class ScheduleComponent implements OnInit {
   }
   hideDialog() {
     this.patientSurvey = null;
+    this.age = null;
+    this.temperature = null;
+    this.bloodPresure = null;
+    this.extraNotes = null;
     // this.content = null;
   }
   confirmReview() {
     this.display = false;
+    this.doctorSummary = {
+      age: this.age,
+      temperature: this.temperature,
+      bloodPresure: this.bloodPresure,
+      extraNotes: this.extraNotes,
+    };
     this.appointmentService.updateAppointment({
       appointment: { ...this.currentAppointment, doctorSummary: this.doctorSummary },
       patientId: this.currentAppointment.patient.uid,

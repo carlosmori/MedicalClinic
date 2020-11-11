@@ -21,6 +21,17 @@
 .patient-summary-container {
   display: flex;
   flex-direction: column;
+  padding: 2%;
+  .form-control-container {
+    padding: 4% 0%;
+    input,
+    textarea {
+      width: 100%;
+    }
+  }
+  p-footer {
+    text-align: right;
+  }
 }
 .export-icon {
   font-size: 2em;
