@@ -64,7 +64,9 @@ export class ScheduleComponent implements OnInit {
     this.appointmentService
       .updateAppointment({
         appointmentId: appointment.appointmentId,
-        appointment: { status: 'Cancelled' },
+        appointment: { ...appointment, status: 'Cancelled' },
+        patientId: appointment.patient.uid,
+        professionalId: this.currentUser.uid,
       })
       .then((res) => console.log(res))
       .catch((err) => {
@@ -77,6 +79,8 @@ export class ScheduleComponent implements OnInit {
       .updateAppointment({
         appointmentId: appointment.appointmentId,
         appointment: { status: 'Closed' },
+        patientId: appointment.patient.uid,
+        professionalId: this.currentUser.uid,
       })
       .then((res) => console.log(res))
       .catch((err) => {
@@ -101,6 +105,8 @@ export class ScheduleComponent implements OnInit {
     this.appointmentService.updateAppointment({
       appointmentId: this.currentAppointment.appointmentId,
       appointment: { doctorSummary: this.doctorSummary },
+      patientId: this.currentAppointment.patient.uid,
+      professionalId: this.currentUser.uid,
     });
   }
 }

@@ -10,6 +10,7 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 import { UserService } from 'src/app/services/user.service';
 import { Profiles } from 'src/app/enums/profiles.enum';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-new-appointment',
@@ -136,6 +137,7 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   saveAppointment(appointment) {
+    appointment.uid = uuidv4();
     this.appointmentService
       .saveAppointment(appointment, appointment.professional.uid, appointment.patient.uid)
       .then((response) => {

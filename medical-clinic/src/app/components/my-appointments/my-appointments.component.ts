@@ -44,6 +44,8 @@ export class MyAppointmentsComponent implements OnInit {
       .updateAppointment({
         appointmentId: appointment.appointmentId,
         appointment: { status: 'Cancelled' },
+        professionalId: appointment.professional.uid,
+        patientId: this.currentUser.uid,
       })
       .then((res) => console.log(res))
       .catch((err) => {
@@ -68,6 +70,8 @@ export class MyAppointmentsComponent implements OnInit {
     this.appointmentService.updateAppointment({
       appointmentId: this.currentAppointment.appointmentId,
       appointment: { patientSurvey: this.patientSurvey },
+      professionalId: this.currentAppointment.professional.uid,
+      patientId: this.currentUser.uid,
     });
   }
 }

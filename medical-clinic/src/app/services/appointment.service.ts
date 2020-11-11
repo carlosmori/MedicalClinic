@@ -7,11 +7,25 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class AppointmentService {
   constructor(private afs: AngularFirestore) {}
   saveAppointment(appointment, professionalId, patientId) {
-    debugger;
     const promises = [];
-    promises.push(this.afs.collection('appointments').add({ ...appointment }));
-    promises.push(this.afs.collection(`appointments-doctor-${professionalId}`).add({ ...appointment }));
-    promises.push(this.afs.collection(`appointments-patient-${patientId}`).add({ ...appointment }));
+    promises.push(
+      this.afs
+        .collection('appointments')
+        .doc(appointment.uid)
+        .set({ ...appointment })
+    );
+    promises.push(
+      this.afs
+        .collection(`appointments-doctor-${professionalId}`)
+        .doc(appointment.uid)
+        .set({ ...appointment })
+    );
+    promises.push(
+      this.afs
+        .collection(`appointments-patient-${patientId}`)
+        .doc(appointment.uid)
+        .set({ ...appointment })
+    );
     return Promise.all(promises);
   }
   getPatientAppointments({ patientId }) {
@@ -49,10 +63,26 @@ export class AppointmentService {
     return gameRef.valueChanges();
   }
 
-  updateAppointment({ appointmentId, appointment }) {
-    return this.afs
-      .collection('appointments')
-      .doc(appointmentId)
-      .set({ ...appointment }, { merge: true });
+  updateAppointment({ appointmentId, appointment, professionalId, patientId }) {
+    const promises = [];
+    promises.push(
+      this.afs
+        .collection('appointments')
+        .doc(appointmentId)
+        .set({ ...appointment }, { merge: true })
+    );
+    promises.push(
+      this.afs
+        .collection(`appointments-doctor-${professionalId}`)
+        .doc(appointmentId)
+        .set({ ...appointment }, { merge: true })
+    );
+    promises.push(
+      this.afs
+        .collection(`appointments-patient-${patientId}`)
+        .doc(appointmentId)
+        .set({ ...appointment }, { merge: true })
+    );
+    return Promise.all(promises);
   }
 }
