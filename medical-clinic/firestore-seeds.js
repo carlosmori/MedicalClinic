@@ -46,171 +46,7 @@ usersCollection
   .catch((e) => {
     console.log('Failed to import documents: ' + e);
   });
-// appointments-doctor-{id}
-let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdPSSiyVENwT2', [
-  seed.doc('1', {
-    status: 'Active',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(addDays(3)(new Date())),
-    hour: '08:00',
-    patientSurvey: null,
-    doctorSummary: null,
-  }),
-  seed.doc('2', {
-    status: 'Closed',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(new Date()),
-    hour: '09:00',
-    patientSurvey: null,
-    doctorSummary: 'He is a good and nice doctor!',
-  }),
-  seed.doc('3', {
-    status: 'Cancelled',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(addDays(2)(new Date())),
-    hour: '09:00',
-    patientSurvey: null,
-    doctorSummary: null,
-  }),
-  seed.doc('4', {
-    status: 'Closed',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(new Date()),
-    hour: '10:00',
-    patientSurvey: 'He is a nice doctor!',
-    doctorSummary: 'He is a good patient!',
-  }),
-  seed.doc('5', {
-    status: 'Active',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(addDays(1)(new Date())),
-    hour: '10:00',
-    patientSurvey: null,
-    doctorSummary: null,
-  }),
-  seed.doc('6', {
-    status: 'Active',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(addDays(1)(new Date())),
-    hour: '11:00',
-    patientSurvey: null,
-    doctorSummary: null,
-  }),
-  seed.doc('7', {
-    status: 'Active',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(addDays(2)(new Date())),
-    hour: '09:00',
-    patientSurvey: null,
-    doctorSummary: null,
-  }),
-  seed.doc('8', {
-    status: 'Active',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(new Date()),
-    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
-    hour: '10:00',
-    patientSurvey: null,
-    doctorSummary: null,
-  }),
-  seed.doc('9', {
-    status: 'Closed',
-    professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
-      name: 'Enrique Diaz',
-      specialty: 'Traumato',
-    },
-    patient: {
-      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
-      name: 'Carlos Mori',
-      email: 'carlosmori3@gmail.com',
-    },
-    day: formatISO(new Date()),
-    hour: '08:00',
-    patientSurvey: 'I had a really good time',
-    doctorSummary: 'A good patient!',
-  }),
-]);
-doctorAppointments
-  .importDocuments(admin)
-  .then(() => {
-    console.log('Successfully imported documents.');
-  })
-  .catch((e) => {
-    console.log('Failed to import documents: ' + e);
-  });
+
 let doctorsCollection = seed.collection('doctors', [
   seed.doc('dSO9jkAplOT4U3dLdPSSiyVENwT2', {
     uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
@@ -230,6 +66,7 @@ let doctorsCollection = seed.collection('doctors', [
     },
   }),
 ]);
+
 doctorsCollection
   .importDocuments(admin)
   .then(() => {
@@ -410,6 +247,353 @@ let appointmentsCollection = seed.collection('appointments', [
 ]);
 
 appointmentsCollection
+  .importDocuments(admin)
+  .then(() => {
+    console.log('Successfully imported documents.');
+  })
+  .catch((e) => {
+    console.log('Failed to import documents: ' + e);
+  });
+// appointments-doctor-{id}
+let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdPSSiyVENwT2', [
+  seed.doc('1', {
+    uid: '1',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(3)(new Date())),
+    hour: '08:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('2', {
+    uid: '2',
+    status: 'Closed',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    hour: '09:00',
+    patientSurvey: null,
+    doctorSummary: 'He is a good and nice doctor!',
+  }),
+  seed.doc('3', {
+    uid: '3',
+    status: 'Cancelled',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(2)(new Date())),
+    hour: '09:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('4', {
+    uid: '4',
+    status: 'Closed',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    hour: '10:00',
+    patientSurvey: 'He is a nice doctor!',
+    doctorSummary: 'He is a good patient!',
+  }),
+  seed.doc('5', {
+    uid: '5',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(1)(new Date())),
+    hour: '10:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('6', {
+    uid: '6',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(1)(new Date())),
+    hour: '11:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('7', {
+    uid: '7',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(2)(new Date())),
+    hour: '09:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('8', {
+    uid: '8',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
+    hour: '10:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('9', {
+    uid: '9',
+    status: 'Closed',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    hour: '08:00',
+    patientSurvey: 'I had a really good time',
+    doctorSummary: 'A good patient!',
+  }),
+]);
+doctorAppointments
+  .importDocuments(admin)
+  .then(() => {
+    console.log('Successfully imported documents.');
+  })
+  .catch((e) => {
+    console.log('Failed to import documents: ' + e);
+  });
+let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreBXpVjJE42R4I3', [
+  seed.doc('1', {
+    uid: '1',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(3)(new Date())),
+    hour: '08:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('2', {
+    uid: '2',
+    status: 'Closed',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    hour: '09:00',
+    patientSurvey: null,
+    doctorSummary: 'He is a good and nice doctor!',
+  }),
+  seed.doc('3', {
+    uid: '3',
+    status: 'Cancelled',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(2)(new Date())),
+    hour: '09:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('4', {
+    uid: '4',
+    status: 'Closed',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    hour: '10:00',
+    patientSurvey: 'He is a nice doctor!',
+    doctorSummary: 'He is a good patient!',
+  }),
+  seed.doc('5', {
+    uid: '5',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(1)(new Date())),
+    hour: '10:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('6', {
+    uid: '6',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(1)(new Date())),
+    hour: '11:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('7', {
+    uid: '7',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(addDays(2)(new Date())),
+    hour: '09:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('8', {
+    uid: '8',
+    status: 'Active',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    // day: format('dd/MM/yyyy')(addDays(1)(new Date())),
+    hour: '10:00',
+    patientSurvey: null,
+    doctorSummary: null,
+  }),
+  seed.doc('9', {
+    uid: '9',
+    status: 'Closed',
+    professional: {
+      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      name: 'Enrique Diaz',
+      specialty: 'Traumato',
+    },
+    patient: {
+      uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+      name: 'Carlos Mori',
+      email: 'carlosmori3@gmail.com',
+    },
+    day: formatISO(new Date()),
+    hour: '08:00',
+    patientSurvey: 'I had a really good time',
+    doctorSummary: 'A good patient!',
+  }),
+]);
+patientAppointments
   .importDocuments(admin)
   .then(() => {
     console.log('Successfully imported documents.');

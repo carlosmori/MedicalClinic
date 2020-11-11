@@ -91,6 +91,7 @@
               pButton
               type="button"
               label="Cancel"
+              (click)="cancelAppointment(futureAppointment)"
               class="p-button-danger"
               *ngIf="futureAppointment.status === 'Active'"
             ></button>
