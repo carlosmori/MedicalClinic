@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Profiles } from 'src/app/enums/profiles.enum';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,20 +12,28 @@ import { AuthService } from 'src/app/services/auth.service';
   providers: [MessageService],
 })
 export class HomeComponent implements OnInit {
-  [x: string]: boolean;
   currentUser: any;
   displayImageDialog: any;
   isProfessionalEnabled: any;
-
+  displayHomeDashBoard: boolean;
   constructor(
     private authService: AuthService,
     private storage: AngularFireStorage,
     private messageService: MessageService,
     private router: Router
   ) {
-    this.router.events.subscribe((event: Event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.displayHomeDashBoard = event.url === '/home';
+      }
+      if (event instanceof NavigationStart) {
+        // Show loading indicator
+      }
+      if (event instanceof NavigationError) {
+        // Hide loading indicator
+
+        // Present error to user
+        console.log(event.error);
       }
     });
   }
