@@ -6,15 +6,18 @@
 }
 .main-container {
   height: 100vh;
-  .btn-container {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
+  .actions-container {
     height: 90vh;
-    a {
-      text-decoration: none;
-      width: 30%;
-      margin: 10% 5% 0% 5%;
+    .patient-dashboard,
+    .professional-dashboard {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      a {
+        text-decoration: none;
+        width: 30%;
+        margin: 10% 5% 0% 5%;
+      }
     }
   }
 }

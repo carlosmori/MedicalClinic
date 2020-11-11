@@ -1,4 +1,4 @@
-<div class="avaliability-container">
+<div class="availability-container">
   <p-tabView (onChange)="changeTab($event)" activeIndex="activeIndex">
     <p-tabPanel [header]="day.label" *ngFor="let day of weekDays; let i = index" [selected]="i == 0">
       <p-card>
@@ -11,7 +11,7 @@
                   [checkbox]="true"
                   [options]="dayHours"
                   [(ngModel)]="hours"
-                  (click)="draftAvaliability()"
+                  (click)="draftAvailability()"
                 ></p-listbox>
               </div>
             </div>
@@ -22,11 +22,11 @@
   </p-tabView>
   <button
     pButton
-    *ngIf="showUpdateAvaliability"
+    *ngIf="showUpdateAvailability"
     type="button"
-    label="Update Avaliability"
-    (click)="updateAvaliability()"
-    class="update-avaliability-btn"
+    label="Update Availability"
+    (click)="updateAvailability()"
+    class="update-availability-btn"
   ></button>
 </div>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

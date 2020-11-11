@@ -34,9 +34,9 @@ export class NavBarComponent implements OnInit {
           disabled: !this.currentUser.isProfessionalEnabled,
         },
         {
-          label: 'Avaliability',
+          label: 'Availability',
           icon: 'pi pi-user-edit',
-          routerLink: ['/home', 'avaliability'],
+          routerLink: ['/home', 'availability'],
           disabled: !this.currentUser.isProfessionalEnabled,
         },
       ];

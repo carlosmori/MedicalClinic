@@ -17,7 +17,7 @@ import { MyAppointmentsComponent } from './components/my-appointments/my-appoint
 import { AccountComponent } from './components/account/account.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
-import { AvaliabilityComponent } from './components/avaliability/avaliability.component';
+import { AvailabilityComponent } from './components/availability/availability.component';
 import { DayOfWeekPipe } from './pipes/day-of-week.pipe';
 import { DayPipe } from './pipes/day.pipe';
 import { AdminComponent } from './components/admin/admin.component';
@@ -39,7 +39,7 @@ import { AppointmentSummaryComponent } from './components/new-appointment/appoin
     AccountComponent,
     ErrorComponent,
     ScheduleComponent,
-    AvaliabilityComponent,
+    AvailabilityComponent,
     DayOfWeekPipe,
     DayPipe,
     AdminComponent,

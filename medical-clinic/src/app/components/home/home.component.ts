@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
   providers: [MessageService],
 })
 export class HomeComponent implements OnInit {
-  currentUser: any;
+  public currentUser: any;
   displayImageDialog: any;
   isProfessionalEnabled: any;
   displayHomeDashBoard: boolean;
@@ -93,5 +93,8 @@ export class HomeComponent implements OnInit {
             });
           });
       });
+  }
+  public get profileTypes(): typeof Profiles {
+    return Profiles;
   }
 }

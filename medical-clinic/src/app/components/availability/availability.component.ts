@@ -5,19 +5,19 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-avaliability',
-  templateUrl: './avaliability.component.html',
-  styleUrls: ['./avaliability.component.scss'],
+  selector: 'app-availability',
+  templateUrl: './availability.component.html',
+  styleUrls: ['./availability.component.scss'],
   providers: [ConfirmationService],
 })
-export class AvaliabilityComponent implements OnInit {
+export class AvailabilityComponent implements OnInit {
   weekDays: any[];
   currentDay: string;
   hours: string[];
   dayHours: { label: string; value: string }[];
   currentUser: any;
-  showUpdateAvaliability: boolean;
-  newAvaliability: any;
+  showUpdateAvailability: boolean;
+  newAvailability: any;
   activeIndex: number;
   constructor(
     private confirmationService: ConfirmationService,
@@ -56,14 +56,14 @@ export class AvaliabilityComponent implements OnInit {
     console.log('Variable: this.currentDay equals');
     console.log(this.currentDay);
   }
-  updateAvaliability() {
-    this.newAvaliability = [
+  updateAvailability() {
+    this.newAvailability = [
       {
         [WeekDays[this.activeIndex]]: this.hours,
       },
       ...this.currentUser.availability,
     ];
-    this.currentUser.availability = this.newAvaliability = [
+    this.currentUser.availability = this.newAvailability = [
       {
         [WeekDays[this.activeIndex]]: this.hours,
       },
@@ -72,7 +72,7 @@ export class AvaliabilityComponent implements OnInit {
     this.authService
       .updateUser({
         userId: this.currentUser.uid,
-        user: { availability: this.newAvaliability },
+        user: { availability: this.newAvailability },
       })
       .catch((error) => {
         // this.messageService.add({
@@ -105,10 +105,10 @@ export class AvaliabilityComponent implements OnInit {
   }
   changeTab({ index }) {
     console.log('Variable: weekD equals');
-    this.newAvaliability = [];
+    this.newAvailability = [];
     this.activeIndex = index;
     console.log(WeekDays[index]);
-    this.showUpdateAvaliability = false;
+    this.showUpdateAvailability = false;
     const dayWithHours = this.currentUser.availability.filter(
       (element) => Object.keys(element)[0] === WeekDays[index]
     )[0];
@@ -118,8 +118,8 @@ export class AvaliabilityComponent implements OnInit {
       this.hours = [];
     }
   }
-  draftAvaliability() {
+  draftAvailability() {
     console.log('draft');
-    this.showUpdateAvaliability = true;
+    this.showUpdateAvailability = true;
   }
 }
