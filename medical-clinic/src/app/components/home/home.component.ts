@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Profiles } from 'src/app/enums/profiles.enum';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
   providers: [MessageService],
 })
 export class HomeComponent implements OnInit {
+  [x: string]: boolean;
   currentUser: any;
   displayImageDialog: any;
   isProfessionalEnabled: any;
@@ -18,8 +20,15 @@ export class HomeComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private storage: AngularFireStorage,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private router: Router
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.displayHomeDashBoard = event.url === '/home';
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser();

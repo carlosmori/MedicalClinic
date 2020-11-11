@@ -63,7 +63,6 @@ export class ScheduleComponent implements OnInit {
   cancelAppointment(appointment) {
     this.appointmentService
       .updateAppointment({
-        appointmentId: appointment.appointmentId,
         appointment: { ...appointment, status: 'Cancelled' },
         patientId: appointment.patient.uid,
         professionalId: this.currentUser.uid,
@@ -77,8 +76,7 @@ export class ScheduleComponent implements OnInit {
   attendPatient(appointment) {
     this.appointmentService
       .updateAppointment({
-        appointmentId: appointment.appointmentId,
-        appointment: { status: 'Closed' },
+        appointment: { ...appointment, status: 'Closed' },
         patientId: appointment.patient.uid,
         professionalId: this.currentUser.uid,
       })
@@ -103,8 +101,7 @@ export class ScheduleComponent implements OnInit {
   confirmReview() {
     this.display = false;
     this.appointmentService.updateAppointment({
-      appointmentId: this.currentAppointment.appointmentId,
-      appointment: { doctorSummary: this.doctorSummary },
+      appointment: { ...this.currentAppointment, doctorSummary: this.doctorSummary },
       patientId: this.currentAppointment.patient.uid,
       professionalId: this.currentUser.uid,
     });

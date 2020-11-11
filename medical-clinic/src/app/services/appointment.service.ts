@@ -63,24 +63,24 @@ export class AppointmentService {
     return gameRef.valueChanges();
   }
 
-  updateAppointment({ appointmentId, appointment, professionalId, patientId }) {
+  updateAppointment({ appointment, professionalId, patientId }) {
     const promises = [];
     promises.push(
       this.afs
         .collection('appointments')
-        .doc(appointmentId)
+        .doc(appointment.uid)
         .set({ ...appointment }, { merge: true })
     );
     promises.push(
       this.afs
         .collection(`appointments-doctor-${professionalId}`)
-        .doc(appointmentId)
+        .doc(appointment.uid)
         .set({ ...appointment }, { merge: true })
     );
     promises.push(
       this.afs
         .collection(`appointments-patient-${patientId}`)
-        .doc(appointmentId)
+        .doc(appointment.uid)
         .set({ ...appointment }, { merge: true })
     );
     return Promise.all(promises);

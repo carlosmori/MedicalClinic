@@ -1,6 +1,25 @@
 <div class="main-container">
   <app-nav-bar></app-nav-bar>
-  <router-outlet></router-outlet>
+  <div class="btn-container" *ngIf="displayHomeDashBoard">
+    <a routerLink="/home/new-appointment">
+      <button
+        pButton
+        type="button"
+        label="New Appointment"
+        icon="pi pi-calendar-plus"
+        class="p-button-secondary p-button-outlined p-button-lg"
+      ></button>
+    </a>
+    <a routerLink="/home/my-appointments">
+      <button
+        pButton
+        type="button"
+        label="My Appointments"
+        icon="pi pi-calendar"
+        class="p-button-secondary p-button-outlined p-button-lg"
+      ></button>
+    </a>
+  </div>
   <p-dialog [(visible)]="displayImageDialog" styleClass="mydialog">
     <p-header> Please upload a profile picture </p-header>
     <p-fileUpload
@@ -12,5 +31,6 @@
       multiple="multiple"
     ></p-fileUpload>
   </p-dialog>
+  <router-outlet></router-outlet>
 </div>
 <p-toast position="bottom-center" key="bc"></p-toast>
