@@ -57,7 +57,9 @@ export class ScheduleComponent implements OnInit {
         this.todayAppointments = appointments
           .filter((appointment) => appointment.day < dateIso)
           .map((appointment) => ({ ...appointment, day: this.dayPipe.transform(appointment.day) }));
-        this.futureAppointments = appointments.filter((appointment) => appointment.day > dateIso);
+        this.futureAppointments = appointments
+          .filter((appointment) => appointment.day > dateIso)
+          .map((appointment) => ({ ...appointment, day: this.dayPipe.transform(appointment.day) }));
 
         this.appointments = appointments;
       });

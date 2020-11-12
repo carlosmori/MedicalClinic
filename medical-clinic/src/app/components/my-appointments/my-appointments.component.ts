@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Appointment } from 'src/app/classes/appointment';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { DayPipe } from 'src/app/pipes/day.pipe';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-my-appointments',
@@ -21,6 +23,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       transition(':leave', animate(600, style({ opacity: 0 }))),
     ]),
   ],
+  providers: [DayPipe],
 })
 export class MyAppointmentsComponent implements OnInit {
   appointments: any[];
@@ -30,11 +33,18 @@ export class MyAppointmentsComponent implements OnInit {
   currentAppointment: any;
   patientSurvey: any;
   currentUser: any;
-
-  constructor(private appointmentService: AppointmentService, private authService: AuthService) {
+  @ViewChild('dt') table: Table;
+  constructor(
+    private appointmentService: AppointmentService,
+    private authService: AuthService,
+    private dayPipe: DayPipe
+  ) {
     this.currentUser = this.authService.currentUser();
     this.appointmentService.getPatientAppointments({ patientId: this.currentUser.uid }).subscribe((appointments) => {
-      this.appointments = appointments;
+      this.appointments = appointments.map((appointment) => ({
+        ...appointment,
+        day: this.dayPipe.transform(appointment.day),
+      }));
     });
   }
 
