@@ -21,23 +21,32 @@
         <input id="password-input" type="password" pPassword [(ngModel)]="userPassword" />
         <label for="password-input">Password</label>
       </span>
-      <p-captcha [siteKey]="siteKey" (onResponse)="showResponse($event)" initCallback="loadCaptcha"></p-captcha>
-      <span>Custom Captcha</span>
-      {{ randomInt1 }} + {{ randomInt2 }}
-      <span class="p-float-label">
-        <input
-          id="username-input"
-          type="number"
-          pInputText
-          [(ngModel)]="customCaptchaAnswer"
-          (ngModelChange)="checkAnswer()"
-        />
-        <label for="username-input">Answer</label>
-      </span>
+      <p-checkbox
+        [(ngModel)]="displayCaptchas"
+        (onChange)="onChangeDisplayCaptchas()"
+        class="display-captchas-checkbox"
+        label="Display Captchas?"
+        binary="true"
+      ></p-checkbox>
+      <div class="captcha-container" *ngIf="displayCaptchas">
+        <p-captcha [siteKey]="siteKey" (onResponse)="showResponse($event)" initCallback="loadCaptcha"></p-captcha>
+        <span>Custom Captcha</span>
+        {{ randomInt1 }} + {{ randomInt2 }}
+        <span class="p-float-label">
+          <input
+            id="username-input"
+            type="number"
+            pInputText
+            [(ngModel)]="customCaptchaAnswer"
+            (ngModelChange)="checkAnswer()"
+          />
+          <label for="username-input">Answer</label>
+        </span>
+      </div>
       <!-- <span class="p-float-label">
           <input id="password-input" type="password" pPassword [(ngModel)]="repeatUserPassword" />
           <label for="password-input">Repeat Password</label>
-        </span> -->
+          </span> -->
       <div class="button-container">
         <button
           pButton

@@ -29,10 +29,11 @@ export class LoginComponent implements OnInit {
   displayRegisterForm: boolean;
   newUser: User;
   customCaptchaAnswer: string;
-  public captchaIsValid = false;
-  public customCaptchaIsValid = false;
+  public captchaIsValid = true;
+  public customCaptchaIsValid = true;
   randomInt1: any;
   randomInt2: any;
+  displayCaptchas: boolean;
   constructor(private authService: AuthService, private messageService: MessageService, private router: Router) {
     this.displayRegisterForm = false;
     this.profiles = [
@@ -134,5 +135,9 @@ export class LoginComponent implements OnInit {
   }
   checkAnswer() {
     this.customCaptchaIsValid = this.customCaptchaAnswer === this.randomInt1 + this.randomInt2;
+  }
+  onChangeDisplayCaptchas() {
+    this.customCaptchaIsValid = !this.customCaptchaIsValid;
+    this.captchaIsValid = !this.captchaIsValid;
   }
 }

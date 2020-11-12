@@ -17,6 +17,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ListboxModule } from 'primeng/listbox';
 import { TabViewModule } from 'primeng/tabview';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [],
@@ -39,6 +40,7 @@ import { TabViewModule } from 'primeng/tabview';
     ConfirmDialogModule,
     ListboxModule,
     TabViewModule,
+    CheckboxModule,
   ],
   exports: [
     InputTextModule,
@@ -58,6 +60,7 @@ import { TabViewModule } from 'primeng/tabview';
     ConfirmDialogModule,
     ListboxModule,
     TabViewModule,
+    CheckboxModule,
   ],
 })
 export class PrimeNgModule {}

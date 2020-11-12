@@ -53,8 +53,6 @@ export class AdminComponent implements OnInit {
         return { ...specialty };
       }
     });
-    console.log('Variable: specialty equals');
-    console.log(this.customSpecialties);
   }
   confirmNewSpecialty() {
     this.doctorService
