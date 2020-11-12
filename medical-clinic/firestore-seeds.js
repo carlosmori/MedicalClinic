@@ -755,57 +755,67 @@ statisticsLogin
   });
 let operationStatistics = seed.collection(`operations-statistics`, [
   seed.doc('1', {
-    type: 'attend',
+    type: 'Patient Attended',
     value: formatISO(subDays(1)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('1', {
     type: 'attend',
+    description: 'Patient Attended',
     value: formatISO(subDays(1)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('2', {
-    type: 'cancel',
+    type: 'cancelled',
+    description: 'Canceled Appointments',
     value: formatISO(subDays(1)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('3', {
-    type: 'cancel',
+    type: 'cancelled',
+    description: 'Canceled Appointments',
     value: formatISO(subDays(1)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('4', {
     type: 'patient_survey',
+    description: 'Answer Patient Survey',
     value: formatISO(subDays(1)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('5', {
     type: 'attend',
+    description: 'Patient Attended',
     value: formatISO(subDays(2)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('6', {
     type: 'attend',
+    description: 'Patient Attended',
     value: formatISO(subDays(2)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('7', {
-    type: 'cancel',
+    type: 'cancelled',
+    description: 'Canceled Appointments',
     value: formatISO(subDays(2)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('8', {
-    type: 'cancel',
+    type: 'cancelled',
+    description: 'Canceled Appointments',
     value: formatISO(subDays(2)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('9', {
     type: 'dr_summary',
+    description: 'Provided Dr Summary',
     value: formatISO(subDays(2)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('10', {
     type: 'patient_survey',
+    description: 'Answer Patient Survey',
     value: formatISO(subDays(2)(new Date())),
     uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),

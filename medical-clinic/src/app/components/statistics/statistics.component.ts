@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { finalize } from 'rxjs/operators';
 import { Profiles } from 'src/app/enums/profiles.enum';
+import { StatisticTypes } from 'src/app/enums/statistic-types.enum';
 import { DayPipe } from 'src/app/pipes/day.pipe';
 import { AuthService } from 'src/app/services/auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
@@ -28,6 +29,7 @@ export class StatisticsComponent implements OnInit {
   doctors: { label: any; value: any }[];
   logLabels: SelectItem[];
   loginDayData: any;
+  doughnutOptions: { legend: { position: string } };
 
   constructor(
     private authService: AuthService,
@@ -65,9 +67,6 @@ export class StatisticsComponent implements OnInit {
     this.weekDaysTableActiveIndex = index;
   }
   fillDoctorCharts() {
-    console.log('Variable: this.selectedDoctor equals');
-    console.log(this.selectedDoctor);
-
     this.statisticService.getLoginStatistics({ userId: this.selectedDoctor }).subscribe((stats) => {
       this.loginStats = stats.map((stat) => ({ ...stat, parsedDate: this.dayPipe.transform(stat.dateTime) }));
       this.loginStats = this.groupBy(this.loginStats, 'parsedDate');
@@ -81,6 +80,30 @@ export class StatisticsComponent implements OnInit {
             fill: false,
             borderColor: '#4bc0c0',
             backgroundColor: '#42A5F5',
+          },
+        ],
+      };
+    });
+    this.statisticService.getOperationStatistics({ userId: this.selectedDoctor }).subscribe((stats) => {
+      const groupedByType = this.groupBy(stats, 'description');
+      console.log('Variable: stats equals');
+      for (const key in groupedByType) {
+        groupedByType[key] = {
+          ['data']: [...groupedByType[key]],
+          ['color']: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+        };
+      }
+      console.log(Object.keys(groupedByType));
+      console.log(Object.keys(groupedByType).map((operation) => groupedByType[operation]));
+
+      this.operationsData = {
+        labels: Object.keys(groupedByType),
+        datasets: [
+          {
+            label: 'Number of Operations',
+            data: Object.keys(groupedByType).map((operation) => groupedByType[operation].data.length),
+            backgroundColor: Object.keys(groupedByType).map((operation) => groupedByType[operation].color),
+            hoverBackgroundColor: Object.keys(groupedByType).map((operation) => groupedByType[operation].color),
           },
         ],
       };

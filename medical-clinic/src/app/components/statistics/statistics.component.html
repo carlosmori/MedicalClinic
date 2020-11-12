@@ -3,11 +3,13 @@
   <h3>Professional Statistics</h3>
   <p-listbox [options]="professionals" [(ngModel)]="selectedDoctor" (onClick)="fillDoctorCharts()"></p-listbox>
   <div class="chart-container" *ngIf="selectedDoctor">
-    <h2>Logins Per Day</h2>
+    <h4>Logins Per Day</h4>
     <p-chart type="bar" [data]="loginData"></p-chart>
     <p-listbox [options]="logLabels" [(ngModel)]="selectedDate" (onClick)="fillDoctorDayCharts()"></p-listbox>
-    <h2>Logins Per Hour</h2>
+    <h4>Logins Per Hour</h4>
     <p-chart *ngIf="selectedDate" type="bar" [data]="loginDayData"></p-chart>
+    <h4>Number of Operations</h4>
+    <p-chart type="polarArea" [data]="operationsData"></p-chart>
   </div>
   <h3>Week Days Statistics</h3>
 
