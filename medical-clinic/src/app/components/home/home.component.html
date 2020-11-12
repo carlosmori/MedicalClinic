@@ -29,6 +29,7 @@
           label="Schedule"
           icon="pi pi-calendar"
           class="p-button-secondary p-button-outlined p-button-lg"
+          [disabled]="!currentUser.isProfessionalEnabled"
         ></button>
       </a>
       <a routerLink="/home/availability">
@@ -36,6 +37,18 @@
           pButton
           type="button"
           label="Availability"
+          icon="pi pi-user-edit"
+          [disabled]="!currentUser.isProfessionalEnabled"
+          class="p-button-secondary p-button-outlined p-button-lg"
+        ></button>
+      </a>
+    </div>
+    <div class="professional-dashboard" *ngIf="currentUser.profile === profileTypes.ADMINISTRATOR">
+      <a routerLink="/home/admin">
+        <button
+          pButton
+          type="button"
+          label="Admin"
           icon="pi pi-user-edit"
           class="p-button-secondary p-button-outlined p-button-lg"
         ></button>

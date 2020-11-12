@@ -1,41 +1,82 @@
 <div class="admin-container">
-  <h3>Professionals Dashboard</h3>
-  <div class="admin-table">
-    <p-table [value]="professionals">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Name</th>
-          <th>Specialties</th>
-          <th>Enabled</th>
-          <th>Actions</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-professional>
-        <tr>
-          <td>{{ professional.name }}</td>
-          <td>{{ professional.specialties?.join() }}</td>
-          <td>{{ professional.isProfessionalEnabled }}</td>
-          <td class="action-container">
-            <button
-              type="text"
-              (click)="confirm(professional)"
-              pButton
-              icon="pi pi-check"
-              label="{{ professional.isProfessionalEnabled ? 'Disable' : 'Enable' }}"
-              class="p-button-danger p-button-sm"
-            ></button>
-            <button
-              pButton
-              class="p-button-sm"
-              type="button"
-              (click)="openNewSpecialtyDialog(professional)"
-              label="Add Specialty"
-            ></button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+  <div class="professionals-list">
+    <h3>Professionals List</h3>
+    <div class="admin-table">
+      <p-table [value]="professionals">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Specialties</th>
+            <th>Enabled</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-professional>
+          <tr>
+            <td>{{ professional.name }}</td>
+            <td>{{ professional.specialties?.join() }}</td>
+            <td>{{ professional.isProfessionalEnabled }}</td>
+            <td class="action-container">
+              <button
+                type="text"
+                (click)="confirm(professional)"
+                pButton
+                icon="pi pi-check"
+                label="{{ professional.isProfessionalEnabled ? 'Disable' : 'Enable' }}"
+                class="p-button-danger p-button-sm"
+              ></button>
+              <button
+                pButton
+                class="p-button-sm"
+                type="button"
+                (click)="openNewSpecialtyDialog(professional)"
+                label="Add Specialty"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
+  <!-- <div class="patients-list">
+    <h3>Patients List</h3>
+    <div class="admin-table">
+      <p-table [value]="patients">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Specialties</th>
+            <th>Enabled</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-professional>
+          <tr>
+          <td>{{ professional.name }}</td>
+            <td>{{ professional.specialties?.join() }}</td>
+            <td>{{ professional.isProfessionalEnabled }}</td> 
+            <td class="action-container">
+              <button
+                type="text"
+                (click)="confirm(professional)"
+                pButton
+                icon="pi pi-check"
+                label="{{ professional.isProfessionalEnabled ? 'Disable' : 'Enable' }}"
+                class="p-button-danger p-button-sm"
+              ></button>
+              <button
+                pButton
+                class="p-button-sm"
+                type="button"
+                (click)="openNewSpecialtyDialog(professional)"
+                label="Add Specialty"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div> -->
 </div>
 <p-dialog
   header="Select the new specialty you want to add"
@@ -44,7 +85,7 @@
   styleClass="mydialog"
 >
   <div class="specialty-container">
-    <p-listbox [options]="specialties" [(ngModel)]="selectedSpecialty"></p-listbox>
+    <p-listbox [options]="customSpecialties" [(ngModel)]="selectedSpecialty"></p-listbox>
   </div>
   <p-footer>
     <button
