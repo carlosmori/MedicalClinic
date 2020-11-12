@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { UserService } from 'src/app/services/user.service';
 import { map } from 'rxjs/operators';
 import { Profiles } from 'src/app/enums/profiles.enum';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-admin',
@@ -21,6 +22,7 @@ export class AdminComponent implements OnInit {
   customSpecialties: SelectItem[];
   newSpecialty: any;
   selectedSpecialty: string | null = null;
+  @ViewChild('dt') table: Table;
 
   constructor(
     private authService: AuthService,

@@ -29,12 +29,16 @@ export class AppointmentService {
     return Promise.all(promises);
   }
   getPatientAppointments({ patientId }) {
-    const gameRef = this.afs.collection<any>('appointments', (ref) => ref.where('patient.uid', '==', patientId));
+    const gameRef = this.afs.collection<any>('appointments', (ref) =>
+      ref.where('patient.uid', '==', patientId).orderBy('day', 'asc').orderBy('status', 'asc')
+    );
     return gameRef.valueChanges({ idField: 'appointmentId' });
   }
 
   getDoctorAppointments({ professionalId }) {
-    const gameRef = this.afs.collection<any>(`appointments-doctor-${professionalId}`);
+    const gameRef = this.afs.collection<any>(`appointments-doctor-${professionalId}`, (ref) =>
+      ref.orderBy('day', 'asc').orderBy('status', 'asc')
+    );
     return gameRef.valueChanges();
   }
 

@@ -21,13 +21,13 @@ let usersCollection = seed.collection('users', [
     profile: 'patient',
     uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
   }),
-  seed.doc('dSO9jkAplOT4U3dLdPSSiyVENwT2', {
+  seed.doc('cFGHEE0OQQTiHQKGjz2OtcMh4gZ2', {
     email: 'cmori.94@gmail.com',
     firstTimeLogin: false,
     isProfessionalEnabled: true,
     name: 'Enrique Diaz',
     profile: 'professional',
-    uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
   }),
   seed.doc('03Sf8Gd5nGTKpDSh0mbqYIdJlpY2', {
     email: 'ortopediasolidariadelsur@gmail.com',
@@ -48,9 +48,10 @@ usersCollection
   });
 
 let doctorsCollection = seed.collection('doctors', [
-  seed.doc('dSO9jkAplOT4U3dLdPSSiyVENwT2', {
-    uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+  seed.doc('cFGHEE0OQQTiHQKGjz2OtcMh4gZ2', {
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
     name: 'Enrique Diaz',
+    isProfessionalEnabled: true,
     availability: {
       ['Monday']: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
       ['Friday']: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
@@ -61,6 +62,7 @@ let doctorsCollection = seed.collection('doctors', [
     uid: '2',
     name: 'Megan Diaz',
     specialties: ['Pediathry'],
+    isProfessionalEnabled: true,
     availability: {
       ['Monday']: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
     },
@@ -94,7 +96,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('1', {
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -111,7 +113,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('2', {
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -128,7 +130,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('3', {
     status: 'Cancelled',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -145,7 +147,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('4', {
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -162,7 +164,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('5', {
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -179,7 +181,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('6', {
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -196,7 +198,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('7', {
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -213,7 +215,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('8', {
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -230,7 +232,7 @@ let appointmentsCollection = seed.collection('appointments', [
   seed.doc('9', {
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -255,12 +257,12 @@ appointmentsCollection
     console.log('Failed to import documents: ' + e);
   });
 // appointments-doctor-{id}
-let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdPSSiyVENwT2', [
+let doctorAppointments = seed.collection('appointments-doctor-cFGHEE0OQQTiHQKGjz2OtcMh4gZ2', [
   seed.doc('1', {
     uid: '1',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -278,7 +280,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '2',
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -296,7 +298,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '3',
     status: 'Cancelled',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -314,7 +316,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '4',
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -332,7 +334,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '5',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -350,7 +352,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '6',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -368,7 +370,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '7',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -386,7 +388,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '8',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -405,7 +407,7 @@ let doctorAppointments = seed.collection('appointments-doctor-dSO9jkAplOT4U3dLdP
     uid: '9',
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -433,7 +435,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '1',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -451,7 +453,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '2',
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -469,7 +471,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '3',
     status: 'Cancelled',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -487,7 +489,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '4',
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -505,7 +507,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '5',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -523,7 +525,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '6',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -541,7 +543,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '7',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -559,7 +561,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '8',
     status: 'Active',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
@@ -578,7 +580,7 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
     uid: '9',
     status: 'Closed',
     professional: {
-      uid: 'dSO9jkAplOT4U3dLdPSSiyVENwT2',
+      uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
       name: 'Enrique Diaz',
       specialty: 'Traumato',
     },
