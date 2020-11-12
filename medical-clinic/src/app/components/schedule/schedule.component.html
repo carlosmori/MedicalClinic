@@ -1,7 +1,7 @@
 <div class="schedule-container">
   <h3>My Schedule</h3>
   <div class="my-schedule-table" [@simpleFadeAnimation]="'in'">
-    <p-table [value]="todayAppointments">
+    <p-table [value]="todayAppointments" #dt>
       <ng-template pTemplate="header">
         <tr>
           <th>Status</th>
@@ -10,11 +10,49 @@
           <th>Patient</th>
           <th>Actions</th>
         </tr>
+        <tr>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filter($event.target.value, 'status', 'startsWith')"
+              placeholder="Search by Status"
+              class="p-column-filter"
+            />
+          </th>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filter($event.target.value, 'day', 'startsWith')"
+              placeholder="Search by Day"
+              class="p-column-filter"
+            />
+          </th>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filter($event.target.value, 'hour', 'startsWith')"
+              placeholder="Search by Hour"
+              class="p-column-filter"
+            />
+          </th>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filter($event.target.value, 'patient.name', 'startsWith')"
+              placeholder="Search by Patient"
+              class="p-column-filter"
+            />
+          </th>
+        </tr>
       </ng-template>
       <ng-template pTemplate="body" let-appointment>
         <tr>
           <td>{{ appointment.status }}</td>
-          <td>{{ appointment.day | day }}</td>
+          <td>{{ appointment.day }}</td>
           <td>{{ appointment.hour }}</td>
           <td>{{ appointment.patient.name }}</td>
           <td class="action-container">
@@ -70,7 +108,7 @@
   </div>
   <h3>Future Appointments</h3>
   <div class="future-appointments-table">
-    <p-table [value]="futureAppointments">
+    <p-table [value]="futureAppointments" #dt2>
       <ng-template pTemplate="header">
         <tr>
           <th>Status</th>
@@ -78,6 +116,44 @@
           <th>Hour</th>
           <th>Patient</th>
           <th>Actions</th>
+        </tr>
+        <tr>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt2.filter($event.target.value, 'status', 'startsWith')"
+              placeholder="Search by Status"
+              class="p-column-filter"
+            />
+          </th>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt2.filter($event.target.value, 'day', 'startsWith')"
+              placeholder="Search by Day"
+              class="p-column-filter"
+            />
+          </th>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt2.filter($event.target.value, 'hour', 'startsWith')"
+              placeholder="Search by Hour"
+              class="p-column-filter"
+            />
+          </th>
+          <th>
+            <input
+              pInputText
+              type="text"
+              (input)="dt2.filter($event.target.value, 'patient.name', 'startsWith')"
+              placeholder="Search by Patient"
+              class="p-column-filter"
+            />
+          </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-futureAppointment>

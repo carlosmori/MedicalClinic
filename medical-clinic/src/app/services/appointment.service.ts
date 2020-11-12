@@ -37,7 +37,7 @@ export class AppointmentService {
 
   getDoctorAppointments({ professionalId }) {
     const gameRef = this.afs.collection<any>(`appointments-doctor-${professionalId}`, (ref) =>
-      ref.orderBy('day', 'asc').orderBy('status', 'asc')
+      ref.orderBy('day', 'asc').orderBy('hour', 'asc')
     );
     return gameRef.valueChanges();
   }

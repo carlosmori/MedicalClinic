@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { formatISO } from 'date-fns/fp';
 import { DocumentsExportService } from 'src/app/services/documents-export.service';
 
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Table } from 'primeng/table';
+import { DayPipe } from 'src/app/pipes/day.pipe';
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
@@ -22,6 +24,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       transition(':leave', animate(600, style({ opacity: 0 }))),
     ]),
   ],
+  providers: [DayPipe],
 })
 export class ScheduleComponent implements OnInit {
   todayAppointments: any[];
@@ -36,10 +39,13 @@ export class ScheduleComponent implements OnInit {
   temperature: string;
   bloodPresure: string;
   extraNotes: string;
+  @ViewChild('dt') table: Table;
+  @ViewChild('dt2') table2: Table;
   constructor(
     private appointmentService: AppointmentService,
     private authService: AuthService,
-    private documentExportService: DocumentsExportService
+    private documentExportService: DocumentsExportService,
+    private dayPipe: DayPipe
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +54,9 @@ export class ScheduleComponent implements OnInit {
       .getDoctorAppointments({ professionalId: this.currentUser.uid })
       .subscribe((appointments) => {
         const dateIso = formatISO(new Date());
-        this.todayAppointments = appointments.filter((appointment) => appointment.day < dateIso);
+        this.todayAppointments = appointments
+          .filter((appointment) => appointment.day < dateIso)
+          .map((appointment) => ({ ...appointment, day: this.dayPipe.transform(appointment.day) }));
         this.futureAppointments = appointments.filter((appointment) => appointment.day > dateIso);
 
         this.appointments = appointments;
