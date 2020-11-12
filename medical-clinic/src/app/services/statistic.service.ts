@@ -19,10 +19,10 @@ export class StatisticService {
     return gameRef.valueChanges();
   }
   logOperationStatistic({ operation }) {
-    return this.afs.collection(`${StatisticTypes.OPERATION_STAT}-statistics`).add({ ...operation });
+    return this.afs.collection(`${StatisticTypes.OPERATIONS_STAT}-statistics`).add({ ...operation });
   }
   getOperationStatistics({ userId }) {
-    const gameRef = this.afs.collection<any>(`${StatisticTypes.OPERATION_STAT}-statistics`, (ref) =>
+    const gameRef = this.afs.collection<any>(`${StatisticTypes.OPERATIONS_STAT}-statistics`, (ref) =>
       ref.where('uid', '==', userId)
     );
     return gameRef.valueChanges();

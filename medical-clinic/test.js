@@ -1,4 +1,4 @@
-const { addDays, format, formatISO, getDay, isTuesday, subDays } = require('date-fns/fp');
+const { addDays, format, formatISO, getDay, isTuesday, getHours, subDays, getMinutes } = require('date-fns/fp');
 const availDays = [
   {
     label: 'Friday - 13/11/2020',
@@ -135,7 +135,8 @@ availDays.map((currDay) => {
     }
   });
 });
-console.log(formatISO(subDays(1)(new Date())));
+console.log(getHours(new Date()));
+console.log(getMinutes(new Date(formatISO(subDays(1)(new Date())))));
 
 //const dateIso = formatISO(new Date());
 //const todayAppointments = appointments.filter((appointment) => appointment.day < dateIso);

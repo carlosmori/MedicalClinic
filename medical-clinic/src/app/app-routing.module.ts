@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MyAppointmentsComponent } from './components/my-appointments/my-appointments.component';
 import { NewAppointmentComponent } from './components/new-appointment/new-appointment.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'schedule', component: ScheduleComponent },
       { path: 'availability', component: AvailabilityComponent },
       { path: 'admin', component: AdminComponent },
+      { path: 'statistics', component: StatisticsComponent },
     ],
   },
   { path: '**', component: ErrorComponent },

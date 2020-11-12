@@ -29,11 +29,11 @@ export class AuthService {
   }
 
   async signIn(email, password) {
-    const response = { success: false, message: null, callback: null };
+    const response = { success: false, message: null, callback: null, user: null };
     try {
-      const {
-        user: { uid, emailVerified, displayName, photoURL, email: userEmail },
-      } = await this.afAuth.signInWithEmailAndPassword(email, password);
+      const { user } = await this.afAuth.signInWithEmailAndPassword(email, password);
+      const { uid, emailVerified, displayName, photoURL, email: userEmail } = user;
+
       if (!emailVerified) {
         this.sendVerificationMail();
         return { ...response, message: 'Please verify the provided email' };
@@ -41,7 +41,7 @@ export class AuthService {
         const cb = this.afs
           .collection<any>('users', (ref) => ref.where('uid', '==', uid))
           .valueChanges();
-        return { ...response, success: true, callback: cb };
+        return { ...response, success: true, callback: cb, user };
       }
     } catch ({ message }) {
       return { ...response, message };

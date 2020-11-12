@@ -42,7 +42,8 @@
           class="p-button-secondary p-button-outlined p-button-lg"
         ></button>
       </a>
-      <p-chart type="bar" [data]="data"></p-chart>
+      <p-chart type="bar" [data]="loginData"></p-chart>
+      <p-chart type="doughnut" [data]="operationsData"></p-chart>
     </div>
     <div class="professional-dashboard" *ngIf="currentUser.profile === profileTypes.ADMINISTRATOR">
       <a routerLink="/home/admin">
@@ -51,6 +52,15 @@
           type="button"
           label="Admin"
           icon="pi pi-user-edit"
+          class="p-button-secondary p-button-outlined p-button-lg"
+        ></button>
+      </a>
+      <a routerLink="/home/statistics">
+        <button
+          pButton
+          type="button"
+          label="Statistics"
+          icon="pi pi-chart-bar"
           class="p-button-secondary p-button-outlined p-button-lg"
         ></button>
       </a>

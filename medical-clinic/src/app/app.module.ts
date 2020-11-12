@@ -27,6 +27,7 @@ import { PickSpecialtyComponent } from './components/new-appointment/pick-specia
 import { PickProfessionalComponent } from './components/new-appointment/pick-professional/pick-professional.component';
 import { PickDateTimeComponent } from './components/new-appointment/pick-date-time/pick-date-time.component';
 import { AppointmentSummaryComponent } from './components/new-appointment/appointment-summary/appointment-summary.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AppointmentSummaryComponent } from './components/new-appointment/appoin
     PickProfessionalComponent,
     PickDateTimeComponent,
     AppointmentSummaryComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,

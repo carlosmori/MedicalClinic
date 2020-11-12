@@ -10,7 +10,7 @@ import { Profiles } from 'src/app/enums/profiles.enum';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { StatisticService } from 'src/app/services/statistic.service';
 import { StatisticTypes } from 'src/app/enums/statistic-types.enum';
-import { formatISO } from 'date-fns/fp';
+import { formatISO, getHours, getMinutes } from 'date-fns/fp';
 
 @Component({
   selector: 'app-login',
@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
     });
   }
   signIn() {
-    this.authService.signIn(this.email, this.password).then(({ success, message, callback }) => {
+    this.authService.signIn(this.email, this.password).then(({ success, message, callback, user }) => {
       if (success) {
         this.messageService.add({
           key: 'bc',
@@ -129,8 +129,9 @@ export class LoginComponent implements OnInit {
         });
         this.statisticService.logLogInStatistic({
           statistic: {
-            value: formatISO(new Date()),
-            uid: this.authService.currentUser().uid,
+            dateTime: formatISO(new Date()),
+            hour: `${getHours(new Date())}:${getMinutes(new Date())}`,
+            uid: user.uid,
           },
         });
       } else {
