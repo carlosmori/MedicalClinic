@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { WeekDays } from 'src/app/enums/week-days.enum';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import { DoctorService } from 'src/app/services/doctor.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-availability',
   templateUrl: './availability.component.html',
   styleUrls: ['./availability.component.scss'],
-  providers: [ConfirmationService],
+  providers: [MessageService],
 })
 export class AvailabilityComponent implements OnInit {
   weekDays: any[];
   currentDay: string;
-  hours: string[];
-  dayHours: { label: string; value: string }[];
+  hours: string[] = [];
+  dayHours: SelectItem[];
   currentUser: any;
   showUpdateAvailability: boolean;
-  newAvailability: any;
   activeIndex: number;
+  doctor: any;
   constructor(
-    private confirmationService: ConfirmationService,
     private authService: AuthService,
-    private userService: UserService
+    private messageService: MessageService,
+    private doctorService: DoctorService
   ) {
     this.activeIndex = 0;
     this.weekDays = [
@@ -35,91 +36,66 @@ export class AvailabilityComponent implements OnInit {
       { label: 'Saturday', value: 'Saturday' },
     ];
     this.dayHours = [
-      { label: '08:00 AM', value: '08:00 AM' },
-      { label: '09:00 AM', value: '09:00 AM' },
-      { label: '10:00 AM', value: '10:00 AM' },
-      { label: '11:00 AM', value: '11:00 AM' },
-      { label: '12:00 AM', value: '12:00 AM' },
-      { label: '01:00 PM', value: '01:00 PM' },
-      { label: '02:00 PM', value: '02:00 PM' },
-      { label: '03:00 PM', value: '03:00 PM' },
-      { label: '04:00 PM', value: '04:00 PM' },
-      { label: '05:00 PM', value: '05:00 PM' },
-      { label: '06:00 PM', value: '06:00 PM' },
+      { label: '08:00', value: '08:00' },
+      { label: '09:00', value: '09:00' },
+      { label: '10:00', value: '10:00' },
+      { label: '11:00', value: '11:00' },
+      { label: '12:00', value: '12:00' },
+      { label: '13:00', value: '13:00' },
+      { label: '14:00', value: '14:00' },
+      { label: '15:00', value: '15:00' },
+      { label: '16:00', value: '16:00' },
+      { label: '17:00', value: '17:00' },
+      { label: '18:00', value: '18:00' },
     ];
   }
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser();
-  }
-  displayDaySchedule() {
-    console.log('Variable: this.currentDay equals');
-    console.log(this.currentDay);
+    this.doctorService
+      .getDoctorById({ professionalId: this.currentUser.uid })
+      .pipe(map((arr) => arr[0]))
+      .subscribe((doctor) => {
+        this.doctor = doctor;
+        // If there is a schedule for the first day of the week [Sunday], then assign those hours
+        this.hours = doctor.availability[WeekDays[0]] && [...doctor.availability['Sunday']];
+      });
   }
   updateAvailability() {
-    this.newAvailability = [
-      {
-        [WeekDays[this.activeIndex]]: this.hours,
-      },
-      ...this.currentUser.availability,
-    ];
-    this.currentUser.availability = this.newAvailability = [
-      {
-        [WeekDays[this.activeIndex]]: this.hours,
-      },
-      ...this.currentUser.availability,
-    ];
-    this.authService
-      .updateUser({
-        userId: this.currentUser.uid,
-        user: { availability: this.newAvailability },
+    this.doctor.availability = {
+      ...this.doctor.availability,
+      [WeekDays[this.activeIndex]]: this.hours,
+    };
+
+    console.log('Variable: this.hours equals');
+    console.log(this.hours);
+    this.doctorService
+      .updateDoctor({
+        doctor: { ...this.doctor },
       })
       .catch((error) => {
-        // this.messageService.add({
-        //   key: 'bc',
-        //   severity: 'error',
-        //   summary: 'Error',
-        //   detail: error.message,
-        // });
+        this.messageService.add({
+          key: 'bc',
+          severity: 'error',
+          summary: 'Error',
+          detail: error.message,
+        });
       })
       .finally(() => {
-        // this.hideDialog();
-        // this.messageService.add({
-        //   key: 'bc',
-        //   severity: 'success',
-        //   summary: 'The new specialty was added',
-        // });
+        this.showUpdateAvailability = false;
+        this.messageService.add({
+          key: 'bc',
+          severity: 'success',
+          summary: 'The new specialty was added',
+        });
       });
-    // this.confirmationService.confirm({
-    //   message: 'Are you sure that you want to perform this action?',
-    //   accept: () => {
-    //     console.log('Accept');
-    //     console.log('Variable: this.hour equals');
-    //     console.log(this.hours);
-    //     this.authService.updateUser({
-    //       userId: professional.uid,
-    //       user: { isProfessionalEnabled: !professional.isProfessionalEnabled },
-    //     });
-    //   },
-    // });
   }
   changeTab({ index }) {
-    console.log('Variable: weekD equals');
-    this.newAvailability = [];
     this.activeIndex = index;
-    console.log(WeekDays[index]);
     this.showUpdateAvailability = false;
-    const dayWithHours = this.currentUser.availability.filter(
-      (element) => Object.keys(element)[0] === WeekDays[index]
-    )[0];
-    if (dayWithHours) {
-      this.hours = dayWithHours[WeekDays[index]];
-    } else {
-      this.hours = [];
-    }
+    this.hours = this.doctor.availability[WeekDays[index]];
   }
   draftAvailability() {
-    console.log('draft');
     this.showUpdateAvailability = true;
   }
 }
