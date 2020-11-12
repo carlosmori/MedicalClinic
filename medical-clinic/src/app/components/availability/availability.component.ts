@@ -66,9 +66,6 @@ export class AvailabilityComponent implements OnInit {
       ...this.doctor.availability,
       [WeekDays[this.activeIndex]]: this.hours,
     };
-
-    console.log('Variable: this.hours equals');
-    console.log(this.hours);
     this.doctorService
       .updateDoctor({
         doctor: { ...this.doctor },

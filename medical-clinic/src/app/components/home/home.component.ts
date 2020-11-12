@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser();
-    this.displayImageDialog = this.currentUser.firstTimeLogin;
+    this.displayImageDialog = this.currentUser.firstTimeLogIn;
     this.isProfessionalEnabled = this.currentUser.isProfessionalEnabled;
     // todo check this hack
     setTimeout(() => {

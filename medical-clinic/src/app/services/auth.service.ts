@@ -49,21 +49,24 @@ export class AuthService {
   }
 
   async signUp({ email, password, name, profile, firstTimeLogIn, isProfessionalEnabled = null }: User) {
-    const response = { success: false, message: null };
+    const response = { success: false, message: null, uid: null };
     try {
       const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
 
       await this.sendVerificationMail();
-      await this.usersCollection.doc(user.uid).set({
-        uid: user.uid,
-        name,
-        profile,
-        email,
-        firstTimeLogIn,
-        isProfessionalEnabled,
-      });
+      await this.usersCollection.doc(user.uid).set(
+        {
+          uid: user.uid,
+          name,
+          profile,
+          email,
+          firstTimeLogIn,
+          isProfessionalEnabled,
+        },
+        { merge: true }
+      );
 
-      return { ...response, success: true };
+      return { ...response, success: true, uid: user.uid };
     } catch ({ message }) {
       return { ...response, message };
     }

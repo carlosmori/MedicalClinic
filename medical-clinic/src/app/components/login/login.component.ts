@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { randomInt } from '../../utils/randomIntGenerator.js';
 import { Profiles } from 'src/app/enums/profiles.enum';
+import { DoctorService } from 'src/app/services/doctor.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -34,16 +35,21 @@ export class LoginComponent implements OnInit {
   randomInt1: any;
   randomInt2: any;
   displayCaptchas: boolean;
-  constructor(private authService: AuthService, private messageService: MessageService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private messageService: MessageService,
+    private router: Router,
+    private doctorService: DoctorService
+  ) {
     this.displayRegisterForm = false;
     this.profiles = [
       {
-        label: 'Professional',
-        value: Profiles.PROFESSIONAL,
-      },
-      {
         label: 'Patient',
         value: Profiles.PATIENT,
+      },
+      {
+        label: 'Professional',
+        value: Profiles.PROFESSIONAL,
       },
     ];
     this.selectedProfile = 'Patient';
@@ -73,7 +79,7 @@ export class LoginComponent implements OnInit {
     if (this.selectedProfile === Profiles.PROFESSIONAL) {
       this.newUser = { ...this.newUser, isProfessionalEnabled: false };
     }
-    this.authService.signUp(this.newUser).then(({ success, message }) => {
+    this.authService.signUp(this.newUser).then(({ success, message, uid }) => {
       if (success) {
         this.messageService.add({
           key: 'bc',
@@ -81,7 +87,19 @@ export class LoginComponent implements OnInit {
           summary: 'Info',
           detail: 'Please check your email',
         });
-        this.switchForms();
+        this.doctorService
+          .addDoctor({ doctor: { ...this.newUser, uid, specialties: [] } })
+          .then(() => {
+            this.switchForms();
+          })
+          .catch((error) => {
+            this.messageService.add({
+              key: 'bc',
+              severity: 'error',
+              summary: 'Error',
+              detail: error.message,
+            });
+          });
       } else {
         this.messageService.add({
           key: 'bc',
@@ -127,8 +145,6 @@ export class LoginComponent implements OnInit {
     this.password = '123456';
   }
   showResponse(event) {
-    console.log('event');
-    console.log(event);
     if (event.response !== null) {
       this.captchaIsValid = true;
     }

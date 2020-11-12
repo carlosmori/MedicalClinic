@@ -6,7 +6,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class DoctorService {
   constructor(private afs: AngularFirestore) {}
-
+  addDoctor({ doctor }) {
+    return this.afs
+      .collection('doctors')
+      .doc(doctor.uid)
+      .set({ ...doctor });
+  }
   getDoctorById({ professionalId }) {
     const gameRef = this.afs.collection<any>('doctors', (ref) =>
       ref.where('uid', '==', professionalId).orderBy('name', 'desc')

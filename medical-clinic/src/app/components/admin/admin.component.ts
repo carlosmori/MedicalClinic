@@ -88,10 +88,29 @@ export class AdminComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to perform this action?',
       accept: () => {
-        this.authService.updateUser({
-          userId: professional.uid,
-          user: { isProfessionalEnabled: !professional.isProfessionalEnabled },
-        });
+        this.authService
+          .updateUser({
+            userId: professional.uid,
+            user: { isProfessionalEnabled: !professional.isProfessionalEnabled },
+          })
+          .then((res) => {
+            this.doctorService
+              .updateDoctor({
+                doctor: { ...professional, isProfessionalEnabled: !professional.isProfessionalEnabled },
+              })
+              .then((res) => {
+                console.log('Variable: res equals');
+                console.log(res);
+              })
+              .catch((error) => {
+                console.log('Variable: error equals');
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.log('Variable: error equals');
+            console.log(error);
+          });
       },
     });
   }
