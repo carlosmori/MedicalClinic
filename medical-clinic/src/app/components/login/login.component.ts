@@ -8,6 +8,10 @@ import { environment } from '../../../environments/environment';
 import { randomInt } from '../../utils/randomIntGenerator.js';
 import { Profiles } from 'src/app/enums/profiles.enum';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { StatisticService } from 'src/app/services/statistic.service';
+import { StatisticTypes } from 'src/app/enums/statistic-types.enum';
+import { formatISO } from 'date-fns/fp';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,7 +43,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private messageService: MessageService,
     private router: Router,
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private statisticService: StatisticService
   ) {
     this.displayRegisterForm = false;
     this.profiles = [
@@ -121,6 +126,12 @@ export class LoginComponent implements OnInit {
         callback.subscribe((user) => {
           localStorage.setItem('user', JSON.stringify(user[0]));
           this.router.navigate(['/home']);
+        });
+        this.statisticService.logLogInStatistic({
+          statistic: {
+            value: formatISO(new Date()),
+            uid: this.authService.currentUser().uid,
+          },
         });
       } else {
         this.messageService.add({

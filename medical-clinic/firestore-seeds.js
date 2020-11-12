@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 // serviceAccountKey.json can be generated in Firebase Console.
 const serviceAccountKey = require('./admin-sdk.json');
 const seed = require('firestore-seed');
-const { addDays, formatISO } = require('date-fns/fp');
+const { addDays, formatISO, subDays } = require('date-fns/fp');
 let availiability = {};
 // Initialize firebase-admin.
 admin.initializeApp({
@@ -596,6 +596,161 @@ let patientAppointments = seed.collection('appointments-patient-ub8Ln1Xlf4PnBreB
   }),
 ]);
 patientAppointments
+  .importDocuments(admin)
+  .then(() => {
+    console.log('Successfully imported documents.');
+  })
+  .catch((e) => {
+    console.log('Failed to import documents: ' + e);
+  });
+let statisticsLogin = seed.collection('login-statistics', [
+  seed.doc('1', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('2', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('3', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('4', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('5', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('6', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('7', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('8', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('9', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('10', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'ub8Ln1Xlf4PnBreBXpVjJE42R4I3',
+  }),
+  seed.doc('11', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('12', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('13', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('14', {
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('15', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('16', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('17', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('18', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('19', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('20', {
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+]);
+statisticsLogin
+  .importDocuments(admin)
+  .then(() => {
+    console.log('Successfully imported documents.');
+  })
+  .catch((e) => {
+    console.log('Failed to import documents: ' + e);
+  });
+let operationStatistics = seed.collection(`operations-statistics`, [
+  seed.doc('1', {
+    type: 'attend',
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('1', {
+    type: 'attend',
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('2', {
+    type: 'cancel',
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('3', {
+    type: 'cancel',
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('4', {
+    type: 'patient_survey',
+    value: formatISO(subDays(1)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('5', {
+    type: 'attend',
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('6', {
+    type: 'attend',
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('7', {
+    type: 'cancel',
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('8', {
+    type: 'cancel',
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('9', {
+    type: 'dr_summary',
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+  seed.doc('10', {
+    type: 'patient_survey',
+    value: formatISO(subDays(2)(new Date())),
+    uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
+  }),
+]);
+operationStatistics
   .importDocuments(admin)
   .then(() => {
     console.log('Successfully imported documents.');

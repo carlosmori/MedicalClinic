@@ -18,6 +18,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ListboxModule } from 'primeng/listbox';
 import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [],
@@ -41,6 +42,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     ListboxModule,
     TabViewModule,
     CheckboxModule,
+    ChartModule,
   ],
   exports: [
     InputTextModule,
@@ -61,6 +63,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     ListboxModule,
     TabViewModule,
     CheckboxModule,
+    ChartModule,
   ],
 })
 export class PrimeNgModule {}

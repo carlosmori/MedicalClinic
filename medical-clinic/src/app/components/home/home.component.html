@@ -42,6 +42,7 @@
           class="p-button-secondary p-button-outlined p-button-lg"
         ></button>
       </a>
+      <p-chart type="bar" [data]="data"></p-chart>
     </div>
     <div class="professional-dashboard" *ngIf="currentUser.profile === profileTypes.ADMINISTRATOR">
       <a routerLink="/home/admin">
