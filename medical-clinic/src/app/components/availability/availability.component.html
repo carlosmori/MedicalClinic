@@ -1,0 +1,31 @@
+<div class="availability-container">
+  <p-tabView (onChange)="changeTab($event)" activeIndex="activeIndex">
+    <p-tabPanel [header]="day.label" *ngFor="let day of weekDays; let i = index" [selected]="i == 0">
+      <p-card>
+        <ng-template pTemplate="content">
+          <div class="p-fluid">
+            <div class="p-field">
+              <div class="specialty-container">
+                <p-listbox
+                  [multiple]="true"
+                  [checkbox]="true"
+                  [options]="dayHours"
+                  [(ngModel)]="hours"
+                  (click)="draftAvailability()"
+                ></p-listbox>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </p-tabPanel>
+  </p-tabView>
+  <button
+    pButton
+    *ngIf="showUpdateAvailability"
+    type="button"
+    label="Update Availability"
+    (click)="updateAvailability()"
+    class="update-availability-btn"
+  ></button>
+</div>

@@ -10,6 +10,7 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 import { UserService } from 'src/app/services/user.service';
 import { Profiles } from 'src/app/enums/profiles.enum';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-new-appointment',
@@ -33,7 +34,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class NewAppointmentComponent implements OnInit {
   items: MenuItem[];
   specialties: SelectItem[];
-  avaliableDays: SelectItem[] = [];
+  availableDays: SelectItem[] = [];
   avaliableHours: SelectItem[];
 
   submitted = false;
@@ -45,12 +46,10 @@ export class NewAppointmentComponent implements OnInit {
   patient: any;
   professionalsBasedOnSpecialty: { label: any; value: any }[];
   appointmentProfessional: any;
-  formattedDate: string;
   appointmentHour: any;
   appointmentDay: any;
   appointmentSpecialty: string;
-  specialtiesReducer = (prev, curr) => [...new Set([...prev, ...curr.specialties])];
-
+  currentProfessionalAppointments: any[];
   constructor(
     private router: Router,
     private appointmentService: AppointmentService,
@@ -74,10 +73,14 @@ export class NewAppointmentComponent implements OnInit {
         label: 'Confirmation',
       },
     ];
-
-    this.userService.getUsersByType({ profile: Profiles.PROFESSIONAL }).subscribe((professionals) => {
-      this.professionals = professionals;
-      this.specialties = professionals.reduce(this.specialtiesReducer, []).map((e) => ({ label: e, value: e }));
+    this.appointmentService.getSpecialties().subscribe((specialties) => {
+      this.specialties = specialties.map(({ specialty }) => ({
+        label: specialty,
+        value: specialty,
+      }));
+    });
+    this.appointmentService.getDoctors().subscribe((doctors) => {
+      this.professionals = doctors;
     });
   }
   pickSpecialty(specialty: string) {
@@ -91,31 +94,42 @@ export class NewAppointmentComponent implements OnInit {
     this.appointmentProfessional = this.professionals.filter(({ uid }) => uid == professionalId)[0];
     for (let index = 0; index < 15; index++) {
       const date = addDays(index)(new Date());
-      const parsedDay = this.dayOfWeekPipe.transform(getDay(date));
-      const doctorIsInTheClinic =
-        this.appointmentProfessional.availability.filter((element) => Object.keys(element)[0] === parsedDay).length > 0;
-
+      const parsedDay = '' + this.dayOfWeekPipe.transform(getDay(date));
+      const doctorIsInTheClinic = Object.keys(this.appointmentProfessional.availability).includes(parsedDay);
       if (doctorIsInTheClinic) {
-        this.avaliableDays.push({ label: format('dd/MM/yyyy')(date), value: formatISO(date) });
+        this.availableDays.push({
+          label: `${parsedDay} - ${format('dd/MM/yyyy')(date)}`,
+          value: {
+            formattedDate: format('dd/MM/yyyy')(date),
+            day: formatISO(date),
+            hours: this.appointmentProfessional.availability[parsedDay],
+          },
+        });
       }
     }
+    this.appointmentService
+      .getActiveDoctorAppointments({ professionalId: this.appointmentProfessional.uid })
+      .subscribe((appointments) => {
+        this.currentProfessionalAppointments = appointments;
+        // *Try this in a promise
+        this.removeUnAvailableHours();
+      });
     this.nextPage();
   }
+  removeUnAvailableHours() {
+    this.availableDays.map((currDay) => {
+      this.currentProfessionalAppointments.forEach((appointment) => {
+        const { day, hour } = appointment;
+        const appointmentDate = format('dd/MM/yyyy')(new Date(day));
+        if (currDay.value.formattedDate === appointmentDate) {
+          currDay.value.hours = [...currDay.value.hours.filter((unAvailableHour) => unAvailableHour !== hour)];
+        }
+      });
+    });
+  }
   pickDay(day) {
-    // todo refactor this code by changing the database structure
-    // todo pending work, remove hours that are already taken
-    this.appointmentDay = day;
-    this.formattedDate = format('dd/MM/yyyy')(new Date(day));
-    const dayOfWeek = this.dayOfWeekPipe.transform(getDay(new Date(day)));
-    const dayWithHours = this.appointmentProfessional.availability.filter(
-      (element) => Object.keys(element)[0] === dayOfWeek
-    )[0];
-    for (const key in dayWithHours) {
-      if (Object.prototype.hasOwnProperty.call(dayWithHours, key)) {
-        const element = dayWithHours[key];
-        this.avaliableHours = element.map((hour) => ({ label: hour, value: hour }));
-      }
-    }
+    this.appointmentDay = day.day;
+    this.avaliableHours = day.hours.map((hour) => ({ label: hour, value: hour }));
   }
   pickHour(hour) {
     this.appointmentHour = hour;
@@ -123,8 +137,9 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   saveAppointment(appointment) {
+    appointment.uid = uuidv4();
     this.appointmentService
-      .createAppointment(appointment)
+      .saveAppointment(appointment, appointment.professional.uid, appointment.patient.uid)
       .then((response) => {
         this.messageService.add({
           key: 'bc',
@@ -172,7 +187,7 @@ export class NewAppointmentComponent implements OnInit {
         this.appointmentProfessional.availability.filter((element) => Object.keys(element)[0] === parsedDay).length > 0;
 
       if (doctorIsInTheClinic) {
-        this.avaliableDays.push({ label: format('dd/MM/yyyy')(date), value: date });
+        this.availableDays.push({ label: format('dd/MM/yyyy')(date), value: date });
       }
     }
   }

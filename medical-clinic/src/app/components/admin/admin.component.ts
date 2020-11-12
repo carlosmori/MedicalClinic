@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
+import { DoctorService } from 'src/app/services/doctor.service';
 import { UserService } from 'src/app/services/user.service';
+import { map } from 'rxjs/operators';
+import { Profiles } from 'src/app/enums/profiles.enum';
 
 @Component({
   selector: 'app-admin',
@@ -11,38 +14,55 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminComponent implements OnInit {
   professionals: any[] = [{}];
+  patients: any[] = [{}];
   displaySpecialtyDialog = false;
   currentProfessional: any;
   specialties: SelectItem[];
+  customSpecialties: SelectItem[];
   newSpecialty: any;
   selectedSpecialty: string | null = null;
 
   constructor(
     private authService: AuthService,
+    private doctorService: DoctorService,
     private userService: UserService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    this.userService.getUsersByType({ profile: 'professional' }).subscribe((professionals) => {
-      this.professionals = professionals;
+    this.doctorService.getDoctors().subscribe((doctors) => {
+      this.professionals = doctors;
     });
+    // todo implement patients table?
+    // this.userService.getUsersByType({ profile: Profiles.PATIENT }).subscribe((patients) => {
+    //   console.log('Variable: patients equals');
+    //   console.log(patients);
+    // });
     this.userService.getSpecialties().subscribe((specialties) => {
-      this.specialties = specialties.map(({ specialty }) => ({ label: specialty, value: specialty }));
+      this.specialties = specialties.map(({ specialty }) => ({ label: specialty, value: specialty, disabled: false }));
     });
   }
   openNewSpecialtyDialog(professional) {
-    // todo make sure the specialties already taken by the professional are not displayed in the select
-    // todo maybe a filter here based on the array of specialties?
     this.displaySpecialtyDialog = true;
     this.currentProfessional = professional;
+    this.customSpecialties = this.specialties.map((specialty) => {
+      if (professional.specialties.includes(specialty.value)) {
+        return { ...specialty, disabled: true };
+      } else {
+        return { ...specialty };
+      }
+    });
+    console.log('Variable: specialty equals');
+    console.log(this.customSpecialties);
   }
   confirmNewSpecialty() {
-    this.authService
-      .updateUser({
-        userId: this.currentProfessional.uid,
-        user: { specialty: [...this.currentProfessional.specialty, this.selectedSpecialty] },
+    this.doctorService
+      .updateDoctor({
+        doctor: {
+          ...this.currentProfessional,
+          specialties: [...this.currentProfessional.specialties, this.selectedSpecialty],
+        },
       })
       .catch((error) => {
         this.messageService.add({

@@ -1,6 +1,60 @@
 <div class="main-container">
   <app-nav-bar></app-nav-bar>
-  <router-outlet></router-outlet>
+  <div class="actions-container" *ngIf="displayHomeDashBoard">
+    <div class="patient-dashboard" *ngIf="currentUser.profile === profileTypes.PATIENT">
+      <a routerLink="/home/new-appointment">
+        <button
+          pButton
+          type="button"
+          label="New Appointment"
+          icon="pi pi-calendar-plus"
+          class="p-button-secondary p-button-outlined p-button-lg"
+        ></button>
+      </a>
+      <a routerLink="/home/my-appointments">
+        <button
+          pButton
+          type="button"
+          label="My Appointments"
+          icon="pi pi-calendar"
+          class="p-button-secondary p-button-outlined p-button-lg"
+        ></button>
+      </a>
+    </div>
+    <div class="professional-dashboard" *ngIf="currentUser.profile === profileTypes.PROFESSIONAL">
+      <a routerLink="/home/schedule">
+        <button
+          pButton
+          type="button"
+          label="Schedule"
+          icon="pi pi-calendar"
+          class="p-button-secondary p-button-outlined p-button-lg"
+          [disabled]="!currentUser.isProfessionalEnabled"
+        ></button>
+      </a>
+      <a routerLink="/home/availability">
+        <button
+          pButton
+          type="button"
+          label="Availability"
+          icon="pi pi-user-edit"
+          [disabled]="!currentUser.isProfessionalEnabled"
+          class="p-button-secondary p-button-outlined p-button-lg"
+        ></button>
+      </a>
+    </div>
+    <div class="professional-dashboard" *ngIf="currentUser.profile === profileTypes.ADMINISTRATOR">
+      <a routerLink="/home/admin">
+        <button
+          pButton
+          type="button"
+          label="Admin"
+          icon="pi pi-user-edit"
+          class="p-button-secondary p-button-outlined p-button-lg"
+        ></button>
+      </a>
+    </div>
+  </div>
   <p-dialog [(visible)]="displayImageDialog" styleClass="mydialog">
     <p-header> Please upload a profile picture </p-header>
     <p-fileUpload
@@ -12,5 +66,6 @@
       multiple="multiple"
     ></p-fileUpload>
   </p-dialog>
+  <router-outlet></router-outlet>
 </div>
 <p-toast position="bottom-center" key="bc"></p-toast>

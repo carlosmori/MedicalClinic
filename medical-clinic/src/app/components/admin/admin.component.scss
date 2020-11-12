@@ -5,11 +5,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .admin-table {
+  .professionals-list,
+  .patient-list {
     width: 80%;
-    .action-container {
-      button {
-        margin: 5% 0%;
+    .admin-table {
+      .action-container {
+        button {
+          margin: 5% 0%;
+        }
       }
     }
   }

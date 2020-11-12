@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+:host ::ng-deep p-card {
+  width: 50%;
+}
+.availability-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+  .update-availability-btn {
+    width: 15%;
+  }
+}
