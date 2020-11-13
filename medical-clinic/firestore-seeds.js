@@ -94,6 +94,7 @@ specialtiesCollection
 
 let appointmentsCollection = seed.collection('appointments', [
   seed.doc('1', {
+    uid: '1',
     status: 'Active',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -111,6 +112,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: null,
   }),
   seed.doc('2', {
+    uid: '2',
     status: 'Closed',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -128,6 +130,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: 'He is a good and nice doctor!',
   }),
   seed.doc('3', {
+    uid: '3',
     status: 'Cancelled',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -145,6 +148,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: null,
   }),
   seed.doc('4', {
+    uid: '4',
     status: 'Closed',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -162,6 +166,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: 'He is a good patient!',
   }),
   seed.doc('5', {
+    uid: '5',
     status: 'Active',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -179,6 +184,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: null,
   }),
   seed.doc('6', {
+    uid: '6',
     status: 'Active',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -196,6 +202,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: null,
   }),
   seed.doc('7', {
+    uid: '7',
     status: 'Active',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -213,6 +220,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: null,
   }),
   seed.doc('8', {
+    uid: '8',
     status: 'Active',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',
@@ -230,6 +238,7 @@ let appointmentsCollection = seed.collection('appointments', [
     doctorSummary: null,
   }),
   seed.doc('9', {
+    uid: '9',
     status: 'Closed',
     professional: {
       uid: 'cFGHEE0OQQTiHQKGjz2OtcMh4gZ2',

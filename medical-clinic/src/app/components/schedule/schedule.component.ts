@@ -56,10 +56,10 @@ export class ScheduleComponent implements OnInit {
         const dateIso = formatISO(new Date());
         this.todayAppointments = appointments
           .filter((appointment) => appointment.day < dateIso)
-          .map((appointment) => ({ ...appointment, day: this.dayPipe.transform(appointment.day) }));
+          .map((appointment) => ({ ...appointment, parsedDay: this.dayPipe.transform(appointment.day) }));
         this.futureAppointments = appointments
           .filter((appointment) => appointment.day > dateIso)
-          .map((appointment) => ({ ...appointment, day: this.dayPipe.transform(appointment.day) }));
+          .map((appointment) => ({ ...appointment, parsedDay: this.dayPipe.transform(appointment.day) }));
 
         this.appointments = appointments;
       });

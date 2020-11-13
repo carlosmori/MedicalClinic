@@ -48,6 +48,7 @@ export class StatisticsComponent implements OnInit {
       data: number[];
     }[];
   };
+  appointmentsDoctorData: any;
 
   constructor(
     private authService: AuthService,
@@ -87,10 +88,6 @@ export class StatisticsComponent implements OnInit {
         dayOfTheWeek: this.dayOfWeekPipe.transform(getDay(new Date(app.day))),
       }));
       this.appointmentsStats = this.groupBy(paredAppointments, 'dayOfTheWeek');
-
-      console.log('Variable: appointmentsStats equals');
-      console.log(this.appointmentsStats);
-
       this.appointmentsData = {
         labels: Object.keys(this.appointmentsStats),
         datasets: [
@@ -103,6 +100,18 @@ export class StatisticsComponent implements OnInit {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(179,181,198,1)',
             data: Object.keys(this.appointmentsStats).map((day) => this.appointmentsStats[day].length),
+          },
+        ],
+      };
+
+      this.appointmentsDoctorData = {
+        labels: Object.keys(this.appointmentsStats),
+        datasets: [
+          {
+            label: 'Operations Per Doctor',
+            backgroundColor: '#9CCC65',
+            borderColor: '#7CB342',
+            data: [28, 48, 40, 19, 86, 27, 90],
           },
         ],
       };

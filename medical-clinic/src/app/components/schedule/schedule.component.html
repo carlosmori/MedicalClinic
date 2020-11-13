@@ -52,7 +52,7 @@
       <ng-template pTemplate="body" let-appointment>
         <tr>
           <td>{{ appointment.status }}</td>
-          <td>{{ appointment.day }}</td>
+          <td>{{ appointment.parsedDay }}</td>
           <td>{{ appointment.hour }}</td>
           <td>{{ appointment.patient.name }}</td>
           <td class="action-container">
@@ -159,7 +159,7 @@
       <ng-template pTemplate="body" let-futureAppointment>
         <tr>
           <td>{{ futureAppointment.status }}</td>
-          <td>{{ futureAppointment.day }}</td>
+          <td>{{ futureAppointment.parsedDay }}</td>
           <td>{{ futureAppointment.hour }}</td>
           <td>{{ futureAppointment.patient.name }}</td>
           <td>

@@ -43,7 +43,7 @@ export class MyAppointmentsComponent implements OnInit {
     this.appointmentService.getPatientAppointments({ patientId: this.currentUser.uid }).subscribe((appointments) => {
       this.appointments = appointments.map((appointment) => ({
         ...appointment,
-        day: this.dayPipe.transform(appointment.day),
+        parsedDay: this.dayPipe.transform(appointment.day),
       }));
     });
   }
