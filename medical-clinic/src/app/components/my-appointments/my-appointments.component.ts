@@ -64,7 +64,7 @@ export class MyAppointmentsComponent implements OnInit {
   }
   showSummaryDialog(doctorSummary) {
     this.display = true;
-    this.content = doctorSummary;
+    this.content = doctorSummary.extraNotes ? doctorSummary.extraNotes : doctorSummary;
   }
   showPatientSurveyDialog(appointment) {
     this.display = true;
