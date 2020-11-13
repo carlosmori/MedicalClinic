@@ -41,6 +41,10 @@ export class AppointmentService {
     );
     return gameRef.valueChanges();
   }
+  getAppointments() {
+    const gameRef = this.afs.collection<any>('appointments');
+    return gameRef.valueChanges();
+  }
 
   getActiveDoctorAppointments({ professionalId }) {
     const gameRef = this.afs.collection<any>(`appointments-doctor-${professionalId}`, (ref) =>

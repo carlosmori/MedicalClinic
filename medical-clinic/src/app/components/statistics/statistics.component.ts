@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { app } from 'firebase';
 import { SelectItem } from 'primeng/api';
 import { finalize } from 'rxjs/operators';
 import { Profiles } from 'src/app/enums/profiles.enum';
 import { StatisticTypes } from 'src/app/enums/statistic-types.enum';
 import { DayPipe } from 'src/app/pipes/day.pipe';
+import { AppointmentService } from 'src/app/services/appointment.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { StatisticService } from 'src/app/services/statistic.service';
+import { getDay, getHours, getMinutes } from 'date-fns/fp';
+import { DayOfWeekPipe } from 'src/app/pipes/day-of-week.pipe';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss'],
-  providers: [DayPipe],
+  providers: [DayPipe, DayOfWeekPipe],
 })
 export class StatisticsComponent implements OnInit {
   currentUser;
@@ -30,12 +34,28 @@ export class StatisticsComponent implements OnInit {
   logLabels: SelectItem[];
   loginDayData: any;
   doughnutOptions: { legend: { position: string } };
+  appointmentsStats: any;
+  appointmentsData: {
+    labels: string[];
+    datasets: {
+      label: string;
+      backgroundColor: string;
+      borderColor: string;
+      pointBackgroundColor: string;
+      pointBorderColor: string;
+      pointHoverBackgroundColor: string;
+      pointHoverBorderColor: string;
+      data: number[];
+    }[];
+  };
 
   constructor(
     private authService: AuthService,
     private dayPipe: DayPipe,
+    private dayOfWeekPipe: DayOfWeekPipe,
     private doctorService: DoctorService,
-    private statisticService: StatisticService
+    private statisticService: StatisticService,
+    private appointmentService: AppointmentService
   ) {
     this.currentUser = authService.currentUser();
     this.doctorService.getDoctors().subscribe((doctors) => {
@@ -61,6 +81,32 @@ export class StatisticsComponent implements OnInit {
     );
   ngOnInit(): void {
     this.activeIndex = 0;
+    this.appointmentService.getAppointments().subscribe((appointments) => {
+      const paredAppointments = appointments.map((app) => ({
+        ...app,
+        dayOfTheWeek: this.dayOfWeekPipe.transform(getDay(new Date(app.day))),
+      }));
+      this.appointmentsStats = this.groupBy(paredAppointments, 'dayOfTheWeek');
+
+      console.log('Variable: appointmentsStats equals');
+      console.log(this.appointmentsStats);
+
+      this.appointmentsData = {
+        labels: Object.keys(this.appointmentsStats),
+        datasets: [
+          {
+            label: 'Operations Per Day',
+            backgroundColor: 'rgba(179,181,198,0.2)',
+            borderColor: 'rgba(179,181,198,1)',
+            pointBackgroundColor: 'rgba(179,181,198,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(179,181,198,1)',
+            data: Object.keys(this.appointmentsStats).map((day) => this.appointmentsStats[day].length),
+          },
+        ],
+      };
+    });
   }
 
   changeTabWeekDay({ index }) {
